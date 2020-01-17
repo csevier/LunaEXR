@@ -7,17 +7,17 @@ namespace luna
 {
 	namespace math
 	{
-		double CircleCircumference(double radius)
+		float CircleCircumference(float radius)
 		{
 			return 2 * M_PI * radius;
 		}
 
-		double AreaOfCircle(double radius)
+		float AreaOfCircle(float radius)
 		{
 			return M_PI * std::pow(radius, 2);
 		}
 
-		double AreaOfRectangle(double length, double width)
+		float AreaOfRectangle(float length, float width)
 		{
 			return length * width;
 		}

@@ -5,9 +5,9 @@ namespace luna
 {
 	namespace math
 	{
-		double CircleCircumference(double radius);
-		double AreaOfCircle(double radius);
-		double AreaOfRectangle(double length, double width);
+		float CircleCircumference(float radius);
+		float AreaOfCircle(float radius);
+		float AreaOfRectangle(float length, float width);
 	}
 }
 #endif

@@ -5,10 +5,10 @@ namespace luna
 {
 	namespace math
 	{
-		double DegreeToRadian(double angleInDegrees);
-		double RadianToDegree(double angleInRadians);
-		double ArcLengthRadians(double radius, double angleInRadians);
-		double ArcLengthDegrees(double radius, double angleInDegrees);
+		float DegreeToRadian(float angleInDegrees);
+		float RadianToDegree(float angleInRadians);
+		float ArcLengthRadians(float radius, float angleInRadians);
+		float ArcLengthDegrees(float radius, float angleInDegrees);
 	}
 }
 #endif
