@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29020.237
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "luna_renderer", "luna_renderer\luna_renderer.vcxproj", "{5BE49111-662C-4179-BB52-F712B8A5F0D6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "luna_math", "luna_math\luna_math.vcxproj", "{6C09D7D6-A7E1-417D-9940-992A193D4F39}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test_luna_math", "test_luna_math\test_luna_math.vcxproj", "{866F467A-AB40-49A0-AD4E-19E32137DAA1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5BE49111-662C-4179-BB52-F712B8A5F0D6}.Debug|x64.ActiveCfg = Debug|x64
+		{5BE49111-662C-4179-BB52-F712B8A5F0D6}.Debug|x64.Build.0 = Debug|x64
+		{5BE49111-662C-4179-BB52-F712B8A5F0D6}.Debug|x86.ActiveCfg = Debug|Win32
+		{5BE49111-662C-4179-BB52-F712B8A5F0D6}.Debug|x86.Build.0 = Debug|Win32
+		{5BE49111-662C-4179-BB52-F712B8A5F0D6}.Release|x64.ActiveCfg = Release|x64
+		{5BE49111-662C-4179-BB52-F712B8A5F0D6}.Release|x64.Build.0 = Release|x64
+		{5BE49111-662C-4179-BB52-F712B8A5F0D6}.Release|x86.ActiveCfg = Release|Win32
+		{5BE49111-662C-4179-BB52-F712B8A5F0D6}.Release|x86.Build.0 = Release|Win32
+		{6C09D7D6-A7E1-417D-9940-992A193D4F39}.Debug|x64.ActiveCfg = Debug|x64
+		{6C09D7D6-A7E1-417D-9940-992A193D4F39}.Debug|x64.Build.0 = Debug|x64
+		{6C09D7D6-A7E1-417D-9940-992A193D4F39}.Debug|x86.ActiveCfg = Debug|Win32
+		{6C09D7D6-A7E1-417D-9940-992A193D4F39}.Debug|x86.Build.0 = Debug|Win32
+		{6C09D7D6-A7E1-417D-9940-992A193D4F39}.Release|x64.ActiveCfg = Release|x64
+		{6C09D7D6-A7E1-417D-9940-992A193D4F39}.Release|x64.Build.0 = Release|x64
+		{6C09D7D6-A7E1-417D-9940-992A193D4F39}.Release|x86.ActiveCfg = Release|Win32
+		{6C09D7D6-A7E1-417D-9940-992A193D4F39}.Release|x86.Build.0 = Release|Win32
+		{866F467A-AB40-49A0-AD4E-19E32137DAA1}.Debug|x64.ActiveCfg = Debug|x64
+		{866F467A-AB40-49A0-AD4E-19E32137DAA1}.Debug|x64.Build.0 = Debug|x64
+		{866F467A-AB40-49A0-AD4E-19E32137DAA1}.Debug|x86.ActiveCfg = Debug|Win32
+		{866F467A-AB40-49A0-AD4E-19E32137DAA1}.Debug|x86.Build.0 = Debug|Win32
+		{866F467A-AB40-49A0-AD4E-19E32137DAA1}.Release|x64.ActiveCfg = Release|x64
+		{866F467A-AB40-49A0-AD4E-19E32137DAA1}.Release|x64.Build.0 = Release|x64
+		{866F467A-AB40-49A0-AD4E-19E32137DAA1}.Release|x86.ActiveCfg = Release|Win32
+		{866F467A-AB40-49A0-AD4E-19E32137DAA1}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {80549ADA-2FE7-457D-A2C4-D2CBD3E5F761}
+	EndGlobalSection
+EndGlobal
