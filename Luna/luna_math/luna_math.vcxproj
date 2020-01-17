@@ -156,8 +156,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
+    <ClInclude Include="geometry.hpp" />
     <ClInclude Include="math.hpp" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="trig.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />

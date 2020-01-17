@@ -20,47 +20,6 @@ namespace luna
 		constexpr double M_2_SQRTPI = 1.12837916709551257390;   // 2/sqrt(pi)
 		constexpr double M_SQRT1_2 = 0.707106781186547524401;  // 1/sqrt(2)
 		constexpr double M_SQRT2 = 1.41421356237309504880;
-
-		namespace trig
-		{
-			inline double DegreeToRadian(double angleInDegrees)
-			{
-				return  angleInDegrees * M_PI / 180;
-			}
-
-			inline double RadianToDegree(double angleInRadians)
-			{
-				return  angleInRadians * 180 / M_PI;
-			}
-
-			inline double ArcLengthRadians(double radius, double angleInRadians)
-			{
-				return angleInRadians * radius;
-			}
-
-			inline double ArcLengthDegrees(double radius, double angleInDegrees)
-			{
-				return (angleInDegrees / 360) * 2 * M_PI * radius;
-			}
-		}
-
-		namespace geometry
-		{
-			inline double CircleCircumference(double radius)
-			{
-				return 2 * M_PI * radius;
-			}
-
-			inline double AreaOfCircle(double radius)
-			{
-				return M_PI * std::pow(radius, 2);
-			}
-
-			inline double AreaOfRectangle(double length, double width)
-			{
-				return length * width;
-			}
-		}
 	}
 }
 #endif
