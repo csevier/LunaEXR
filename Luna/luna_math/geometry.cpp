@@ -1,5 +1,7 @@
 #include "pch.h"
 #include "geometry.hpp"
+#include "math.hpp"
+
 
 namespace luna
 {

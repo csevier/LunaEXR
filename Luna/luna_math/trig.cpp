@@ -1,5 +1,7 @@
 #include "pch.h"
 #include "trig.hpp"
+#include "math.hpp"
+
 
 namespace luna
 {

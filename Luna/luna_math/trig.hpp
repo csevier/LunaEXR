@@ -1,8 +1,6 @@
 #ifndef TRIG_H
 #define TRIG_H
 
-#include "math.hpp"
-
 namespace luna
 {
 	namespace math
