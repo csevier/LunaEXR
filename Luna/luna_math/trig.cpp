@@ -26,5 +26,20 @@ namespace luna
 		{
 			return (angleInDegrees / 360) * 2 * M_PI * radius;
 		}
+
+		float Sec(float angleInRadians)
+		{
+			return 1 / std::cosf(angleInRadians);
+		}
+
+		float Csc(float angleInRadians)
+		{
+			return 1 / std::sinf(angleInRadians);
+		}
+
+		float Cot(float angleInRadians)
+		{
+			return 1 / std::tanf(angleInRadians);
+		}
 	}
 }
