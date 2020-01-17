@@ -31,19 +31,19 @@ TEST(TestTrig, ArcLengthDegrees)
 	EXPECT_EQ(arcLength, 3.92699075f);
 }
 
-TEST(TestTrig, Sec)
+TEST(TestTrig, SecantIsCorrect)
 {
 	float val = luna::math::Sec(5);
 	EXPECT_EQ(val, 3.52531981f);
 }
 
-TEST(TestTrig, Csc)
+TEST(TestTrig, CosecantIsCorrect)
 {
 	float val = luna::math::Csc(3);
 	EXPECT_EQ(val, 7.08616781f);
 }
 
-TEST(TestTrig, Cot)
+TEST(TestTrig, CotangetIsCorrect)
 {
 	float val = luna::math::Cot(1);
 	EXPECT_EQ(val, 0.642092586f);
