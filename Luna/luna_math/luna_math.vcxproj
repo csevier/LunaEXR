@@ -160,6 +160,7 @@
     <ClInclude Include="math.hpp" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="trig.hpp" />
+    <ClInclude Include="vector3d.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="geometry.cpp" />
@@ -170,6 +171,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="trig.cpp" />
+    <ClCompile Include="vector3d.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
