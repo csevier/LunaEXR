@@ -203,3 +203,40 @@ TEST(TestVector3d, DistanceTo)
 	EXPECT_EQ(distance, 10.2469511f);
 	EXPECT_EQ(distanceOther, 10.2469511f);
 }
+
+TEST(TestVector3d, AngleBetween)
+{
+	luna::math::Vector3d vec{ 2,1,-2 };
+	luna::math::Vector3d vec2{ 1,1,1 };
+	float distance = vec.AngleBetween(vec2);
+	EXPECT_EQ(distance, 1.37713802f);
+	float degrees = luna::math::RadianToDegree(distance);
+	EXPECT_EQ(degrees, 78.9041901f);
+}
+
+TEST(TestVector3d, IsPerependicular)
+{
+	luna::math::Vector3d vec{ 10,4,-1 };
+	luna::math::Vector3d vec2{ 1,1,14 };
+	bool isperp = vec.IsPerpendicular(vec2);
+	EXPECT_TRUE(isperp);
+}
+
+TEST(TestVector3d, IsParallel)
+{
+	luna::math::Vector3d vec{ 10,4,-1 };
+	luna::math::Vector3d vec2{ 1,1,14 };
+	bool para = vec.IsParallel(vec2);
+	bool ispara = vec.IsParallel(vec);
+	EXPECT_FALSE(para);
+	EXPECT_TRUE(ispara);
+}
+
+TEST(TestVector3d, VectorEquality)
+{
+	luna::math::Vector3d vec{ 10,4,-1 };
+	luna::math::Vector3d vec2{ 1,1,14 };
+	luna::math::Vector3d vec3{ 1,1,14 };
+	EXPECT_FALSE(vec == vec2);
+	EXPECT_TRUE(vec2 == vec3);
+}

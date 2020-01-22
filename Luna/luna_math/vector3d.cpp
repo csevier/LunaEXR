@@ -60,6 +60,13 @@ namespace luna
 			return *this;
 		}
 
+		bool Vector3d::operator ==(const Vector3d& other)
+		{
+			return this->mX == other.mX && 
+				this->mY == other.mY && 
+				this->mZ == other.mZ;
+		}
+
 		float& Vector3d::operator [](int i)
 		{
 			return ((&mX)[i]);
@@ -95,6 +102,21 @@ namespace luna
 		float Vector3d::DistanceTo(const Vector3d& other) const
 		{
 			return (other - *this).Magnitude();
+		}
+
+		float Vector3d::AngleBetween(const Vector3d& other) const
+		{
+			return std::acos(other.DotProduct(*this) / (this->Magnitude() * other.Magnitude()));
+		}
+
+		bool Vector3d::IsPerpendicular(const Vector3d& other) const
+		{
+			return other.DotProduct(*this) == 0;
+		}
+
+		bool Vector3d::IsParallel(const Vector3d& other) const
+		{
+			return other.CrossProduct(*this) == Vector3d(0,0,0);
 		}
 	}
 }

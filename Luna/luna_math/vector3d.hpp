@@ -17,6 +17,7 @@ namespace luna
 			Vector3d& operator *=(float s);
 			Vector3d& operator +=(const Vector3d& other);
 			Vector3d& operator -=(const Vector3d& other);
+			bool operator ==(const Vector3d& other);
 			float& operator [](int i);
 			const float& operator [](int i) const;
 			float Magnitude() const;
@@ -24,6 +25,9 @@ namespace luna
 			float DotProduct(const Vector3d& other) const;
 			Vector3d CrossProduct(const Vector3d& other) const;
 			float DistanceTo(const Vector3d& other) const;
+			float AngleBetween(const Vector3d& other) const;
+			bool IsPerpendicular(const Vector3d& other) const;
+			bool IsParallel(const Vector3d& other) const;
 
 		
 			float mX;
