@@ -199,5 +199,7 @@ TEST(TestVector3d, DistanceTo)
 	luna::math::Vector3d vec{ 7,4,3 };
 	luna::math::Vector3d vec2{ 17, 6, 2 };
 	float distance = vec.DistanceTo(vec2);
+	float distanceOther = vec2.DistanceTo(vec);
 	EXPECT_EQ(distance, 10.2469511f);
+	EXPECT_EQ(distanceOther, 10.2469511f);
 }
