@@ -240,3 +240,15 @@ TEST(TestVector3d, VectorEquality)
 	EXPECT_FALSE(vec == vec2);
 	EXPECT_TRUE(vec2 == vec3);
 }
+
+TEST(TestVector3d, SameDirection)
+{
+	luna::math::Vector3d vec{ -1,-1, -14};
+	luna::math::Vector3d vec2{ 1,12,14 };
+	luna::math::Vector3d vec3{ 1,1,14 };
+	bool samedir = vec2.SameDirection(vec);
+	bool samedirt = vec2.SameDirection(vec3);
+	EXPECT_FALSE(samedir);
+	EXPECT_TRUE(samedirt);
+}
+

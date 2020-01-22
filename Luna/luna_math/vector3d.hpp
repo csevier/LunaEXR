@@ -28,6 +28,7 @@ namespace luna
 			float AngleBetween(const Vector3d& other) const;
 			bool IsPerpendicular(const Vector3d& other) const;
 			bool IsParallel(const Vector3d& other) const;
+			bool SameDirection(const Vector3d& other) const;
 
 		
 			float mX;

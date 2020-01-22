@@ -118,6 +118,11 @@ namespace luna
 		{
 			return other.CrossProduct(*this) == Vector3d(0,0,0);
 		}
+
+		bool Vector3d::SameDirection(const Vector3d& other) const
+		{
+			return other.DotProduct(*this) >= 90;
+		}
 	}
 }
 
