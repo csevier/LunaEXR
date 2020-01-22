@@ -23,6 +23,7 @@ namespace luna
 			Vector3d Normalize();
 			float DotProduct(const Vector3d& other) const;
 			Vector3d CrossProduct(const Vector3d& other) const;
+			float DistanceTo(const Vector3d& other) const;
 
 		
 			float mX;

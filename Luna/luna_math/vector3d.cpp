@@ -17,8 +17,8 @@ namespace luna
 
 		Vector3d Vector3d::operator /(float scalar) const
 		{
-			scalar = 1.0F / scalar;
-			return (*this) * scalar;
+			float reciprocal = 1.0F / scalar;
+			return (*this) * reciprocal;
 		}
 
 		Vector3d Vector3d::operator -() const
@@ -90,6 +90,11 @@ namespace luna
 			return Vector3d(mY * other.mZ - mZ * other.mY,
 							mZ * other.mX - mX * other.mZ,
 							mX * other.mY - mY * other.mX);
+		}
+
+		float Vector3d::DistanceTo(const Vector3d& other) const
+		{
+			return (other - *this).Magnitude();
 		}
 	}
 }
