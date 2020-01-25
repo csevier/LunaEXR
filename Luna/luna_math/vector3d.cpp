@@ -62,9 +62,9 @@ namespace luna
 
 		bool Vector3d::operator ==(const Vector3d& other)
 		{
-			return this->mX == other.mX && 
-				this->mY == other.mY && 
-				this->mZ == other.mZ;
+			return mX == other.mX && 
+				   mY == other.mY && 
+				   mZ == other.mZ;
 		}
 
 		float& Vector3d::operator [](int i)
@@ -84,7 +84,7 @@ namespace luna
 
 		Vector3d Vector3d::Normalize()
 		{
-			return (*this) / this->Magnitude();
+			return (*this) / Magnitude();
 		}
 
 		float Vector3d::DotProduct(const Vector3d& other) const
@@ -106,22 +106,22 @@ namespace luna
 
 		float Vector3d::AngleBetween(const Vector3d& other) const
 		{
-			return std::acos(other.DotProduct(*this) / (this->Magnitude() * other.Magnitude()));
+			return std::acos(DotProduct(other) / (Magnitude() * other.Magnitude()));
 		}
 
 		bool Vector3d::IsPerpendicular(const Vector3d& other) const
 		{
-			return other.DotProduct(*this) == 0;
+			return DotProduct(other) == 0;
 		}
 
 		bool Vector3d::IsParallel(const Vector3d& other) const
 		{
-			return other.CrossProduct(*this) == Vector3d(0,0,0);
+			return CrossProduct(other) == Vector3d(0,0,0);
 		}
 
 		bool Vector3d::SameDirection(const Vector3d& other) const
 		{
-			return other.DotProduct(*this) >= 90;
+			return DotProduct(other) >= 90;
 		}
 	}
 }
