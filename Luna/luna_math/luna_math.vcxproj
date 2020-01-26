@@ -161,6 +161,7 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="trig.hpp" />
     <ClInclude Include="vector3d.hpp" />
+    <ClInclude Include="vector4d.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="geometry.cpp" />
@@ -172,6 +173,7 @@
     </ClCompile>
     <ClCompile Include="trig.cpp" />
     <ClCompile Include="vector3d.cpp" />
+    <ClCompile Include="vector4d.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
