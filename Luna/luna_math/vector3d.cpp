@@ -121,7 +121,7 @@ namespace luna
 
 		bool Vector3d::SameDirection(const Vector3d& other) const
 		{
-			return DotProduct(other) >= 90;
+			return DotProduct(other) > 0;
 		}
 	}
 }

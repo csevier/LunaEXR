@@ -109,7 +109,7 @@ namespace luna
 
 		bool Vector4d::SameDirection(const Vector4d& other) const
 		{
-			return DotProduct(other) >= 90;
+			return  DotProduct(other) > 0;
 		}
 	}
 }

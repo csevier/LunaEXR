@@ -160,6 +160,7 @@
     <ClInclude Include="math.hpp" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="trig.hpp" />
+    <ClInclude Include="vector2d.hpp" />
     <ClInclude Include="vector3d.hpp" />
     <ClInclude Include="vector4d.hpp" />
   </ItemGroup>
@@ -172,6 +173,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="trig.cpp" />
+    <ClCompile Include="vector2d.cpp" />
     <ClCompile Include="vector3d.cpp" />
     <ClCompile Include="vector4d.cpp" />
   </ItemGroup>

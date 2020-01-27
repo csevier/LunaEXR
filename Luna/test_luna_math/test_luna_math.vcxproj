@@ -44,6 +44,7 @@
     </ClCompile>
     <ClCompile Include="test_geometry.cpp" />
     <ClCompile Include="test_trig.cpp" />
+    <ClCompile Include="test_vector2d.cpp" />
     <ClCompile Include="test_vector3d.cpp" />
     <ClCompile Include="test_vector4d.cpp" />
   </ItemGroup>
