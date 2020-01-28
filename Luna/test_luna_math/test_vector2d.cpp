@@ -124,10 +124,9 @@ TEST(TestVector2d, AngleBetween)
 {
 	luna::math::Vector2d vec{ 2,1 };
 	luna::math::Vector2d vec2{ 1,1 };
-	float angle = vec.AngleBetween(vec2);
-	EXPECT_EQ(angle, 0.321750671f);
-	float degrees = luna::math::RadianToDegree(angle);
-	EXPECT_EQ(degrees, 18.4349537f);
+	luna::math::Angle angle = vec.AngleBetween(vec2);
+	EXPECT_EQ(angle.Radians(), 0.321750671f);
+	EXPECT_EQ(angle.Degrees(), 18.4349537f);
 }
 
 TEST(TestVector2d, IsPerependicular)

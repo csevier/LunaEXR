@@ -37,11 +37,10 @@ TEST(TestVector4d, DistanceTo)
 TEST(TestVector4d, AngleBetween)
 {
 	luna::math::Vector4d vec{ 2,1,-2,1 };
-	luna::math::Vector4d vec2{ 1,1,1,1 };
-	float angle = vec.AngleBetween(vec2);
-	EXPECT_EQ(angle, 1.07658029f);
-	float degrees = luna::math::RadianToDegree(angle);
-	EXPECT_EQ(degrees, 61.6835060f);
+	luna::math::Vector4d vec2{ 1,1,1,1 }; 
+	luna::math::Angle angle = vec.AngleBetween(vec2);
+	EXPECT_EQ(angle.Radians(), 1.07658029f);
+	EXPECT_EQ(angle.Degrees(), 61.6835060f);
 }
 
 TEST(TestVector4d, NormalizeVector)

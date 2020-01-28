@@ -144,10 +144,31 @@ TEST(TestVector3d, AngleBetween)
 {
 	luna::math::Vector3d vec{ 2,1,-2 };
 	luna::math::Vector3d vec2{ 1,1,1 };
-	float distance = vec.AngleBetween(vec2);
-	EXPECT_EQ(distance, 1.37713802f);
-	float degrees = luna::math::RadianToDegree(distance);
-	EXPECT_EQ(degrees, 78.9041901f);
+	luna::math::Angle angle = vec.AngleBetween(vec2);
+	EXPECT_EQ(angle.Radians(), 1.37713802f);
+	EXPECT_EQ(angle.Degrees(), 78.9041901f);
+}
+
+TEST(TestVector3d, AngleBetween90)
+{
+	luna::math::Vector3d vec{ 10,4,-1 };
+	luna::math::Vector3d vec2{ 1,1,14 };
+	bool isperp = vec.IsPerpendicular(vec2);
+	EXPECT_TRUE(isperp);
+	luna::math::Angle angle = vec.AngleBetween(vec2);
+	EXPECT_EQ(angle.Radians(), 1.57079637f);
+	EXPECT_EQ(angle.Degrees(), 90.0000000f);
+}
+
+TEST(TestVector3d, AngleBetweenPara)
+{
+	luna::math::Vector3d vec{ 10,4,-1 };
+	luna::math::Vector3d vec2{ 1,1,14 };
+	bool ispara = vec.IsParallel(vec);
+	EXPECT_TRUE(ispara);
+	luna::math::Angle angle = vec.AngleBetween(vec);
+	EXPECT_EQ(angle.Radians(), 0.000345266977f);
+	EXPECT_EQ(angle.Degrees(), 0.0197823402f);
 }
 
 TEST(TestVector3d, IsPerependicular)

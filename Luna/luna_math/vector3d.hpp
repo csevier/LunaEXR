@@ -1,7 +1,6 @@
 #ifndef VECTOR3D_H
 #define VECTOR3D_H
-#include "pch.h"
-#include "vector3d.hpp"
+#include "Angle.hpp"
 #include <cmath>
 
 namespace luna
@@ -32,7 +31,7 @@ namespace luna
 			float DotProduct(const Vector3d& other) const;
 			Vector3d CrossProduct(const Vector3d& other) const;
 			float DistanceTo(const Vector3d& other) const;
-			float AngleBetween(const Vector3d& other) const;
+			Angle AngleBetween(const Vector3d& other) const;
 			bool IsPerpendicular(const Vector3d& other) const;
 			bool IsParallel(const Vector3d& other) const;
 			bool SameDirection(const Vector3d& other) const;
@@ -156,9 +155,9 @@ namespace luna
 			return (other - *this).Magnitude();
 		}
 
-		inline float Vector3d::AngleBetween(const Vector3d& other) const
+		inline Angle Vector3d::AngleBetween(const Vector3d& other) const
 		{
-			return std::acos(DotProduct(other) / (Magnitude() * other.Magnitude()));
+			return Angle(std::acos(DotProduct(other) / (Magnitude() * other.Magnitude())));
 		}
 
 		inline bool Vector3d::IsPerpendicular(const Vector3d& other) const

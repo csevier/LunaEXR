@@ -1,8 +1,7 @@
 #ifndef Vector2d_H
 #define Vector2d_H
-#include "pch.h"
-#include "vector3d.hpp"
 #include "trig.hpp"
+#include "angle.hpp"
 #include <cmath>
 
 namespace luna
@@ -31,7 +30,7 @@ namespace luna
 			Vector2d Normalize();
 			float DotProduct(const Vector2d& other) const;
 			float DistanceTo(const Vector2d& other) const;
-			float AngleBetween(const Vector2d& other) const;
+			Angle AngleBetween(const Vector2d& other) const;
 			bool IsPerpendicular(const Vector2d& other) const;
 			bool IsParallel(const Vector2d& other) const;
 			bool SameDirection(const Vector2d& other) const;
@@ -138,9 +137,9 @@ namespace luna
 			return (other - *this).Magnitude();
 		}
 
-		inline float Vector2d::AngleBetween(const Vector2d& other) const
+		inline Angle Vector2d::AngleBetween(const Vector2d& other) const
 		{
-			return std::acos(DotProduct(other) / (Magnitude() * other.Magnitude()));
+			return Angle(std::acos(DotProduct(other) / (Magnitude() * other.Magnitude())));
 		}
 
 		inline bool Vector2d::IsPerpendicular(const Vector2d& other) const
@@ -150,8 +149,8 @@ namespace luna
 
 		inline bool Vector2d::IsParallel(const Vector2d& other) const
 		{
-			float angle = RadianToDegree(AngleBetween(other));
-			return angle == 180 || angle == 0;
+			Angle angle =  AngleBetween(other);
+			return angle.Degrees() == 180 || angle.Degrees() == 0;
 		}
 
 		inline bool Vector2d::SameDirection(const Vector2d& other) const

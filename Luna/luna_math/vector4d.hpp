@@ -1,6 +1,7 @@
 #ifndef VECTOR4D_H
 #define VECTOR4D_H
 #include "trig.hpp"
+#include "angle.hpp"
 #include <cmath>
 
 namespace luna
@@ -31,7 +32,7 @@ namespace luna
 			Vector4d Normalize();
 			float DotProduct(const Vector4d& other) const;
 			float DistanceTo(const Vector4d& other) const;
-			float AngleBetween(const Vector4d& other) const;
+			Angle AngleBetween(const Vector4d& other) const;
 			bool SameDirection(const Vector4d& other) const;
 
 		private:
@@ -156,9 +157,9 @@ namespace luna
 			return (other - *this).Magnitude();
 		}
 
-		inline float Vector4d::AngleBetween(const Vector4d& other) const
+		inline Angle Vector4d::AngleBetween(const Vector4d& other) const
 		{
-			return std::acos(DotProduct(other) / (Magnitude() * other.Magnitude()));
+			return Angle(std::acos(DotProduct(other) / (Magnitude() * other.Magnitude())));
 		}
 
 		inline bool Vector4d::SameDirection(const Vector4d& other) const
