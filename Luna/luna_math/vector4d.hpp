@@ -1,6 +1,5 @@
 #ifndef VECTOR4D_H
 #define VECTOR4D_H
-#include "trig.hpp"
 #include "angle.hpp"
 #include <cmath>
 

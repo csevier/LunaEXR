@@ -1,5 +1,4 @@
 #include "pch.h"
-#include "../luna_math/trig.hpp"
 #include "../luna_math/math.hpp"
 #include "../luna_math/angle.hpp"
 
@@ -39,7 +38,7 @@ TEST(TestTrig, SecantIsCorrect)
 
 TEST(TestTrig, CosecantIsCorrect)
 {
-	float val = luna::math::Csc(luna::math::Angle{ 1 });
+	float val = luna::math::Csc(luna::math::Angle{ 3 });
 	EXPECT_EQ(val, 7.08616781f);
 }
 

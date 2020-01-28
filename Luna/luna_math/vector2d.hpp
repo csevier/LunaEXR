@@ -1,6 +1,5 @@
 #ifndef Vector2d_H
 #define Vector2d_H
-#include "trig.hpp"
 #include "angle.hpp"
 #include <cmath>
 

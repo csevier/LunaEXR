@@ -1,6 +1,6 @@
 #include "pch.h"
 
-#include "../luna_math/trig.hpp"
+#include "../luna_math/angle.hpp"
 #include "../luna_math/vector4d.hpp"
 #include "../luna_math/math.hpp"
 

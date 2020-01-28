@@ -160,7 +160,6 @@
     <ClInclude Include="geometry.hpp" />
     <ClInclude Include="math.hpp" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="trig.hpp" />
     <ClInclude Include="vector2d.hpp" />
     <ClInclude Include="vector3d.hpp" />
     <ClInclude Include="vector4d.hpp" />

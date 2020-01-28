@@ -1,7 +1,6 @@
 #ifndef GEOMETRY_H
 #define GEOMETRY_H
 #include "pch.h"
-#include "geometry.hpp"
 #include "math.hpp"
 
 namespace luna

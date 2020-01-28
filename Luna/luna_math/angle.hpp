@@ -1,6 +1,6 @@
 #ifndef ANGLE_H
 #define ANGLE_H
-#include "trig.hpp"
+#include "math.hpp"
 
 namespace luna 
 {
@@ -60,6 +60,31 @@ namespace luna
 		inline float  Angle::RadianToDegree(float angleInRadians)
 		{
 			return  angleInRadians * 180 / M_PI;
+		}
+
+		inline float ArcLengthRadians(float radius, Angle angle)
+		{
+			return angle.Radians() * radius;
+		}
+
+		inline float ArcLengthDegrees(float radius, Angle angle)
+		{
+			return (angle.Degrees() / 360) * 2 * M_PI * radius;
+		}
+
+		inline float Sec(Angle angle)
+		{
+			return 1 / std::cosf(angle.Radians());
+		}
+
+		inline float Csc(Angle angle)
+		{
+			return 1 / std::sinf(angle.Radians());
+		}
+
+		inline float Cot(Angle angle)
+		{
+			return 1 / std::tanf(angle.Radians());
 		}
 	}
 }

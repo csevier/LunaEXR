@@ -24,9 +24,6 @@
     <ClInclude Include="math.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="trig.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="geometry.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>

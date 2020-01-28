@@ -1,6 +1,6 @@
 #ifndef VECTOR3D_H
 #define VECTOR3D_H
-#include "Angle.hpp"
+#include "angle.hpp"
 #include <cmath>
 
 namespace luna
