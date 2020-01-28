@@ -29,3 +29,23 @@ TEST(TestAngle, AngleEquality)
 	EXPECT_EQ(angle, angleD);
 }
 
+TEST(TestAngle, AFewMoreTests)
+{
+	luna::math::Angle fullCircle = luna::math::AngleFromRadians(6.28318548f);
+	luna::math::Angle halfcircle = luna::math::AngleFromDegrees(180.0f);
+	luna::math::Angle thirty = luna::math::AngleFromDegrees(30.0f);
+	luna::math::Angle twoSeventy = luna::math::AngleFromDegrees(270.0f);
+	
+	EXPECT_EQ(fullCircle.Radians(), luna::math::M_PI *2);
+	EXPECT_EQ(fullCircle.Degrees(), 360.0f);
+
+	EXPECT_EQ(halfcircle.Radians(), luna::math::M_PI);
+	EXPECT_EQ(halfcircle.Degrees(), 180.0f);
+
+	EXPECT_EQ(thirty.Radians(), 0.523598790f);
+	EXPECT_EQ(thirty.Degrees(), 30.0f);
+
+	EXPECT_EQ(twoSeventy.Radians(), 4.71238899f);
+	EXPECT_EQ(twoSeventy.Degrees(), 270.0f);
+}
+
