@@ -3,46 +3,36 @@
 #include "pch.h"
 #include "trig.hpp"
 #include "math.hpp"
+#include "angle.hpp"
 
 namespace luna
 {
 	namespace math
 	{
-		inline float DegreeToRadian(float angleInDegrees)
+		inline float ArcLengthRadians(float radius, Angle angle)
 		{
-			return  angleInDegrees * M_PI / 180;
+			return angle.Radians() * radius;
 		}
 
-		inline float RadianToDegree(float angleInRadians)
+		inline float ArcLengthDegrees(float radius, Angle angle)
 		{
-			return  angleInRadians * 180 / M_PI;
+			return (angle.Degrees() / 360) * 2 * M_PI * radius;
 		}
 
-		inline float ArcLengthRadians(float radius, float angleInRadians)
+		inline float Sec(Angle angle)
 		{
-			return angleInRadians * radius;
+			return 1 / std::cosf(angle.Radians());
 		}
 
-		inline float ArcLengthDegrees(float radius, float angleInDegrees)
+		inline float Csc(Angle angle)
 		{
-			return (angleInDegrees / 360) * 2 * M_PI * radius;
+			return 1 / std::sinf(angle.Radians());
 		}
 
-		inline float Sec(float angleInRadians)
+		inline float Cot(Angle angle)
 		{
-			return 1 / std::cosf(angleInRadians);
+			return 1 / std::tanf(angle.Radians());
 		}
-
-		inline float Csc(float angleInRadians)
-		{
-			return 1 / std::sinf(angleInRadians);
-		}
-
-		inline float Cot(float angleInRadians)
-		{
-			return 1 / std::tanf(angleInRadians);
-		}
-		
 	}
 }
 #endif

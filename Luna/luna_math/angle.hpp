@@ -2,8 +2,6 @@
 #define ANGLE_H
 #include "trig.hpp"
 
-
-
 namespace luna 
 {
 	namespace math 
@@ -15,6 +13,9 @@ namespace luna
 			bool operator==(const Angle& other) const;
 			float Degrees() const;
 			float Radians() const;
+			static float DegreeToRadian(float angleInDegrees);
+			static float RadianToDegree(float angleInRadians);
+
 		private:
 			float mDegrees;
 			float mRadians;
@@ -48,10 +49,19 @@ namespace luna
 
 		inline Angle AngleFromDegrees(float angle)
 		{
-			return Angle(DegreeToRadian(angle));
+			return Angle(Angle::DegreeToRadian(angle));
+		}
+
+		inline float Angle::DegreeToRadian(float angleInDegrees)
+		{
+			return  angleInDegrees * M_PI / 180;
+		}
+
+		inline float  Angle::RadianToDegree(float angleInRadians)
+		{
+			return  angleInRadians * 180 / M_PI;
 		}
 	}
 }
-	
 
 #endif
