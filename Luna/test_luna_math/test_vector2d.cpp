@@ -7,32 +7,32 @@
 TEST(TestVector2d, Ctor)
 {
 	luna::math::Vector2d v{ 1,2 };
-	EXPECT_EQ(v.mX, 1);
-	EXPECT_EQ(v.mY, 2);
+	EXPECT_EQ(v.x(), 1);
+	EXPECT_EQ(v.y(), 2);
 }
 
 TEST(TestVector2d, ScaleVector)
 {
 	luna::math::Vector2d v{ 1,2 };
 	luna::math::Vector2d vec = v * 2;
-	EXPECT_EQ(vec.mX, 2);
-	EXPECT_EQ(vec.mY, 4);
+	EXPECT_EQ(vec.x(), 2);
+	EXPECT_EQ(vec.y(), 4);
 }
 
 TEST(TestVector2d, DivideVector)
 {
 	luna::math::Vector2d v{ 4,10};
 	luna::math::Vector2d vec = v / 2;
-	EXPECT_EQ(vec.mX, 2);
-	EXPECT_EQ(vec.mY, 5);
+	EXPECT_EQ(vec.x(), 2);
+	EXPECT_EQ(vec.y(), 5);
 }
 
 TEST(TestVector2d, NegateVector)
 {
 	luna::math::Vector2d v{ 4,10 };
 	luna::math::Vector2d vec = -v;
-	EXPECT_EQ(vec.mX, -4);
-	EXPECT_EQ(vec.mY, -10);
+	EXPECT_EQ(vec.x(), -4);
+	EXPECT_EQ(vec.y(), -10);
 }
 
 TEST(TestVector2d, AddVector)
@@ -40,8 +40,8 @@ TEST(TestVector2d, AddVector)
 	luna::math::Vector2d v{ 4,10 };
 	luna::math::Vector2d vec{ 1,2 };
 	luna::math::Vector2d add = v + vec;
-	EXPECT_EQ(add.mX, 5);
-	EXPECT_EQ(add.mY, 12);
+	EXPECT_EQ(add.x(), 5);
+	EXPECT_EQ(add.y(), 12);
 }
 
 TEST(TestVector2d, SubtractVector)
@@ -49,8 +49,8 @@ TEST(TestVector2d, SubtractVector)
 	luna::math::Vector2d v{ 4,10 };
 	luna::math::Vector2d vec{ 1,2 };
 	luna::math::Vector2d minus = v - vec;
-	EXPECT_EQ(minus.mX, 3);
-	EXPECT_EQ(minus.mY, 8);
+	EXPECT_EQ(minus.x(), 3);
+	EXPECT_EQ(minus.y(), 8);
 }
 
 TEST(TestVector2d, ScaleSelf)
@@ -58,8 +58,8 @@ TEST(TestVector2d, ScaleSelf)
 
 	luna::math::Vector2d vec{ 1,2 };
 	vec *= 3;
-	EXPECT_EQ(vec.mX, 3);
-	EXPECT_EQ(vec.mY, 6);
+	EXPECT_EQ(vec.x(), 3);
+	EXPECT_EQ(vec.y(), 6);
 }
 
 TEST(TestVector2d, AddSelf)
@@ -67,16 +67,16 @@ TEST(TestVector2d, AddSelf)
 
 	luna::math::Vector2d vec{ 1,2};
 	vec += luna::math::Vector2d{ 1,2 };
-	EXPECT_EQ(vec.mX, 2);
-	EXPECT_EQ(vec.mY, 4);
+	EXPECT_EQ(vec.x(), 2);
+	EXPECT_EQ(vec.y(), 4);
 }
 
 TEST(TestVector2d, SubtractSelf)
 {
 	luna::math::Vector2d vec{ 1,2 };
 	vec -= luna::math::Vector2d{ 1,2 };
-	EXPECT_EQ(vec.mX, 0);
-	EXPECT_EQ(vec.mY, 0);
+	EXPECT_EQ(vec.x(), 0);
+	EXPECT_EQ(vec.y(), 0);
 }
 
 TEST(TestVector2d, SubscripVector)

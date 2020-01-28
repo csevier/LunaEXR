@@ -64,30 +64,30 @@ TEST(TestVector4d, ScaleVector)
 {
 	luna::math::Vector4d v{ 1,2,3,4 };
 	luna::math::Vector4d vec = v * 2;
-	EXPECT_EQ(vec.mX, 2);
-	EXPECT_EQ(vec.mY, 4);
-	EXPECT_EQ(vec.mZ, 6);
-	EXPECT_EQ(vec.mW, 8);
+	EXPECT_EQ(vec.x(), 2);
+	EXPECT_EQ(vec.y(), 4);
+	EXPECT_EQ(vec.z(), 6);
+	EXPECT_EQ(vec.w(), 8);
 }
 
 TEST(TestVector4d, DivideVector)
 {
 	luna::math::Vector4d v{ 4,10,16, 10 };
 	luna::math::Vector4d vec = v / 2;
-	EXPECT_EQ(vec.mX, 2);
-	EXPECT_EQ(vec.mY, 5);
-	EXPECT_EQ(vec.mZ, 8);
-	EXPECT_EQ(vec.mW, 5);
+	EXPECT_EQ(vec.x(), 2);
+	EXPECT_EQ(vec.y(), 5);
+	EXPECT_EQ(vec.z(), 8);
+	EXPECT_EQ(vec.w(), 5);
 }
 
 TEST(TestVector4d, NegateVector)
 {
 	luna::math::Vector4d v{ 4,10,16, 2 };
 	luna::math::Vector4d vec = -v;
-	EXPECT_EQ(vec.mX, -4);
-	EXPECT_EQ(vec.mY, -10);
-	EXPECT_EQ(vec.mZ, -16);
-	EXPECT_EQ(vec.mW, -2);
+	EXPECT_EQ(vec.x(), -4);
+	EXPECT_EQ(vec.y(), -10);
+	EXPECT_EQ(vec.z(), -16);
+	EXPECT_EQ(vec.w(), -2);
 }
 
 TEST(TestVector4d, AddVector)
@@ -95,10 +95,10 @@ TEST(TestVector4d, AddVector)
 	luna::math::Vector4d v{ 4,10,16,3 };
 	luna::math::Vector4d vec{ 1,2,3, 6 };
 	luna::math::Vector4d add = v + vec;
-	EXPECT_EQ(add.mX, 5);
-	EXPECT_EQ(add.mY, 12);
-	EXPECT_EQ(add.mZ, 19);
-	EXPECT_EQ(add.mW, 9);
+	EXPECT_EQ(add.x(), 5);
+	EXPECT_EQ(add.y(), 12);
+	EXPECT_EQ(add.z(), 19);
+	EXPECT_EQ(add.w(), 9);
 }
 
 TEST(TestVector4d, SubtractVector)
@@ -106,10 +106,10 @@ TEST(TestVector4d, SubtractVector)
 	luna::math::Vector4d v{ 4,10,16,5 };
 	luna::math::Vector4d vec{ 1,2,3,2 };
 	luna::math::Vector4d minus = v - vec;
-	EXPECT_EQ(minus.mX, 3);
-	EXPECT_EQ(minus.mY, 8);
-	EXPECT_EQ(minus.mZ, 13);
-	EXPECT_EQ(minus.mW, 3);
+	EXPECT_EQ(minus.x(), 3);
+	EXPECT_EQ(minus.y(), 8);
+	EXPECT_EQ(minus.z(), 13);
+	EXPECT_EQ(minus.w(), 3);
 }
 
 TEST(TestVector4d, ScaleSelf)
@@ -117,10 +117,10 @@ TEST(TestVector4d, ScaleSelf)
 
 	luna::math::Vector4d vec{ 1,2,3,4 };
 	vec *= 3;
-	EXPECT_EQ(vec.mX, 3);
-	EXPECT_EQ(vec.mY, 6);
-	EXPECT_EQ(vec.mZ, 9);
-	EXPECT_EQ(vec.mW, 12);
+	EXPECT_EQ(vec.x(), 3);
+	EXPECT_EQ(vec.y(), 6);
+	EXPECT_EQ(vec.z(), 9);
+	EXPECT_EQ(vec.w(), 12);
 }
 
 TEST(TestVector4d, AddSelf)
@@ -128,20 +128,20 @@ TEST(TestVector4d, AddSelf)
 
 	luna::math::Vector4d vec{ 1,2,3,4 };
 	vec += luna::math::Vector4d{ 1,2,3,4 };
-	EXPECT_EQ(vec.mX, 2);
-	EXPECT_EQ(vec.mY, 4);
-	EXPECT_EQ(vec.mZ, 6);
-	EXPECT_EQ(vec.mW, 8);
+	EXPECT_EQ(vec.x(), 2);
+	EXPECT_EQ(vec.y(), 4);
+	EXPECT_EQ(vec.z(), 6);
+	EXPECT_EQ(vec.w(), 8);
 }
 
 TEST(TestVector4d, SubtractSelf)
 {
 	luna::math::Vector4d vec{ 1,2,3,4 };
 	vec -= luna::math::Vector4d{ 1,2,3,4 };
-	EXPECT_EQ(vec.mX, 0);
-	EXPECT_EQ(vec.mY, 0);
-	EXPECT_EQ(vec.mZ, 0);
-	EXPECT_EQ(vec.mW, 0);
+	EXPECT_EQ(vec.x(), 0);
+	EXPECT_EQ(vec.y(), 0);
+	EXPECT_EQ(vec.z(), 0);
+	EXPECT_EQ(vec.w(), 0);
 }
 
 TEST(TestVector4d, SubscripVector)

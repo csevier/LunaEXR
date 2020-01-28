@@ -44,20 +44,5 @@
     <ClCompile Include="pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="trig.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="geometry.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="vector3d.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="vector4d.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="vector2d.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

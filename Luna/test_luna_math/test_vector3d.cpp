@@ -7,36 +7,36 @@
 TEST(TestVector3d, Ctor)
 {
 	luna::math::Vector3d v{ 1,2,3 };
-	EXPECT_EQ(v.mX, 1);
-	EXPECT_EQ(v.mY, 2);
-	EXPECT_EQ(v.mZ, 3);
+	EXPECT_EQ(v.x(), 1);
+	EXPECT_EQ(v.y(), 2);
+	EXPECT_EQ(v.z(), 3);
 }
 
 TEST(TestVector3d, ScaleVector)
 {
 	luna::math::Vector3d v{ 1,2,3 };
 	luna::math::Vector3d vec = v * 2;
-	EXPECT_EQ(vec.mX, 2);
-	EXPECT_EQ(vec.mY, 4);
-	EXPECT_EQ(vec.mZ, 6);
+	EXPECT_EQ(vec.x(), 2);
+	EXPECT_EQ(vec.y(), 4);
+	EXPECT_EQ(vec.z(), 6);
 }
 
 TEST(TestVector3d, DivideVector)
 {
 	luna::math::Vector3d v{ 4,10,16 };
 	luna::math::Vector3d vec = v / 2;
-	EXPECT_EQ(vec.mX, 2);
-	EXPECT_EQ(vec.mY, 5);
-	EXPECT_EQ(vec.mZ, 8);
+	EXPECT_EQ(vec.x(), 2);
+	EXPECT_EQ(vec.y(), 5);
+	EXPECT_EQ(vec.z(), 8);
 }
 
 TEST(TestVector3d, NegateVector)
 {
 	luna::math::Vector3d v{ 4,10,16 };
 	luna::math::Vector3d vec = -v;
-	EXPECT_EQ(vec.mX, -4);
-	EXPECT_EQ(vec.mY, -10);
-	EXPECT_EQ(vec.mZ, -16);
+	EXPECT_EQ(vec.x(), -4);
+	EXPECT_EQ(vec.y(), -10);
+	EXPECT_EQ(vec.z(), -16);
 }
 
 TEST(TestVector3d, AddVector)
@@ -44,9 +44,9 @@ TEST(TestVector3d, AddVector)
 	luna::math::Vector3d v{ 4,10,16 };
 	luna::math::Vector3d vec{ 1,2,3 };
 	luna::math::Vector3d add = v + vec;
-	EXPECT_EQ(add.mX, 5);
-	EXPECT_EQ(add.mY, 12);
-	EXPECT_EQ(add.mZ, 19);
+	EXPECT_EQ(add.x(), 5);
+	EXPECT_EQ(add.y(), 12);
+	EXPECT_EQ(add.z(), 19);
 }
 
 TEST(TestVector3d, SubtractVector)
@@ -54,9 +54,9 @@ TEST(TestVector3d, SubtractVector)
 	luna::math::Vector3d v{ 4,10,16 };
 	luna::math::Vector3d vec{ 1,2,3 };
 	luna::math::Vector3d minus = v - vec;
-	EXPECT_EQ(minus.mX, 3);
-	EXPECT_EQ(minus.mY, 8);
-	EXPECT_EQ(minus.mZ, 13);
+	EXPECT_EQ(minus.x(), 3);
+	EXPECT_EQ(minus.y(), 8);
+	EXPECT_EQ(minus.z(), 13);
 }
 
 TEST(TestVector3d, ScaleSelf)
@@ -64,9 +64,9 @@ TEST(TestVector3d, ScaleSelf)
 
 	luna::math::Vector3d vec{ 1,2,3 };
 	vec *= 3;
-	EXPECT_EQ(vec.mX, 3);
-	EXPECT_EQ(vec.mY, 6);
-	EXPECT_EQ(vec.mZ, 9);
+	EXPECT_EQ(vec.x(), 3);
+	EXPECT_EQ(vec.y(), 6);
+	EXPECT_EQ(vec.z(), 9);
 }
 
 TEST(TestVector3d, AddSelf)
@@ -74,18 +74,18 @@ TEST(TestVector3d, AddSelf)
 
 	luna::math::Vector3d vec{ 1,2,3 };
 	vec += luna::math::Vector3d{ 1,2,3 };
-	EXPECT_EQ(vec.mX, 2);
-	EXPECT_EQ(vec.mY, 4);
-	EXPECT_EQ(vec.mZ, 6);
+	EXPECT_EQ(vec.x(), 2);
+	EXPECT_EQ(vec.y(), 4);
+	EXPECT_EQ(vec.z(), 6);
 }
 
 TEST(TestVector3d, SubtractSelf)
 {
 	luna::math::Vector3d vec{ 1,2,3 };
 	vec -= luna::math::Vector3d{ 1,2,3 };
-	EXPECT_EQ(vec.mX, 0);
-	EXPECT_EQ(vec.mY, 0);
-	EXPECT_EQ(vec.mZ, 0);
+	EXPECT_EQ(vec.x(), 0);
+	EXPECT_EQ(vec.y(), 0);
+	EXPECT_EQ(vec.z(), 0);
 }
 
 TEST(TestVector3d, SubscripVector)
@@ -125,9 +125,9 @@ TEST(TestVector3d, CrossProduct)
 	luna::math::Vector3d vec{ 2,3,4 };
 	luna::math::Vector3d vec2{ 5,6,7 };
 	luna::math::Vector3d cross = vec.CrossProduct(vec2);
-	EXPECT_EQ(cross.mX, -3);
-	EXPECT_EQ(cross.mY, 6);
-	EXPECT_EQ(cross.mZ, -3);
+	EXPECT_EQ(cross.x(), -3);
+	EXPECT_EQ(cross.y(), 6);
+	EXPECT_EQ(cross.z(), -3);
 }
 
 TEST(TestVector3d, DistanceTo)
