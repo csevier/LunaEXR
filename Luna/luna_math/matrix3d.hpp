@@ -19,6 +19,9 @@ namespace luna
 
 		bool operator==(const Matrix3d& other) const;
 		float operator()(int row, int column) const;
+		Matrix3d Transpose() const;
+		bool IsDiagonal() const;
+		bool IsIdentity() const;
 
 	private:
 		float mContents[3][3];
@@ -57,6 +60,36 @@ namespace luna
 	inline float Matrix3d::operator()(int row, int column) const
 	{
 		return mContents[row][column];
+	}
+
+	inline Matrix3d Matrix3d::Transpose() const
+	{
+		return Matrix3d{ mContents[0][0], mContents[1][0], mContents[2][0],
+						 mContents[0][1], mContents[1][1], mContents[2][1],
+						 mContents[0][2], mContents[1][2], mContents[2][2] };
+	}
+
+	inline bool Matrix3d::IsDiagonal() const
+	{
+		for (int row = 0; row < 3; row++)
+		{
+			for (int column = 0; column < 3; column++) {
+				if (row == column) // The diagonal
+				{ 
+					continue;
+				}
+				if (mContents[row][column] != 0)
+				{
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
+	inline bool Matrix3d::IsIdentity() const 
+	{
+		return mContents[0][0] == 1 && mContents[1][1] == 1 && mContents[2][2] == 1;
 	}
 }
 
