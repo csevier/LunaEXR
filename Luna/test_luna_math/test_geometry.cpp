@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "../luna_math/math.hpp"
-
 #include "../luna_math/geometry.hpp"
 
 TEST(TestGeometry, AreaOfCircle)

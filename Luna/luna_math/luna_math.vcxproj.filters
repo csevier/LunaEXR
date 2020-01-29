@@ -39,9 +39,15 @@
     <ClInclude Include="angle.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="matrix3d.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="matrix3d.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
