@@ -59,3 +59,18 @@ TEST(TestMatrix3d, Diagonal)
 	EXPECT_TRUE(diag.IsDiagonal());
 	EXPECT_FALSE(mat3.IsDiagonal());
 }
+
+TEST(TestMatrix3d, ScaleMatric)
+{
+	luna::Matrix3d mat3{ 1,2,3,4,5,6,7,8,9 }; 
+	luna::Matrix3d scaled = mat3 * 2;
+	EXPECT_EQ(scaled(0, 0), 2);
+	EXPECT_EQ(scaled(0, 1), 4);
+	EXPECT_EQ(scaled(0, 2), 6);
+	EXPECT_EQ(scaled(1, 0), 8);
+	EXPECT_EQ(scaled(1, 1), 10);
+	EXPECT_EQ(scaled(1, 2), 12);
+	EXPECT_EQ(scaled(2, 0), 14);
+	EXPECT_EQ(scaled(2, 1), 16);
+	EXPECT_EQ(scaled(2, 2), 18);
+}

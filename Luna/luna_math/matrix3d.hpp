@@ -18,6 +18,8 @@ namespace luna
 			     float a20, float a21, float a22);
 
 		bool operator==(const Matrix3d& other) const;
+		Matrix3d operator*(int scaler) const;
+		Matrix3d operator*(const Matrix3d& other) const;
 		float operator()(int row, int column) const;
 		Matrix3d Transpose() const;
 		bool IsDiagonal() const;
@@ -90,6 +92,30 @@ namespace luna
 	inline bool Matrix3d::IsIdentity() const 
 	{
 		return mContents[0][0] == 1 && mContents[1][1] == 1 && mContents[2][2] == 1;
+	}
+
+	inline Matrix3d Matrix3d::operator*(int scaler) const
+	{
+		return Matrix3d{ mContents[0][0] * scaler, mContents[0][1] * scaler, mContents[0][2] * scaler,
+						 mContents[1][0] * scaler, mContents[1][1] * scaler, mContents[1][2] * scaler,
+						 mContents[2][0] * scaler, mContents[2][1] * scaler, mContents[2][2] * scaler };
+	}
+
+	inline Matrix3d Matrix3d::operator*(const Matrix3d& other) const 
+	{
+		float a00 = (mContents[0][0] * other.mContents[0][0]) + (mContents[0][1] * other.mContents[1][0]) + (mContents[0][1] * other.mContents[1][0]);
+		float a01 = (mContents[0][0] * other.mContents[0][0]) + (mContents[0][1] * other.mContents[1][0]) + (mContents[0][1] * other.mContents[1][0]);
+		float a02 = (mContents[0][0] * other.mContents[0][0]) + (mContents[0][1] * other.mContents[1][0]) + (mContents[0][1] * other.mContents[1][0]);
+		float a10 = (mContents[0][0] * other.mContents[0][0]) + (mContents[0][1] * other.mContents[1][0]) + (mContents[0][1] * other.mContents[1][0]);
+		float a11 = (mContents[0][0] * other.mContents[0][0]) + (mContents[0][1] * other.mContents[1][0]) + (mContents[0][1] * other.mContents[1][0]);
+		float a12 = (mContents[0][0] * other.mContents[0][0]) + (mContents[0][1] * other.mContents[1][0]) + (mContents[0][1] * other.mContents[1][0]);
+		float a20 = (mContents[0][0] * other.mContents[0][0]) + (mContents[0][1] * other.mContents[1][0]) + (mContents[0][1] * other.mContents[1][0]);
+		float a21 = (mContents[0][0] * other.mContents[0][0]) + (mContents[0][1] * other.mContents[1][0]) + (mContents[0][1] * other.mContents[1][0]);
+		float a22 = (mContents[0][0] * other.mContents[0][0]) + (mContents[0][1] * other.mContents[1][0]) + (mContents[0][1] * other.mContents[1][0]);
+		
+		return Matrix3d{ a00, a01, a02,
+		                 a10, a11, a12,
+		                 a20, a21, a22};
 	}
 }
 
