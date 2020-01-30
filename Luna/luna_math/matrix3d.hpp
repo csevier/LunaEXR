@@ -119,9 +119,9 @@ namespace luna
 	
 	inline Vector3d Matrix3d::operator*(const Vector3d& vector) const
 	{
-		return Vector3d((*this)(0, 0) * vector.x() + (*this)(0, 1) * vector.y() + (*this)(0, 2) * vector.z(),
-			(*this)(1, 0) * vector.x() + (*this)(1, 1) * vector.y() + (*this)(1, 2) * vector.z(),
-			(*this)(2, 0) * vector.x() + (*this)(2, 1) * vector.y() + (*this)(2, 2) * vector.z());
+		return Vector3d{ (*this)(0, 0) * vector.x() + (*this)(0, 1) * vector.y() + (*this)(0, 2) * vector.z(),
+						 (*this)(1, 0) * vector.x() + (*this)(1, 1) * vector.y() + (*this)(1, 2) * vector.z(),
+						 (*this)(2, 0) * vector.x() + (*this)(2, 1) * vector.y() + (*this)(2, 2) * vector.z()};
 	}
 }
 

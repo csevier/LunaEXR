@@ -55,7 +55,9 @@ TEST(TestMatrix3d, Diagonal)
 {
 	luna::Matrix3d mat3{ 1,2,3,4,5,6,7,8,9 };
 	luna::Matrix3d ident{ };
-	luna::Matrix3d diag{ 2,0,0,0,9,0,0,0,12 };
+	luna::Matrix3d diag{ 2,0,0,
+					     0,9,0,
+						 0,0,12 };
 	EXPECT_TRUE(ident.IsDiagonal());
 	EXPECT_TRUE(diag.IsDiagonal());
 	EXPECT_FALSE(mat3.IsDiagonal());
