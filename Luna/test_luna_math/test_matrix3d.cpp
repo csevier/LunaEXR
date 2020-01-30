@@ -106,3 +106,40 @@ TEST(TestMatrix3d, MatrixByVector)
 	EXPECT_EQ(vec.z(), 557.290039f);
 
 }
+TEST(TestMatrix3d, MatrixByVectorAnother)
+{
+	luna::Matrix3d a{ 2, -5, 1,
+					  0, 3, 4,
+					  -7, 1, 8 };
+	luna::Vector3d b{ 3, -1, 2 };
+	luna::Vector3d vec = a * b;
+	EXPECT_EQ(vec.x(), 13.0f);
+	EXPECT_EQ(vec.y(), 5.0f);
+	EXPECT_EQ(vec.z(), -6.0f);
+
+}
+TEST(TestMatrix3d,  MatrixByBasisVector)
+{
+	luna::Matrix3d a{ 1,2,3,
+		              4,5,6,
+		              7,8,9};
+	luna::Vector3d x{ 1, 0, 0};
+	luna::Vector3d y{ 0, 1, 0};
+	luna::Vector3d z{ 0, 0, 1};
+
+	luna::Vector3d vec = a * x;
+	EXPECT_EQ(vec.x(), 1.0f);
+	EXPECT_EQ(vec.y(), 4.0f);
+	EXPECT_EQ(vec.z(), 7.0f);
+
+	luna::Vector3d vec1 = a * y;
+	EXPECT_EQ(vec1.x(), 2.0f);
+	EXPECT_EQ(vec1.y(), 5.0f);
+	EXPECT_EQ(vec1.z(), 8.0f);
+
+	luna::Vector3d vec2 = a * z;
+	EXPECT_EQ(vec2.x(), 3.0f);
+	EXPECT_EQ(vec2.y(), 6.0f);
+	EXPECT_EQ(vec2.z(), 9.0f);
+
+}
