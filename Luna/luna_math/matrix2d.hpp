@@ -6,10 +6,10 @@ namespace luna
 {
 
 	/* Layout
-		  Column 0 Column 1 Column 2
-	row 0 [0][0]    [0][1]   [0][2]
-	row 1 [1][0]    [1][1]   [1][2]
-	row 2 [2][0]    [2][1]   [2][2]
+		  Column 0  Column 1 
+	row 0 [0][0]    [0][1]  
+	row 1 [1][0]    [1][1] 
+
 	*/
 	class Matrix2d
 	{
