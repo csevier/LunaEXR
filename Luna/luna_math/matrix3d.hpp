@@ -103,25 +103,43 @@ namespace luna
 						 mContents[1][0] * scaler, mContents[1][1] * scaler, mContents[1][2] * scaler,
 						 mContents[2][0] * scaler, mContents[2][1] * scaler, mContents[2][2] * scaler };
 	}
+	/*
+	Matrix * Matrix 
 
+	  a00 a01 a02      b00 b01 b02     a00 * b00 + a01 * b10 + a02 * b20       a00 * b01 + a01 * b11 + a02 * b21      a00 * b02 + a01 * b12 + a02 * b22      =  m00, m01, m02,
+	  a10 a11 a12  *   b10 b11 b12  =  a10 * b00 + a11 * b10 + a12 * b20       a10 * b01 + a11 * b11 + a12 * b21      a10 * b02 + a11 * b12 + a12 * b22			m10, m11, m12,
+	  a20 a21 a22      b20 b21 b22     a20 * b00 + a21 * b10 + a22 * b20       a20 * b01 + a21 * b11 + a22 * b21      a20 * b02 + a21 * b12 + a22 * b22			m20, m21, m22
+	*/
 	inline Matrix3d Matrix3d::operator*(const Matrix3d& other) const
 	{
-		return Matrix3d{ (*this)(0,0) * other(0,0) + (*this)(0,1) * other(1,0) + (*this)(0,2) * other(2,0),
-						 (*this)(0,0) * other(0,1) + (*this)(0,1) * other(1,1) + (*this)(0,2) * other(2,1),
-						 (*this)(0,0) * other(0,2) + (*this)(0,1) * other(1,2) + (*this)(0,2) * other(2,2),
-						 (*this)(1,0) * other(0,0) + (*this)(1,1) * other(1,0) + (*this)(1,2) * other(2,0),
-						 (*this)(1,0) * other(0,1) + (*this)(1,1) * other(1,1) + (*this)(1,2) * other(2,1),
-						 (*this)(1,0) * other(0,2) + (*this)(1,1) * other(1,2) + (*this)(1,2) * other(2,2),
-						 (*this)(2,0) * other(0,0) + (*this)(2,1) * other(1,0) + (*this)(2,2) * other(2,0),
-						 (*this)(2,0) * other(0,1) + (*this)(2,1) * other(1,1) + (*this)(2,2) * other(2,1),
-						 (*this)(2,0) * other(0,2) + (*this)(2,1) * other(1,2) + (*this)(2,2) * other(2,2) };
+		float m00 = (*this)(0,0) * other(0,0) + (*this)(0,1) * other(1,0) + (*this)(0,2) * other(2,0);
+		float m01 = (*this)(0,0) * other(0,1) + (*this)(0,1) * other(1,1) + (*this)(0,2) * other(2,1);
+		float m02 = (*this)(0,0) * other(0,2) + (*this)(0,1) * other(1,2) + (*this)(0,2) * other(2,2);
+		float m10 = (*this)(1,0) * other(0,0) + (*this)(1,1) * other(1,0) + (*this)(1,2) * other(2,0);
+		float m11 = (*this)(1,0) * other(0,1) + (*this)(1,1) * other(1,1) + (*this)(1,2) * other(2,1);
+		float m12 = (*this)(1,0) * other(0,2) + (*this)(1,1) * other(1,2) + (*this)(1,2) * other(2,2);
+		float m20 = (*this)(2,0) * other(0,0) + (*this)(2,1) * other(1,0) + (*this)(2,2) * other(2,0);
+		float m21 = (*this)(2,0) * other(0,1) + (*this)(2,1) * other(1,1) + (*this)(2,2) * other(2,1);
+		float m22 = (*this)(2,0) * other(0,2) + (*this)(2,1) * other(1,2) + (*this)(2,2) * other(2,2);
+
+		return Matrix3d{ m00, m01, m02,
+						 m10, m11, m12,
+						 m20, m21, m22 };
 	}
-	
+
+	/*
+	Vector * Matrix is each vector component times column component added.
+
+				   m00 m01 m02                 X                                Y                                  Z
+	 [ x y z ]  *  m10 m11 m12  =  [(x * m00 + y * m10 + z * m20)   (x * m01 + y * m11 + z * m21)   (x * m02 + y * m12 + z * m22)];
+				   m20 m21 m22
+	*/
 	inline Vector3d Matrix3d::operator*(const Vector3d& vector) const
 	{
-		return Vector3d{ (*this)(0, 0) * vector.x() + (*this)(0, 1) * vector.y() + (*this)(0, 2) * vector.z(),
-						 (*this)(1, 0) * vector.x() + (*this)(1, 1) * vector.y() + (*this)(1, 2) * vector.z(),
-						 (*this)(2, 0) * vector.x() + (*this)(2, 1) * vector.y() + (*this)(2, 2) * vector.z()};
+		float x = (*this)(0, 0) * vector.x() + (*this)(1, 0) * vector.y() + (*this)(2, 0) * vector.z();
+		float y = (*this)(0, 1) * vector.x() + (*this)(1, 1) * vector.y() + (*this)(2, 1) * vector.z();
+		float z = (*this)(0, 2) * vector.x() + (*this)(1, 2) * vector.y() + (*this)(2, 2) * vector.z();
+		return Vector3d{ x, y , z };
 	}
 }
 

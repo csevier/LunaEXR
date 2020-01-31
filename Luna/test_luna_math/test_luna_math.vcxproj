@@ -44,6 +44,7 @@
     </ClCompile>
     <ClCompile Include="test_angle.cpp" />
     <ClCompile Include="test_geometry.cpp" />
+    <ClCompile Include="test_matrix2d.cpp" />
     <ClCompile Include="test_matrix3d.cpp" />
     <ClCompile Include="test_trig.cpp" />
     <ClCompile Include="test_vector2d.cpp" />
