@@ -48,7 +48,7 @@ namespace luna
 	{
 		mContents[0][0] = a00; mContents[0][1] = a01; mContents[0][2] = a02; mContents[0][3] = a03;
 		mContents[1][0] = a10; mContents[1][1] = a11; mContents[1][2] = a12; mContents[1][3] = a13;
-		mContents[2][0] = a20; mContents[2][1] = a21; mContents[2][2] = a22; mContents[3][3] = a23;
+		mContents[2][0] = a20; mContents[2][1] = a21; mContents[2][2] = a22; mContents[2][3] = a23;
 		mContents[3][0] = a30; mContents[3][1] = a31; mContents[3][2] = a32; mContents[3][3] = a33;
 	}
 
