@@ -161,6 +161,7 @@
     <ClInclude Include="math.hpp" />
     <ClInclude Include="matrix2d.hpp" />
     <ClInclude Include="matrix3d.hpp" />
+    <ClInclude Include="matrix4d.hpp" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="vector2d.hpp" />
     <ClInclude Include="vector3d.hpp" />

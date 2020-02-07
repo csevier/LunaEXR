@@ -34,7 +34,9 @@ TEST(TestMatrix3d, DefaultCtorIdentity)
 
 TEST(TestMatrix3d, Transpose)
 {
-    luna::Matrix3d mat3{ 1,2,3,4,5,6,7,8,9 };
+    luna::Matrix3d mat3{ 1,2,3,
+						4,5,6,
+						7,8,9 };
     luna::Matrix3d ident{ };
 	luna::Matrix3d mat3T = mat3.Transpose();
 	luna::Matrix3d orig = mat3T.Transpose();
@@ -80,16 +82,32 @@ TEST(TestMatrix3d, ScaleMatrix)
 
 TEST(TestMatrix3d, MatrixByMatrix)
 {
+	luna::Matrix3d a{ 1,2,3,4,5,6,7,8,9 };
+	luna::Matrix3d b{ 1,2,3,4,5,6,7,8,9 };
+	luna::Matrix3d scaled = a * b;
+	EXPECT_EQ(scaled(0, 0),30);
+	EXPECT_EQ(scaled(0, 1), 36);
+	EXPECT_EQ(scaled(0, 2), 42);
+	EXPECT_EQ(scaled(1, 0), 66);
+	EXPECT_EQ(scaled(1, 1), 81);
+	EXPECT_EQ(scaled(1, 2), 96);
+	EXPECT_EQ(scaled(2, 0), 102);
+	EXPECT_EQ(scaled(2, 1), 126);
+	EXPECT_EQ(scaled(2, 2), 150);
+}
+
+TEST(TestMatrix3d, MatrixByMatrixAnother)
+{
 	luna::Matrix3d a{ 1,-5,3,0,-2,6,7,2,-4 };
 	luna::Matrix3d b{ -8,6,1,7,0,-3,2,4,5 };
 	luna::Matrix3d scaled = a * b;
-	EXPECT_EQ(scaled(0, 0),-37);
+	EXPECT_EQ(scaled(0, 0), -37);
 	EXPECT_EQ(scaled(0, 1), 18);
 	EXPECT_EQ(scaled(0, 2), 31);
 	EXPECT_EQ(scaled(1, 0), -2);
 	EXPECT_EQ(scaled(1, 1), 24);
 	EXPECT_EQ(scaled(1, 2), 36);
-	EXPECT_EQ(scaled(2, 0),-50);
+	EXPECT_EQ(scaled(2, 0), -50);
 	EXPECT_EQ(scaled(2, 1), 26);
 	EXPECT_EQ(scaled(2, 2), -19);
 }

@@ -45,6 +45,9 @@
     <ClInclude Include="matrix2d.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="matrix4d.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
