@@ -138,4 +138,30 @@ TEST(TestMatrix2d, Rotate2dAnother)
 	printf("%.5f\n", xprime.y());
 }
 
-// Need Shear tests.
+TEST(TestMatrix2d, Scale2d)
+{
+	luna::Matrix2d scale = luna::Matrix2d{ 2 };
+	luna::Vector2d x{ 1, 2 };
+	luna::Vector2d xprime = scale * x;
+	EXPECT_EQ(xprime.x(), 2);
+	EXPECT_EQ(xprime.y(), 4);
+}
+
+TEST(TestMatrix2d, Shear2dx)
+{
+	luna::Matrix2d scale = luna::Matrix2d::MakeShearX(2);
+	luna::Vector2d x{ 2, 1 };
+	luna::Vector2d xprime = scale * x;
+	EXPECT_EQ(xprime.x(), 4);
+	EXPECT_EQ(xprime.y(), 1);
+}
+
+TEST(TestMatrix2d, Shear2dy)
+{
+	luna::Matrix2d scale = luna::Matrix2d::MakeShearY(2);
+	luna::Vector2d x{ 1, 2 };
+	luna::Vector2d xprime = scale * x;
+	EXPECT_EQ(xprime.x(), 1);
+	EXPECT_EQ(xprime.y(), 4);
+}
+

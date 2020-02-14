@@ -246,4 +246,42 @@ TEST(TestMatrix3d, Rotate3dZAnother)
 	EXPECT_EQ(xprime.z(), 0);
 }
 
-// Need Shear tests.
+TEST(TestMatrix3d, Scale3d)
+{
+	luna::Matrix3d scale = luna::Matrix3d{ 2 };
+	luna::Vector3d x{ 1, 2, 3 };
+	luna::Vector3d xprime = scale * x;
+	EXPECT_EQ(xprime.x(), 2);
+	EXPECT_EQ(xprime.y(), 4);
+	EXPECT_EQ(xprime.z(), 6);
+}
+
+TEST(TestMatrix2d, Shear3dxy)
+{
+	luna::Matrix3d scale = luna::Matrix3d::MakeShearXY(2,2);
+	luna::Vector3d x{ 1, 1, 1 };
+	luna::Vector3d xprime = scale * x;
+	EXPECT_EQ(xprime.x(), 3);
+	EXPECT_EQ(xprime.y(), 3);
+	EXPECT_EQ(xprime.z(), 1);
+}
+
+TEST(TestMatrix2d, Shear3xz)
+{
+	luna::Matrix3d scale = luna::Matrix3d::MakeShearXZ(2, 2);
+	luna::Vector3d x{ 1, 1, 1 };
+	luna::Vector3d xprime = scale * x;
+	EXPECT_EQ(xprime.x(), 3);
+	EXPECT_EQ(xprime.y(), 1);
+	EXPECT_EQ(xprime.z(), 3);
+}
+
+TEST(TestMatrix2d, Shear3yz)
+{
+	luna::Matrix3d scale = luna::Matrix3d::MakeShearYZ(2, 2);
+	luna::Vector3d x{ 1, 1, 1 };
+	luna::Vector3d xprime = scale * x;
+	EXPECT_EQ(xprime.x(), 1);
+	EXPECT_EQ(xprime.y(), 3);
+	EXPECT_EQ(xprime.z(), 3);
+}
