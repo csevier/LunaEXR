@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "../luna_math/matrix3d.hpp"
 #include "../luna_math/vector3d.hpp"
+#include <iostream> 
 
 TEST(TestMatrix3d, Ctor)
 {
@@ -8,6 +9,16 @@ TEST(TestMatrix3d, Ctor)
 	EXPECT_EQ(mat3(0,0), 1);
 	EXPECT_EQ(mat3(1,1), 5);
 	EXPECT_EQ(mat3(2,2), 9);
+}
+
+TEST(TestMatrix3d, MakesDiag)
+{
+	luna::Matrix3d mat3{ 1 };
+	EXPECT_TRUE(mat3.IsIdentity());
+	EXPECT_TRUE(mat3.IsDiagonal());
+	EXPECT_EQ(mat3(0, 0), 1);
+	EXPECT_EQ(mat3(1, 1), 1);
+	EXPECT_EQ(mat3(2, 2), 1);
 }
 
 TEST(TestMatrix3d, MatrixEquality)
@@ -162,3 +173,77 @@ TEST(TestMatrix3d,  MatrixByBasisVector)
 	EXPECT_EQ(vec2.z(), 9.0f);
 
 }
+
+TEST(TestMatrix3d, Rotate3dX)
+{
+	luna::Matrix3d rotateDeg = luna::Matrix3d::MakeRotateX(luna::AngleFromDegrees(90));
+	luna::Vector3d x{ 0, 0, 1 };
+	luna::Vector3d xprime = rotateDeg * x;
+
+	EXPECT_EQ(xprime.x(), x.x());
+	EXPECT_EQ(xprime.y(), -1); 
+	EXPECT_EQ(std::ceil(xprime.z()), 0); 
+	printf("%.5f\n", xprime.z());
+
+}
+
+TEST(TestMatrix3d, Rotate3dXAnother)
+{
+	luna::Matrix3d rotateDeg = luna::Matrix3d::MakeRotateX(luna::AngleFromDegrees(360));
+	luna::Vector3d x{ 0, 0, 1 };
+	luna::Vector3d xprime = rotateDeg * x;
+	EXPECT_EQ(xprime.x(), x.x());
+	EXPECT_EQ(std::ceil(xprime.y()), 0);
+	printf("%.5f\n", xprime.y());
+	EXPECT_EQ(xprime.z(), 1);
+}
+
+TEST(TestMatrix3d, Rotate3dY)
+{
+	luna::Matrix3d rotateDeg = luna::Matrix3d::MakeRotateY(luna::AngleFromDegrees(90));
+	luna::Vector3d x{ 0, 0, 1 };
+	luna::Vector3d xprime = rotateDeg * x;
+
+	EXPECT_EQ(xprime.x(), 1);
+	EXPECT_EQ(xprime.y(), 0);
+	EXPECT_EQ(std::ceil(xprime.z()), 0);
+	printf("%.5f\n", xprime.z());
+
+}
+
+TEST(TestMatrix3d, Rotate3dYAnother)
+{
+	luna::Matrix3d rotateDeg = luna::Matrix3d::MakeRotateY(luna::AngleFromDegrees(360));
+	luna::Vector3d x{ 0, 0, 1  };
+	luna::Vector3d xprime = rotateDeg * x;
+	EXPECT_EQ(std::floor(xprime.x()), 0);
+	printf("%.5f\n", xprime.x());
+	EXPECT_EQ(xprime.y(), 0);
+	EXPECT_EQ(xprime.z(), 1);
+}
+
+TEST(TestMatrix3d, Rotate3dZ)
+{
+	luna::Matrix3d rotateDeg = luna::Matrix3d::MakeRotateZ(luna::AngleFromDegrees(90));
+	luna::Vector3d x{ 1, 0, 0 };
+	luna::Vector3d xprime = rotateDeg * x;
+
+	EXPECT_EQ(std::ceil(xprime.x()), 0);
+	printf("%.5f\n", xprime.x());
+	EXPECT_EQ(xprime.y(), 1);
+	EXPECT_EQ(xprime.z(), 0);
+
+}
+
+TEST(TestMatrix3d, Rotate3dZAnother)
+{
+	luna::Matrix3d rotateDeg = luna::Matrix3d::MakeRotateZ(luna::AngleFromDegrees(360));
+	luna::Vector3d x{ 1, 0, 0  };
+	luna::Vector3d xprime = rotateDeg * x;
+	EXPECT_EQ(xprime.x(), 1);
+	EXPECT_EQ(std::floor(xprime.y()), 0);
+	printf("%.5f\n", xprime.y());
+	EXPECT_EQ(xprime.z(), 0);
+}
+
+// Need Shear tests.

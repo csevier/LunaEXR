@@ -9,6 +9,15 @@ TEST(TestMatrix2d, Ctor)
 	EXPECT_EQ(mat2(1, 1), 4);
 }
 
+TEST(TestMatrix2d, MakesDiag)
+{
+	luna::Matrix2d mat2{ 1,};
+	EXPECT_TRUE(mat2.IsIdentity());
+	EXPECT_TRUE(mat2.IsDiagonal());
+	EXPECT_EQ(mat2(0, 0), 1);
+	EXPECT_EQ(mat2(1, 1), 1);
+}
+
 TEST(TestMatrix2d, MatrixEquality)
 {
 	luna::Matrix2d mat2{ 1,2,3,4 };
@@ -100,7 +109,6 @@ TEST(TestMatrix2d, MatrixByBasisVector)
 	luna::Vector2d x{ 1, 0 };
 	luna::Vector2d y{ 0, 1 };
 
-
 	luna::Vector2d vec = a * x;
 	EXPECT_EQ(vec.x(), 1.0f);
 	EXPECT_EQ(vec.y(), 2.0f);
@@ -109,3 +117,25 @@ TEST(TestMatrix2d, MatrixByBasisVector)
 	EXPECT_EQ(vec1.x(), 4.0f);
 	EXPECT_EQ(vec1.y(), 5.0f);
 }
+
+TEST(TestMatrix2d, Rotate2d)
+{
+	luna::Matrix2d rotateDeg = luna::Matrix2d::MakeRotate(luna::AngleFromDegrees(180));
+	luna::Vector2d x{ 1, 0 };
+	luna::Vector2d xprime = rotateDeg *x;
+	EXPECT_EQ(xprime.x(),  -x.x());
+	EXPECT_EQ(std::ceil(xprime.y()),  0); // its SUPER close to 0
+	printf("%.5f\n", xprime.y());
+}
+
+TEST(TestMatrix2d, Rotate2dAnother)
+{
+	luna::Matrix2d rotateDeg = luna::Matrix2d::MakeRotate(luna::AngleFromDegrees(360));
+	luna::Vector2d x{ 1, 0 };
+	luna::Vector2d xprime = rotateDeg * x;
+	EXPECT_EQ(xprime.x(), x.x());
+	EXPECT_EQ(std::floor(xprime.y()), 0);
+	printf("%.5f\n", xprime.y());
+}
+
+// Need Shear tests.

@@ -2,6 +2,7 @@
 #define MATRIX3D_H
 
 #include "vector3d.hpp"
+#include <math.h>
 namespace luna
 {
 
@@ -18,6 +19,8 @@ namespace luna
 		Matrix3d(float a00, float a01, float a02,
 			float a10, float a11, float a12,
 			float a20, float a21, float a22);
+		// Makes diagonal
+		Matrix3d(float a00);
 
 		bool operator==(const Matrix3d& other) const;
 		Matrix3d operator*(int scaler) const;
@@ -27,6 +30,12 @@ namespace luna
 		Matrix3d Transpose() const;
 		bool IsDiagonal() const;
 		bool IsIdentity() const;
+		static const Matrix3d MakeRotateX(Angle angle);
+		static const Matrix3d MakeRotateY(Angle angle);
+		static const Matrix3d MakeRotateZ(Angle angle);
+		static const Matrix3d MakeShearXY(float s, float t);
+		static const Matrix3d MakeShearXZ(float s, float t);
+		static const Matrix3d MakeShearYZ(float s, float t);
 
 	private:
 		float mContents[3][3];
@@ -46,6 +55,13 @@ namespace luna
 		mContents[0][0] = a00; mContents[0][1] = a01; mContents[0][2] = a02;
 		mContents[1][0] = a10; mContents[1][1] = a11; mContents[1][2] = a12;
 		mContents[2][0] = a20; mContents[2][1] = a21; mContents[2][2] = a22;
+	}
+
+	inline Matrix3d::Matrix3d(float a00)
+	{
+		mContents[0][0] = a00; mContents[0][1] = 0;   mContents[0][2] = 0;
+		mContents[1][0] = 0;   mContents[1][1] = a00; mContents[1][2] = 0;
+		mContents[2][0] = 0;   mContents[2][1] = 0;   mContents[2][2] = a00;
 	}
 
 	inline bool Matrix3d::operator==(const Matrix3d& other) const
@@ -140,6 +156,48 @@ namespace luna
 		float y = (*this)(0, 1) * vector.x() + (*this)(1, 1) * vector.y() + (*this)(2, 1) * vector.z();
 		float z = (*this)(0, 2) * vector.x() + (*this)(1, 2) * vector.y() + (*this)(2, 2) * vector.z();
 		return Vector3d{ x, y , z };
+	}
+
+	const Matrix3d Matrix3d::MakeRotateX(Angle angle)
+	{
+		return Matrix3d{ 1, 0, 0,
+						 0,  cosf(angle.Radians()), sinf(angle.Radians()),
+						 0, -sinf(angle.Radians()), cosf(angle.Radians())};
+	}
+
+	const Matrix3d Matrix3d::MakeRotateY(Angle angle)
+	{
+		return Matrix3d{ cosf(angle.Radians()), 0, -sinf(angle.Radians()),
+						 0,                     1,  0,
+						 sinf(angle.Radians()), 0, cosf(angle.Radians()) };
+	}
+
+	const Matrix3d Matrix3d::MakeRotateZ(Angle angle)
+	{
+		return Matrix3d{ cosf(angle.Radians()),  sinf(angle.Radians()),  0,
+						 -sinf(angle.Radians()), cosf(angle.Radians()) , 0,
+						  0, 1, 1};
+	}
+
+	const Matrix3d Matrix3d::MakeShearXY(float s, float t)
+	{
+		return Matrix3d{ 1, 0, 0,
+						 0, 1, 0,
+						 s, t, 1 };
+	}
+
+	const Matrix3d Matrix3d::MakeShearXZ(float s, float t)
+	{
+		return Matrix3d{ 1, 0, 0,
+						 s, 1, t,
+						 0, 0, 1 };
+	}
+
+	const Matrix3d Matrix3d::MakeShearYZ(float s, float t) 
+	{
+		return Matrix3d{ 1, s, t,
+						 0, 1, 0,
+						 0, 0, 1 };
 	}
 }
 

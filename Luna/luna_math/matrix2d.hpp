@@ -17,6 +17,8 @@ namespace luna
 		Matrix2d();
 		Matrix2d(float a00, float a01, 
 			     float a10, float a11);
+		// Makes diagonal
+		Matrix2d(float a00);
 
 		bool operator==(const Matrix2d& other) const;
 		Matrix2d operator*(int scaler) const;
@@ -26,6 +28,9 @@ namespace luna
 		Matrix2d Transpose() const;
 		bool IsDiagonal() const;
 		bool IsIdentity() const;
+		static const Matrix2d MakeRotate(Angle angle);
+		static const Matrix2d MakeShearX(float scaler);
+		static const Matrix2d MakeShearY(float scaler);
 
 	private:
 		float mContents[2][2];
@@ -42,6 +47,12 @@ namespace luna
 	{
 		mContents[0][0] = a00; mContents[0][1] = a01; 
 		mContents[1][0] = a10; mContents[1][1] = a11;
+	}
+
+	inline Matrix2d::Matrix2d(float a00)
+	{
+		mContents[0][0] = a00; mContents[0][1] = 0;
+		mContents[1][0] = 0;   mContents[1][1] = a00;
 	}
 
 	inline bool Matrix2d::operator==(const Matrix2d& other) const
@@ -124,6 +135,24 @@ namespace luna
 		float x = (*this)(0, 0) * vector.x() + (*this)(1, 0) * vector.y();
 		float y = (*this)(0, 1) * vector.x() + (*this)(1, 1) * vector.y();
 		return Vector2d{ x, y };
+	}
+
+	const Matrix2d Matrix2d::MakeRotate(Angle angle) 
+	{
+		return Matrix2d { cosf(angle.Radians()), sinf(angle.Radians()),
+						 -sinf(angle.Radians()), cosf(angle.Radians())};
+	} 
+
+	const Matrix2d  Matrix2d::MakeShearX(float scalar)
+	{
+		return Matrix2d{ 1,      0,
+						 scalar, 1 };
+	}
+
+	const Matrix2d Matrix2d::MakeShearY(float scalar) 
+	{
+		return Matrix2d{ 1, scalar,
+						 0, 1 };
 	}
 }
 
