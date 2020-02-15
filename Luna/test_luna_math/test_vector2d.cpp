@@ -165,3 +165,58 @@ TEST(TestVector2d, SameDirection)
 	EXPECT_TRUE(samedirt);
 }
 
+
+//Tests checked against 3d graphics primer book, chapter 2 exercises
+TEST(TestVector2d, NegateVectorBook)
+{
+	luna::Vector2d v{ 3,7 };
+	luna::Vector2d vec = -v;
+	EXPECT_EQ(vec.x(), -3);
+	EXPECT_EQ(vec.y(), -7);
+}
+
+TEST(TestVector2d, VectorMagnitudeBook)
+{
+	luna::Vector2d v{ -12,5 };
+	EXPECT_EQ(v.Magnitude(), 13);
+}
+
+TEST(TestVector2d, VectorDivisionBook)
+{
+	luna::Vector2d v{ 4,5 };
+	luna::Vector2d div = v / 2;
+	EXPECT_EQ(div.x(), 2);
+	EXPECT_EQ(div.y(), 5.0f/2.0f);
+}
+
+TEST(TestVector2d, NormalizeVectorBook)
+{
+	luna::Vector2d v{ 12,5 };
+	luna::Vector2d norm = v.Normalize();
+	EXPECT_EQ(norm.x(), 0.923076987f);
+	EXPECT_EQ(norm.y(), 0.384615391f);
+}
+
+TEST(TestVector2d, NormalizeVectorBook6b)
+{
+	luna::Vector2d v{ 0,743.632 };
+	luna::Vector2d norm = v.Normalize();
+	EXPECT_EQ(norm.x(), 0);
+	EXPECT_EQ(norm.y(), 1);
+}
+
+TEST(TestVector2d, DistanceBook)
+{
+	luna::Vector2d v{ 10, 6 };
+	luna::Vector2d z{-14,30 };
+	float distance = v.DistanceTo(z);
+	EXPECT_EQ(distance, 33.9411240f);
+}
+
+TEST(TestVector2d, DistanceBook8b)
+{
+	luna::Vector2d v{ 0,0 };
+	luna::Vector2d z{ -12,5 };
+	float distance = v.DistanceTo(z);
+	EXPECT_EQ(distance, 13);
+}

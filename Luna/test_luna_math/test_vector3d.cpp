@@ -209,3 +209,53 @@ TEST(TestVector3d, SameDirection)
 	EXPECT_TRUE(samedirt);
 }
 
+//Tests checked against 3d graphics primer book, chapter 2 exercises
+TEST(TestVector3d, VectorMagnitudeBook)
+{
+	luna::Vector3d v{ 8,-3, 0.5f };
+	EXPECT_EQ(v.Magnitude(), 8.55862141f);
+}
+
+TEST(TestVector3d, ScaleVectorBook)
+{
+	luna::Vector3d v{ 4, -7, 0 };
+	luna::Vector3d scaled = v * 3;
+	EXPECT_EQ(scaled.x(), 12);
+	EXPECT_EQ(scaled.y(), -21);
+	EXPECT_EQ(scaled.z(), 0);
+}
+
+
+TEST(TestVector3d, NormalizeVectorBook)
+{
+	luna::Vector3d v{ 8,-3, 1.0f/2.0f };
+	luna::Vector3d norm = v.Normalize();
+	EXPECT_EQ(norm.x(), 0.934729993f);
+	EXPECT_EQ(norm.y(), -0.350523740f);
+	EXPECT_EQ(norm.z(), 0.0584206246f);
+}
+
+TEST(TestVector3d, NormalizeVectorBook6d)
+{
+	luna::Vector3d v{ -12 ,3, -4 };
+	luna::Vector3d norm = v.Normalize();
+	EXPECT_EQ(norm.x(), -0.923076987f);
+	EXPECT_EQ(norm.y(), 0.230769247f);
+	EXPECT_EQ(norm.z(), -0.307692319f);
+}
+
+TEST(TestVector3d, DistanceBook)
+{
+	luna::Vector3d v{ 3, 10, 7 };
+	luna::Vector3d z{ 8, -7, 4 };
+	float distance = v.DistanceTo(z);
+	EXPECT_EQ(distance, 17.9722004f);
+}
+
+TEST(TestVector3d, DistanceBook8d)
+{
+	luna::Vector3d v{ -2, -4, 9};
+	luna::Vector3d z{ 6, -7, 9.5f };
+	float distance = v.DistanceTo(z);
+	EXPECT_EQ(distance, 8.55862141f);
+}

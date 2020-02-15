@@ -152,3 +152,22 @@ TEST(TestVector4d, SubscripVector)
 	EXPECT_EQ(vec[2], 3);
 	EXPECT_EQ(vec[3], 4);
 }
+
+//Test from 3d primer book exercises.
+TEST(TestVector4d, NormalizeVectorBook)
+{
+	luna::Vector4d v{ 1,1,1,1 };
+	luna::Vector4d norm = v.Normalize();
+	EXPECT_EQ(norm.x(), 0.5f);
+	EXPECT_EQ(norm.y(), 0.5f);
+	EXPECT_EQ(norm.z(), 0.5f);
+	EXPECT_EQ(norm.w(), 0.5f);
+}
+
+TEST(TestVector4d,DistanceBook)
+{
+	luna::Vector4d v{ 4, -4, -4, 4 };
+	luna::Vector4d z{ -6, 6,6,-6 };
+	float distance = v.DistanceTo(z);
+	EXPECT_EQ(distance,20);
+}
