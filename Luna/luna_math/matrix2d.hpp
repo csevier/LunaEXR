@@ -4,7 +4,7 @@
 #include "vector2d.hpp"
 namespace luna
 {
-
+	// Row Major Layout.
 	/* Layout
 		  Column 0  Column 1 
 	row 0 [0][0]    [0][1]  

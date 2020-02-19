@@ -5,6 +5,7 @@
 
 namespace luna
 {
+	// Row Major Layout.
 	/* Layout
 		  Column 0 Column 1 Column 2
 	row 0 [0][0]    [0][1]   [0][2]  [0][3]
@@ -34,6 +35,9 @@ namespace luna
 		static const Matrix4d RotateX(Angle angle);
 		static const Matrix4d RotateY(Angle angle);
 		static const Matrix4d RotateZ(Angle angle);
+		static const Matrix4d Frustrum(float left,float right, float bottom, float top, float near, float far);
+		static const Matrix4d Perspective(Angle fovy, float aspect, float near, float far);
+		static const Matrix4d Ortho(float left, float right, float bottom, float top, float near, float far);
 
 	private:
 		float mContents[4][4];
@@ -207,6 +211,39 @@ namespace luna
 						 sinf(angle.Radians()),  cosf(angle.Radians()), 0, 0,
 						 0, 0, 1, 0,
 						 0, 0, 0, 1 };
+	}
+	const Matrix4d Matrix4d::Frustrum(float left,
+		float right, 
+		float bottom, 
+		float top, 
+		float near, 
+		float far)
+	{
+		return Matrix4d{((2*near)/(right-left)), 0, ((right+left)/(right-left)), 0,
+						0, ((2 * near)/(top - bottom)), ((top+bottom)/(top-bottom)), 0,
+						0, 0,((near+far)/(near-far)), ((2*near*far)/(near-far)),
+						0, 0,-1.0f, 0};
+	}
+
+	const Matrix4d Matrix4d::Perspective(Angle fovy, float aspect, float near, float far)
+	{
+		float q = 1.0f / std::tanf(Angle::DegreeToRadian(0.5f * fovy.Degrees()));
+		float A = q / aspect;
+		float B = (near + far) / (near - far);
+		float C = (2.0f * near * far) / (near - far);
+
+		return Matrix4d{ A, 0, 0, 0,
+						 0, q, 0, 0,
+						 0, 0, B, -1.0f,
+						 0, 0, C, 0 };
+	}
+
+	const Matrix4d Ortho(float left, float right, float bottom, float top, float near, float far) 
+	{
+		return Matrix4d{ (2.0f/(right-left)), 0, 0, 0,
+						 0, (2.0f / (top - bottom)), 0, 0,
+						 0, 0, (2.0f / (near - far)), 0.0f,
+						 ((left+right) / (left - right)),((bottom + top) / (bottom - top)),((near + far) / (near - -far)), 1.0f };
 	}
 }
 

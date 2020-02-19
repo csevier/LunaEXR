@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "../luna_math/matrix4d.hpp"
 #include "../luna_math/vector4d.hpp"
+#include "../luna_math/vmath.h"
 
 TEST(TestMatrix4d, Ctor)
 {
@@ -226,4 +227,30 @@ TEST(TestMatrix4d, MatrixByBasisVector)
 	EXPECT_EQ(vec3.z(), 15.0f);
 	EXPECT_EQ(vec3.w(), 16.0f);
 
+}
+
+TEST(TestMatrix4d, TranslateIsAccurate)
+{
+	auto trans = luna::Matrix4d::Translate({3,3,3,});
+	auto columnMajor = trans.Transpose();
+	auto vtrans = vmath::translate(3,3,3);
+	EXPECT_EQ(vtrans[0][0], columnMajor(0,0));
+	EXPECT_EQ(vtrans[0][1], columnMajor(0,1));
+	EXPECT_EQ(vtrans[0][2], columnMajor(0,2));
+	EXPECT_EQ(vtrans[0][3], columnMajor(0,3));
+
+	EXPECT_EQ(vtrans[1][0], columnMajor(1, 0));
+	EXPECT_EQ(vtrans[1][1], columnMajor(1, 1));
+	EXPECT_EQ(vtrans[1][2], columnMajor(1, 2));
+	EXPECT_EQ(vtrans[1][3], columnMajor(1, 3));
+
+	EXPECT_EQ(vtrans[2][0], columnMajor(2, 0));
+	EXPECT_EQ(vtrans[2][1], columnMajor(2, 1));
+	EXPECT_EQ(vtrans[2][2], columnMajor(2, 2));
+	EXPECT_EQ(vtrans[2][3], columnMajor(2, 3));
+
+	EXPECT_EQ(vtrans[3][0], columnMajor(3, 0));
+	EXPECT_EQ(vtrans[3][1], columnMajor(3, 1));
+	EXPECT_EQ(vtrans[3][2], columnMajor(3, 2));
+	EXPECT_EQ(vtrans[3][3], columnMajor(3, 3));
 }

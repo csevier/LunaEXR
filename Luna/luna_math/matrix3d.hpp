@@ -5,7 +5,7 @@
 #include <math.h>
 namespace luna
 {
-
+	// Row Major Layout.
 	/* Layout
 		  Column 0 Column 1 Column 2
 	row 0 [0][0]    [0][1]   [0][2]
