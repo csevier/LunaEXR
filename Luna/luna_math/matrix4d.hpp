@@ -1,6 +1,7 @@
 #ifndef MATRIX4D_H
 #define MATRIX4D_H
 #include "vector4d.hpp"
+#include "vector3d.hpp"
 
 namespace luna
 {
@@ -28,6 +29,11 @@ namespace luna
 		Matrix4d Transpose() const;
 		bool IsDiagonal() const;
 		bool IsIdentity() const;
+		static const Matrix4d Translate(const Vector3d& translate);
+		static const Matrix4d Scale(const Vector3d& scale);
+		static const Matrix4d RotateX(Angle angle);
+		static const Matrix4d RotateY(Angle angle);
+		static const Matrix4d RotateZ(Angle angle);
 
 	private:
 		float mContents[4][4];
@@ -160,6 +166,47 @@ namespace luna
 		float z = (*this)(0, 2) * vector.x() + (*this)(1, 2) * vector.y() + (*this)(2, 2) * vector.z() + (*this)(3, 2) * vector.w();
 		float w = (*this)(0, 3) * vector.x() + (*this)(1, 3) * vector.y() + (*this)(2, 3) * vector.z() + (*this)(3, 3) * vector.w();
 		return Vector4d{ x, y , z, w };
+	}
+
+	const Matrix4d Matrix4d::Translate(const Vector3d& translate)
+	{
+		return Matrix4d{ 1.0f, 0,  0, translate.x(),
+						 0,  1.0f, 0, translate.y(),
+						 0,  0, 1.0f, translate.z(),
+						 0,  0,    0,          1.0f
+		};
+	}
+	
+	const Matrix4d Matrix4d::Scale(const Vector3d& scale)
+	{
+		return Matrix4d{ scale.x(), 0, 0, 0,
+						 0, scale.y(), 0, 0,
+						 0, 0, scale.z(), 0,
+						 0, 0, 0, 1};
+	}
+
+	const Matrix4d Matrix4d::RotateX(Angle angle)
+	{
+		return Matrix4d{ 1, 0, 0, 0,
+						 0,  cosf(angle.Radians()), sinf(angle.Radians()), 0,
+						 0, -sinf(angle.Radians()), cosf(angle.Radians()), 0,
+						 0,  0, 0, 1};
+	}
+
+	const Matrix4d Matrix4d::RotateY(Angle angle)
+	{
+		return Matrix4d{ cosf(angle.Radians()), 0, -sinf(angle.Radians()),     0,
+						 0,                     1,      0,                     0,
+						 sinf(angle.Radians()), 0,  cosf(angle.Radians()),     0,
+						 0,						0,      0,                     1 };
+	}
+
+	const Matrix4d Matrix4d::RotateZ(Angle angle)
+	{
+		return Matrix4d{ cosf(angle.Radians()), -sinf(angle.Radians()), 0, 0,
+						 sinf(angle.Radians()),  cosf(angle.Radians()), 0, 0,
+						 0, 0, 1, 0,
+						 0, 0, 0, 1 };
 	}
 }
 
