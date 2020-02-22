@@ -16,15 +16,8 @@ public:
 	void Run()
 	{
 		Shader shader{ "vert.glsl","frag.glsl" };
-		float x = 0.0f;
-		float inc = 0.01f;
-		mLastFrameTime = glfwGetTime();
 		while (!glfwWindowShouldClose(mWindow))
 		{
-			x += inc;
-			if (x > 1.0f) inc = -0.1f;
-			if (x < -1.0f) inc = 0.1f;
-			shader.SetUniform("offset", x);
 			Display(mWindow, glfwGetTime(), shader);
 			glfwSwapBuffers(mWindow);
 			glfwPollEvents();
@@ -64,14 +57,15 @@ private:
 
 	void Display(GLFWwindow* window, double currentTime, Shader shader)
 	{
-		mFrameCount++;
-		if (currentTime - mLastFrameTime >= 1.0)
-		{
-			std::cout << "FPS: " << std::to_string(mFrameCount) << std::endl;
-			mLastFrameTime = currentTime;
-			mFrameCount = 0;
-		}
-
+		float vertices[] = {
+	   -0.5f, -0.5f, 0.0f,
+		0.5f, -0.5f, 0.0f,
+		0.0f,  0.5f, 0.0f
+		};
+		unsigned int VBO;
+		glGenBuffers(1, &VBO);
+		glBindBuffer(GL_ARRAY_BUFFER, VBO);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 		glClear(GL_DEPTH_BUFFER_BIT);
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
