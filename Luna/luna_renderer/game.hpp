@@ -101,6 +101,11 @@ private:
 	-0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
 	-0.5f,  0.5f, -0.5f,  0.0f, 1.0f
 		};
+
+	luna::Vector3d cubePositions[] = {
+	luna::Vector3d(0.0f,  0.0f,  0.0f),
+	luna::Vector3d(2.0f,  0.0f,  0.0f),
+		};
 		glClear(GL_DEPTH_BUFFER_BIT);
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -112,21 +117,25 @@ private:
 		glEnable(GL_DEPTH_TEST);
 		glEnableVertexAttribArray(0);
 		luna::Matrix4d model{};
-		model = model * luna::Matrix4d::RotateX(luna::AngleFromDegrees(50.0f).Radians()*(float)currentTime);
-		model = model * luna::Matrix4d::RotateY(luna::AngleFromDegrees(50.0f).Radians()*(float)currentTime);
-		model = model * luna::Matrix4d::RotateZ(luna::AngleFromDegrees(50.0f).Radians()*(float)currentTime);
-		luna::Matrix4d view{};
-		float x = cosf(currentTime);
-		float y = cosf(currentTime);
-		float z = cosf(currentTime);
-		view = view * luna::Matrix4d::Translate({ 0,0,3 +z});
-		luna::Matrix4d projection{};
-		projection = projection* luna::Matrix4d::Perspective(luna::AngleFromDegrees(45), mAspectRatio, 0.1f, 100.0f);
-		shader.SetModel(model);
-		shader.SetView(view);
-		shader.SetProjection(projection);
-		shader.Use();
-		glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices));
+		//model = model * luna::Matrix4d::RotateX(luna::AngleFromDegrees(50.0f).Radians() * (float)currentTime);
+		model = model * luna::Matrix4d::RotateY(luna::AngleFromDegrees(50.0f).Radians() * (float)currentTime);
+		//model = model * luna::Matrix4d::RotateZ(luna::AngleFromDegrees(50.0f).Radians() * (float)currentTime);
+		for (unsigned int i = 0; i < 2; i++)
+		{
+			model = model * luna::Matrix4d::Translate(cubePositions[i]);
+			luna::Matrix4d view{};
+			float x = cosf(currentTime);
+			float y = cosf(currentTime);
+			float z = cosf(currentTime);
+			view = view * luna::Matrix4d::Translate({ 0,0,3 + z });
+			luna::Matrix4d projection{};
+			projection = projection * luna::Matrix4d::Perspective(luna::AngleFromDegrees(45), mAspectRatio, 0.1f, 100.0f);
+			shader.SetModel(model);
+			shader.SetView(view);
+			shader.SetProjection(projection);
+			shader.Use();
+			glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices));
+		}
 	}
 
 	GLFWwindow* mWindow;
