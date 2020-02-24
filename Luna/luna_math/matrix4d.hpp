@@ -30,6 +30,8 @@ namespace luna
 		Matrix4d Transpose() const;
 		bool IsDiagonal() const;
 		bool IsIdentity() const;
+		// for passing to opengl
+		const float* Data() const;
 		static const Matrix4d Translate(const Vector3d& translate);
 		static const Matrix4d Scale(const Vector3d& scale);
 		static const Matrix4d RotateX(Angle angle);
@@ -170,6 +172,11 @@ namespace luna
 		float z = (*this)(0, 2) * vector.x() + (*this)(1, 2) * vector.y() + (*this)(2, 2) * vector.z() + (*this)(3, 2) * vector.w();
 		float w = (*this)(0, 3) * vector.x() + (*this)(1, 3) * vector.y() + (*this)(2, 3) * vector.z() + (*this)(3, 3) * vector.w();
 		return Vector4d{ x, y , z, w };
+	}
+
+	const float* Matrix4d::Data() const 
+	{
+		return &mContents[0][0];
 	}
 
 	const Matrix4d Matrix4d::Translate(const Vector3d& translate)

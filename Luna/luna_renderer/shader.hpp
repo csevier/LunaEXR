@@ -6,6 +6,7 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include "../luna_math/matrix4d.hpp";
 
 class Shader
 {
@@ -73,8 +74,26 @@ public:
 
 	void SetUniform(const std::string& uniformName, float value)
 	{
-		GLuint offsetLoc = glGetUniformLocation(mProgramId, uniformName.c_str());
-		glProgramUniform1f(mProgramId, offsetLoc, value);
+		GLuint uniformLocation = glGetUniformLocation(mProgramId, uniformName.c_str());
+		glProgramUniform1f(mProgramId, uniformLocation, value);
+	}
+
+	void SetModel(luna::Matrix4d mat)
+	{
+		GLuint projection = glGetUniformLocation(mProgramId, "model");
+		glUniformMatrix4fv(projection, 1, GL_TRUE, mat.Data());
+	}
+
+	void SetView(luna::Matrix4d mat)
+	{
+		GLuint projection = glGetUniformLocation(mProgramId, "view");
+		glUniformMatrix4fv(projection, 1, GL_TRUE, mat.Data());
+	}
+
+	void SetProjection(luna::Matrix4d mat)
+	{
+		GLuint projection = glGetUniformLocation(mProgramId, "projection");
+	    glUniformMatrix4fv(projection, 1, GL_FALSE, mat.Data());
 	}
 
 private:
