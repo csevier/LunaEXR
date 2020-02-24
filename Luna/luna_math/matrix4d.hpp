@@ -234,15 +234,14 @@ namespace luna
 
 	const Matrix4d Matrix4d::Perspective(Angle fovy, float aspect, float near, float far)
 	{
-		float q = 1.0f / std::tanf(Angle::DegreeToRadian(0.5f * fovy.Degrees()));
-		float A = q / aspect;
-		float B = (near + far) / (near - far);
-		float C = (2.0f * near * far) / (near - far);
+		float g = 1.0f / std::tanf(0.5f * fovy.Degrees());
+		float k = far / (far - near);
+		float A = g / aspect;
 
 		return Matrix4d{ A, 0, 0, 0,
-						 0, q, 0, 0,
-						 0, 0, B, -1.0f,
-						 0, 0, C, 0 };
+						 0, g, 0, 0,
+						 0, 0, k, 1.0f,
+						 0, 0,  -near * k, 0 };
 	}
 
 	const Matrix4d Ortho(float left, float right, float bottom, float top, float near, float far) 
