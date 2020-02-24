@@ -119,7 +119,7 @@ private:
 		float x = cosf(currentTime);
 		float y = cosf(currentTime);
 		float z = cosf(currentTime);
-		view = view * luna::Matrix4d::Translate({ 0,0,2 +z});
+		view = view * luna::Matrix4d::Translate({ 0,0,3 +z});
 		luna::Matrix4d projection{};
 		projection = projection* luna::Matrix4d::Perspective(luna::AngleFromDegrees(45), 800.0f / 600.0f, 0.1f, 100.0f);
 		shader.SetModel(model);
