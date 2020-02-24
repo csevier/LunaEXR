@@ -244,7 +244,7 @@ namespace luna
 						 0, 0,  -near * k, 0 };
 	}
 
-	const Matrix4d Ortho(float left, float right, float bottom, float top, float near, float far) 
+	const Matrix4d Matrix4d::Ortho(float left, float right, float bottom, float top, float near, float far)
 	{
 		return Matrix4d{ (2.0f/(right-left)), 0, 0, 0,
 						 0, (2.0f / (top - bottom)), 0, 0,

@@ -8,8 +8,8 @@ class Game
 {
 
 public:
-	Game(unsigned screenWidth = 800, unsigned screenHeight = 600):
-		mScreenWidth{ screenWidth }, mScreenHeight{screenHeight}
+	Game(float screenWidth = 800.0f, float screenHeight = 600.0f):
+		mScreenWidth{ screenWidth }, mScreenHeight{ screenHeight }, mAspectRatio{mScreenWidth/mScreenHeight}
 	{
 		InitializeGLFW();
 	}
@@ -121,7 +121,7 @@ private:
 		float z = cosf(currentTime);
 		view = view * luna::Matrix4d::Translate({ 0,0,3 +z});
 		luna::Matrix4d projection{};
-		projection = projection* luna::Matrix4d::Perspective(luna::AngleFromDegrees(45), 800.0f / 600.0f, 0.1f, 100.0f);
+		projection = projection* luna::Matrix4d::Perspective(luna::AngleFromDegrees(45), mAspectRatio, 0.1f, 100.0f);
 		shader.SetModel(model);
 		shader.SetView(view);
 		shader.SetProjection(projection);
@@ -130,8 +130,9 @@ private:
 	}
 
 	GLFWwindow* mWindow;
-	unsigned mScreenWidth;
-	unsigned mScreenHeight;
+	float mScreenWidth;
+	float mScreenHeight;
+	float mAspectRatio;
 	const static int mNumVAOs = 1;
 	GLuint mVao[mNumVAOs];
 	double mLastFrameTime = 0;
