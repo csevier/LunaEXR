@@ -6,9 +6,13 @@
 #include "../luna_math/matrix4d.hpp";
 class Game
 {
+	static void framebuffer_size_callback(GLFWwindow* window, int width, int height)
+	{
+		glViewport(0, 0, width, height);
+	}
 
 public:
-	Game(float screenWidth = 800.0f, float screenHeight = 600.0f):
+	Game(float screenWidth = 1920.0f, float screenHeight = 1080.0f):
 		mScreenWidth{ screenWidth }, mScreenHeight{ screenHeight }, mAspectRatio{mScreenWidth/mScreenHeight}
 	{
 		InitializeGLFW();
@@ -19,9 +23,13 @@ public:
 		Shader shader{ "vert.glsl","frag.glsl" };
 		while (!glfwWindowShouldClose(mWindow))
 		{
-			Display(mWindow, glfwGetTime(), shader);
+			double currentTime = glfwGetTime();
+			processInput(mWindow, currentTime);
+			glfwGetCursorPos(mWindow, &xpos, &ypos);
+			Display(mWindow, currentTime, shader);
 			glfwSwapBuffers(mWindow);
 			glfwPollEvents();
+
 		}
 		glfwDestroyWindow(mWindow);
 		glfwTerminate();
@@ -44,8 +52,11 @@ private:
 		}
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-		mWindow = glfwCreateWindow(mScreenWidth, mScreenHeight, "On Existence", nullptr, nullptr);
+		mWindow = glfwCreateWindow(mScreenWidth, mScreenHeight, "Luna", nullptr, nullptr);
 		glfwMakeContextCurrent(mWindow);
+		glfwSetFramebufferSizeCallback(mWindow, framebuffer_size_callback);
+		glfwSetInputMode(mWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+		
 		if (glewInit() != GLEW_OK)
 		{
 			exit(EXIT_FAILURE);
@@ -58,6 +69,7 @@ private:
 
 	void Display(GLFWwindow* window, double currentTime, Shader shader)
 	{
+		HandleMouse();
 		float vertices[] = {
 	-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
 	 0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
@@ -103,8 +115,8 @@ private:
 		};
 
 	luna::Vector3d cubePositions[] = {
-	luna::Vector3d(0.0f,  0.0f,  0.0f),
-	luna::Vector3d(2.0f,  0.0f,  0.0f),
+	luna::Vector3d(0.0f,  0.0f,  5.0f),
+	luna::Vector3d(2.0f,  0.0f, 5.0f),
 		};
 		glClear(GL_DEPTH_BUFFER_BIT);
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -117,25 +129,73 @@ private:
 		glEnable(GL_DEPTH_TEST);
 		glEnableVertexAttribArray(0);
 		luna::Matrix4d model{};
-		//model = model * luna::Matrix4d::RotateX(luna::AngleFromDegrees(50.0f).Radians() * (float)currentTime);
-		model = model * luna::Matrix4d::RotateY(luna::AngleFromDegrees(50.0f).Radians() * (float)currentTime);
-		//model = model * luna::Matrix4d::RotateZ(luna::AngleFromDegrees(50.0f).Radians() * (float)currentTime);
 		for (unsigned int i = 0; i < 2; i++)
 		{
 			model = model * luna::Matrix4d::Translate(cubePositions[i]);
 			luna::Matrix4d view{};
-			float x = cosf(currentTime);
-			float y = cosf(currentTime);
-			float z = cosf(currentTime);
-			view = view * luna::Matrix4d::Translate({ 0,0,3 + z });
+			const float radius = -10.0f;
+			view = view * luna::Matrix4d::LookAt(cameraPos, cameraPos + cameraFront, cameraUp);
 			luna::Matrix4d projection{};
-			projection = projection * luna::Matrix4d::Perspective(luna::AngleFromDegrees(45), mAspectRatio, 0.1f, 100.0f);
+			projection = projection * luna::Matrix4d::Perspective(luna::AngleFromDegrees(fov), mAspectRatio, 0.1f, 100.0f);
 			shader.SetModel(model);
 			shader.SetView(view);
 			shader.SetProjection(projection);
 			shader.Use();
 			glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices));
 		}
+	}
+
+	void processInput(GLFWwindow* window, double currentTime)
+	{
+		mDeltaTime = currentTime - mLastFrameTime;
+		mLastFrameTime = currentTime;
+		const float cameraSpeed = 25.0f * mDeltaTime; // adjust accordingly
+		if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+			cameraPos -= cameraFront * cameraSpeed;
+		if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+			cameraPos += cameraFront * cameraSpeed;
+		if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+			cameraPos = cameraPos - cameraFront.CrossProduct(cameraUp).Normalize() * cameraSpeed;
+		if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+			cameraPos = cameraPos + cameraFront.CrossProduct(cameraUp).Normalize() * cameraSpeed;
+	}
+
+	
+
+	void HandleMouse() 
+	{
+		if (firstMouse)
+		{
+			lastX = xpos;
+			lastY = ypos;
+			firstMouse = false;
+		}
+
+		float xoffset = xpos - lastX;
+		float yoffset = lastY - ypos;
+		lastX = xpos;
+		lastY = ypos;
+
+		float sensitivity = 0.05;
+		xoffset *= sensitivity;
+		yoffset *= sensitivity;
+
+		yaw -= xoffset;
+		pitch -= yoffset;
+
+		if (pitch > 89.0f)
+			pitch = 89.0f;
+		if (pitch < -89.0f)
+			pitch = -89.0f;
+
+		luna::Angle aPitch = luna::AngleFromDegrees(pitch);
+		luna::Angle aYaw = luna::AngleFromDegrees(yaw);
+
+		float x = cos(aYaw.Radians()) * cos(aPitch.Radians());
+		float y = sin(aPitch.Radians());
+		float z = sin(aYaw.Radians()) * cos(aPitch.Radians());
+		const luna::Vector3d direction{ x, y, z };
+		cameraFront = direction.Normalize();
 	}
 
 	GLFWwindow* mWindow;
@@ -145,6 +205,17 @@ private:
 	const static int mNumVAOs = 1;
 	GLuint mVao[mNumVAOs];
 	double mLastFrameTime = 0;
-	double mFrameCount = 0;
+	double mDeltaTime;
+	bool firstMouse = true;
+	double xpos;
+	double ypos;
+	float yaw = -90.0f;	// yaw is initialized to -90.0 degrees since a yaw of 0.0 results in a direction vector pointing to the right so we initially rotate a bit to the left.
+	float pitch = 0.0f;
+	float lastX = 800.0f / 2.0;
+	float lastY = 600.0 / 2.0;
+	float fov = 45.0f;
+	luna::Vector3d cameraPos = luna::Vector3d(0.0f, 0.0f, 3.0f);
+	luna::Vector3d cameraFront = luna::Vector3d(0.0f, 0.0f, -1.0f);
+	luna::Vector3d cameraUp = luna::Vector3d(0.0f, 1.0f, 0.0f);
 };
 #endif

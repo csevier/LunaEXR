@@ -25,7 +25,7 @@ namespace luna
 		float& operator [](int i);
 		const float& operator [](int i) const;
 		float Magnitude() const;
-		Vector3d Normalize();
+		Vector3d Normalize() const;
 		float DotProduct(const Vector3d& other) const;
 		Vector3d CrossProduct(const Vector3d& other) const;
 		float DistanceTo(const Vector3d& other) const;
@@ -131,7 +131,7 @@ namespace luna
 		return std::sqrt(mX * mX + mY * mY + mZ * mZ);
 	}
 
-	inline Vector3d Vector3d::Normalize()
+	inline Vector3d Vector3d::Normalize() const
 	{
 		return (*this) / Magnitude();
 	}

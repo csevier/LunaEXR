@@ -40,6 +40,7 @@ namespace luna
 		static const Matrix4d Frustrum(float left,float right, float bottom, float top, float near, float far);
 		static const Matrix4d Perspective(Angle fovy, float aspect, float near, float far);
 		static const Matrix4d Ortho(float left, float right, float bottom, float top, float near, float far);
+		static const Matrix4d LookAt(const Vector3d& eye, const Vector3d& center, const Vector3d& up);
 
 	private:
 		float mContents[4][4];
@@ -250,6 +251,20 @@ namespace luna
 						 0, (2.0f / (top - bottom)), 0, 0,
 						 0, 0, (2.0f / (near - far)), 0.0f,
 						 ((left+right) / (left - right)),((bottom + top) / (bottom - top)),((near + far) / (near - -far)), 1.0f };
+	}
+
+	const Matrix4d Matrix4d::LookAt(const Vector3d& eye, const Vector3d& center, const Vector3d& up) 
+	{
+		const Vector3d forward = center - eye;
+		const Vector3d f = forward.Normalize();
+		const Vector3d s = f.CrossProduct(up).Normalize();
+		const Vector3d u = s.CrossProduct(f);
+		const Vector3d fNeg = -f;
+		const Matrix4d mat{s.x(),    s.y(),    s.z(),  -s.DotProduct(eye),
+						   u.x(),    u.y(),    u.z(),  -u.DotProduct(eye),
+						   fNeg.x(), fNeg.x(), fNeg.z(),f.DotProduct(eye),
+		                   0,0,0,1};
+		return mat;
 	}
 }
 
