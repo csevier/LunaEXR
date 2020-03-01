@@ -56,7 +56,7 @@ private:
 		glfwMakeContextCurrent(mWindow);
 		glfwSetFramebufferSizeCallback(mWindow, framebuffer_size_callback);
 		glfwSetInputMode(mWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-		
+		projection = projection * luna::Matrix4d::Perspective(luna::AngleFromDegrees(fov), mAspectRatio, 0.1f, 100.0f);
 		if (glewInit() != GLEW_OK)
 		{
 			exit(EXIT_FAILURE);
@@ -115,9 +115,18 @@ private:
 		};
 
 	luna::Vector3d cubePositions[] = {
-	luna::Vector3d(0.0f,  0.0f,  5.0f),
-	luna::Vector3d(2.0f,  0.0f, 5.0f),
-		};
+	 luna::Vector3d(0.0f,  0.0f,  0.0f),
+	  luna::Vector3d(2.0f,  5.0f, -15.0f),
+	luna::Vector3d(-1.5f, -2.2f, -2.5f),
+	  luna::Vector3d(-3.8f, -2.0f, -12.3f),
+	  luna::Vector3d(2.4f, -0.4f, -3.5f),
+	  luna::Vector3d(-1.7f,  3.0f, -7.5f),
+	  luna::Vector3d(1.3f, -2.0f, -2.5f),
+	  luna::Vector3d(1.5f,  2.0f, -2.5f),
+	  luna::Vector3d(1.5f,  0.2f, -1.5f),
+	 luna::Vector3d(-1.3f,  1.0f, -1.5f)
+	};
+		luna::Matrix4d view{};
 		glClear(GL_DEPTH_BUFFER_BIT);
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -129,14 +138,10 @@ private:
 		glEnable(GL_DEPTH_TEST);
 		glEnableVertexAttribArray(0);
 		luna::Matrix4d model{};
-		for (unsigned int i = 0; i < 2; i++)
+		for (unsigned int i = 0; i < 10; i++)
 		{
-			model = model * luna::Matrix4d::Translate(cubePositions[i]);
-			luna::Matrix4d view{};
-			const float radius = -10.0f;
+			//model = model * luna::Matrix4d::RotateY(luna::AngleFromDegrees(50.0f).Radians() * (float)currentTime);
 			view = view * luna::Matrix4d::LookAt(cameraPos, cameraPos + cameraFront, cameraUp);
-			luna::Matrix4d projection{};
-			projection = projection * luna::Matrix4d::Perspective(luna::AngleFromDegrees(fov), mAspectRatio, 0.1f, 100.0f);
 			shader.SetModel(model);
 			shader.SetView(view);
 			shader.SetProjection(projection);
@@ -214,6 +219,7 @@ private:
 	float lastX = 800.0f / 2.0;
 	float lastY = 600.0 / 2.0;
 	float fov = 45.0f;
+	luna::Matrix4d projection{};
 	luna::Vector3d cameraPos = luna::Vector3d(0.0f, 0.0f, 3.0f);
 	luna::Vector3d cameraFront = luna::Vector3d(0.0f, 0.0f, -1.0f);
 	luna::Vector3d cameraUp = luna::Vector3d(0.0f, 1.0f, 0.0f);
