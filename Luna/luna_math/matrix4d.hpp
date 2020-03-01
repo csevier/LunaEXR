@@ -259,12 +259,15 @@ namespace luna
 		const Vector3d f = forward.Normalize();
 		const Vector3d s = f.CrossProduct(up).Normalize();
 		const Vector3d u = s.CrossProduct(f);
-		const Vector3d fNeg = -f;
-		const Matrix4d mat{s.x(),    s.y(),    s.z(),  -s.DotProduct(eye),
-						   u.x(),    u.y(),    u.z(),  -u.DotProduct(eye),
-						   fNeg.x(), fNeg.x(), fNeg.z(),f.DotProduct(eye),
-		                   0,0,0,1};
+		float eyeS = -s.DotProduct(eye);
+		float eyeU = -u.DotProduct(eye);
+		float eyef = f.DotProduct(eye);
+		const Matrix4d mat{s.x(),    u.x(),    -f.x(), 0,
+						   s.y(),    u.y(),    -f.y(), 0,
+						   s.z(),    u.z(),    -f.z(), 0,
+						  eyeS,eyeU,eyef,1};
 		return mat;
+
 	}
 }
 

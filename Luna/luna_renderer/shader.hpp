@@ -90,7 +90,7 @@ public:
 	void SetView(luna::Matrix4d mat)
 	{
 		GLuint view = glGetUniformLocation(mProgramId, "view");
-		glUniformMatrix4fv(view, 1, GL_TRUE, mat.Data());
+		glUniformMatrix4fv(view, 1, GL_FALSE, mat.Data());
 	}
 
 	void SetView(glm::mat4 mat)

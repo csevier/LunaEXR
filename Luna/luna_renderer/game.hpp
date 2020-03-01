@@ -140,10 +140,15 @@ private:
 		luna::Matrix4d model{};
 		for (unsigned int i = 0; i < 10; i++)
 		{
-			//model = model * luna::Matrix4d::RotateY(luna::AngleFromDegrees(50.0f).Radians() * (float)currentTime);
+		    model = model * luna::Matrix4d::Translate(cubePositions[i]);
+		    model = model * luna::Matrix4d::RotateY(luna::AngleFromDegrees(50.0f).Radians() * (float)currentTime);
 			view = view * luna::Matrix4d::LookAt(cameraPos, cameraPos + cameraFront, cameraUp);
+			glm::vec3 gCameraPos{cameraPos.x(), cameraPos.y(), cameraPos.z()};
+			glm::vec3 gCameraFront{ cameraFront.x(), cameraFront.y(), cameraFront.z() };
+			glm::vec3 gCameraUp{ cameraUp.x(), cameraUp.y(), cameraUp.z() };
+			auto b  = glm::lookAt(gCameraPos, gCameraPos + gCameraFront, gCameraUp);
 			shader.SetModel(model);
-			shader.SetView(view);
+			shader.SetView(b);
 			shader.SetProjection(projection);
 			shader.Use();
 			glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices));
