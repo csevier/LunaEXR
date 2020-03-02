@@ -4,6 +4,8 @@
 #include <GLFW\glfw3.h>
 #include "shader.hpp"
 #include "../luna_math/matrix4d.hpp";
+
+
 class Game
 {
 	static void framebuffer_size_callback(GLFWwindow* window, int width, int height)
@@ -126,7 +128,7 @@ private:
 	  luna::Vector3d(1.5f,  0.2f, -1.5f),
 	 luna::Vector3d(-1.3f,  1.0f, -1.5f)
 	};
-		luna::Matrix4d view{};
+		
 		glClear(GL_DEPTH_BUFFER_BIT);
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -140,15 +142,13 @@ private:
 		luna::Matrix4d model{};
 		for (unsigned int i = 0; i < 10; i++)
 		{
+			luna::Matrix4d view{};
 		    model = model * luna::Matrix4d::Translate(cubePositions[i]);
 		    model = model * luna::Matrix4d::RotateY(luna::AngleFromDegrees(50.0f).Radians() * (float)currentTime);
-			view = view * luna::Matrix4d::LookAt(cameraPos, cameraPos + cameraFront, cameraUp);
-			glm::vec3 gCameraPos{cameraPos.x(), cameraPos.y(), cameraPos.z()};
-			glm::vec3 gCameraFront{ cameraFront.x(), cameraFront.y(), cameraFront.z() };
-			glm::vec3 gCameraUp{ cameraUp.x(), cameraUp.y(), cameraUp.z() };
-			auto b  = glm::lookAt(gCameraPos, gCameraPos + gCameraFront, gCameraUp);
+			luna::Vector3d center = cameraPos + cameraFront;
+			view = view * luna::Matrix4d::LookAt(cameraPos, center, cameraUp);
 			shader.SetModel(model);
-			shader.SetView(b);
+			shader.SetView(view);
 			shader.SetProjection(projection);
 			shader.Use();
 			glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices));
@@ -169,8 +169,6 @@ private:
 		if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 			cameraPos = cameraPos + cameraFront.CrossProduct(cameraUp).Normalize() * cameraSpeed;
 	}
-
-	
 
 	void HandleMouse() 
 	{
@@ -225,7 +223,7 @@ private:
 	float lastY = 600.0 / 2.0;
 	float fov = 45.0f;
 	luna::Matrix4d projection{};
-	luna::Vector3d cameraPos = luna::Vector3d(0.0f, 0.0f, 3.0f);
+	luna::Vector3d cameraPos = luna::Vector3d(0.0f, 0.0f, -3.0f);
 	luna::Vector3d cameraFront = luna::Vector3d(0.0f, 0.0f, -1.0f);
 	luna::Vector3d cameraUp = luna::Vector3d(0.0f, 1.0f, 0.0f);
 };

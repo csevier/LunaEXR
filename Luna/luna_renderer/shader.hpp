@@ -7,9 +7,6 @@
 #include <sstream>
 #include <iostream>
 #include "../luna_math/matrix4d.hpp";
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
 
 class Shader
 {
@@ -91,12 +88,6 @@ public:
 	{
 		GLuint view = glGetUniformLocation(mProgramId, "view");
 		glUniformMatrix4fv(view, 1, GL_FALSE, mat.Data());
-	}
-
-	void SetView(glm::mat4 mat)
-	{
-		GLuint view = glGetUniformLocation(mProgramId, "view");
-		glUniformMatrix4fv(view, 1, GL_FALSE, glm::value_ptr(mat));
 	}
 
 	void SetProjection(luna::Matrix4d mat)
