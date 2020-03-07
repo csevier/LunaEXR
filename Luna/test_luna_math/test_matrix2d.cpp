@@ -1,6 +1,6 @@
-#include "pch.h"
 #include "../luna_math/matrix2d.hpp"
 #include "../luna_math/vector2d.hpp"
+#include <gtest/gtest.h>
 
 TEST(TestMatrix2d, Ctor)
 {
@@ -120,7 +120,7 @@ TEST(TestMatrix2d, MatrixByBasisVector)
 
 TEST(TestMatrix2d, Rotate2d)
 {
-	luna::Matrix2d rotateDeg = luna::Matrix2d::MakeRotate(luna::AngleFromDegrees(180));
+	luna::Matrix2d rotateDeg = luna::Matrix2d::MakeRotate(luna::Angle::AngleFromDegrees(180));
 	luna::Vector2d x{ 1, 0 };
 	luna::Vector2d xprime = rotateDeg *x;
 	EXPECT_EQ(xprime.x(),  -x.x());
@@ -130,7 +130,7 @@ TEST(TestMatrix2d, Rotate2d)
 
 TEST(TestMatrix2d, Rotate2dAnother)
 {
-	luna::Matrix2d rotateDeg = luna::Matrix2d::MakeRotate(luna::AngleFromDegrees(360));
+	luna::Matrix2d rotateDeg = luna::Matrix2d::MakeRotate(luna::Angle::AngleFromDegrees(360));
 	luna::Vector2d x{ 1, 0 };
 	luna::Vector2d xprime = rotateDeg * x;
 	EXPECT_EQ(xprime.x(), x.x());

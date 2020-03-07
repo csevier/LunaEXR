@@ -4,6 +4,9 @@
 #include <GLFW\glfw3.h>
 #include "shader.hpp"
 #include "../luna_math/matrix4d.hpp";
+#include "Mesh.hpp"
+#include "Scene.hpp"
+#include "Cube.hpp"
 
 
 class Game
@@ -58,7 +61,7 @@ private:
 		glfwMakeContextCurrent(mWindow);
 		glfwSetFramebufferSizeCallback(mWindow, framebuffer_size_callback);
 		glfwSetInputMode(mWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-		projection = projection * luna::Matrix4d::Perspective(luna::AngleFromDegrees(fov), mAspectRatio, 0.1f, 100.0f);
+		projection = projection * luna::Matrix4d::Perspective(luna::Angle::AngleFromDegrees(fov), mAspectRatio, 0.1f, 100.0f);
 		if (glewInit() != GLEW_OK)
 		{
 			exit(EXIT_FAILURE);
@@ -72,87 +75,19 @@ private:
 	void Display(GLFWwindow* window, double currentTime, Shader shader)
 	{
 		HandleMouse();
-		float vertices[] = {
-	-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-	 0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
-	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-	-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-	-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-
-	-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-	 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-	-0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
-	-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-
-	-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-	-0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-	-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-	-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-	-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-	-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-
-	 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-	 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-	 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-	 0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-
-	-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-	 0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
-	 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-	 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-	-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-	-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-
-	-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-	-0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
-	-0.5f,  0.5f, -0.5f,  0.0f, 1.0f
-		};
-
-	luna::Vector3d cubePositions[] = {
-	 luna::Vector3d(0.0f,  0.0f,  0.0f),
-	  luna::Vector3d(2.0f,  5.0f, -15.0f),
-	luna::Vector3d(-1.5f, -2.2f, -2.5f),
-	  luna::Vector3d(-3.8f, -2.0f, -12.3f),
-	  luna::Vector3d(2.4f, -0.4f, -3.5f),
-	  luna::Vector3d(-1.7f,  3.0f, -7.5f),
-	  luna::Vector3d(1.3f, -2.0f, -2.5f),
-	  luna::Vector3d(1.5f,  2.0f, -2.5f),
-	  luna::Vector3d(1.5f,  0.2f, -1.5f),
-	 luna::Vector3d(-1.3f,  1.0f, -1.5f)
-	};
-		
 		glClear(GL_DEPTH_BUFFER_BIT);
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		unsigned int VBO;
-		glGenBuffers(1, &VBO);
-		glBindBuffer(GL_ARRAY_BUFFER, VBO);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
 		glEnable(GL_DEPTH_TEST);
-		glEnableVertexAttribArray(0);
-		luna::Matrix4d model{};
-		for (unsigned int i = 0; i < 10; i++)
-		{
-			luna::Matrix4d view{};
-		    model = model * luna::Matrix4d::Translate(cubePositions[i]);
-		    model = model * luna::Matrix4d::RotateY(luna::AngleFromDegrees(50.0f).Radians() * (float)currentTime);
-			luna::Vector3d center = cameraPos + cameraFront;
-			view = view * luna::Matrix4d::LookAt(cameraPos, center, cameraUp);
-			shader.SetModel(model);
-			shader.SetView(view);
-			shader.SetProjection(projection);
-			shader.Use();
-			glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices));
-		}
+		luna::Cube cube{ luna::Vector3d(0.0f,  0.0f,  0.0f) };
+		luna::Matrix4d view{};
+		luna::Vector3d center = cameraPos + cameraFront;
+		view = view * luna::Matrix4d::LookAt(cameraPos, center, cameraUp);
+		shader.SetView(view);
+		shader.SetProjection(projection);
+		cube.Update(mDeltaTime);
+		cube.Draw(shader);
+		
 	}
 
 	void processInput(GLFWwindow* window, double currentTime)
@@ -196,8 +131,8 @@ private:
 		if (pitch < -89.0f)
 			pitch = -89.0f;
 
-		luna::Angle aPitch = luna::AngleFromDegrees(pitch);
-		luna::Angle aYaw = luna::AngleFromDegrees(yaw);
+		luna::Angle aPitch = luna::Angle::AngleFromDegrees(pitch);
+		luna::Angle aYaw = luna::Angle::AngleFromDegrees(yaw);
 
 		float x = cos(aYaw.Radians()) * cos(aPitch.Radians());
 		float y = sin(aPitch.Radians());

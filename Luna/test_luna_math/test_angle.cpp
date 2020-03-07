@@ -1,17 +1,17 @@
-#include "pch.h"
 #include "../luna_math/math.hpp"
 #include "../luna_math/angle.hpp"
+#include <gtest/gtest.h>
 
 TEST(TestAngle, DegreeToRadian)
 {
-	luna::Angle angle = luna::AngleFromDegrees(360);
+	luna::Angle angle = luna::Angle::AngleFromDegrees(360);
 	EXPECT_EQ(angle.Radians(), 6.28318548f);
 	EXPECT_EQ(angle.Degrees(), 360.0f);
 }
 
 TEST(TestAngle, RadianToDegree)
 {
-	luna::Angle angle = luna::AngleFromRadians(6.28318548f);
+	luna::Angle angle = luna::Angle::AngleFromRadians(6.28318548f);
 	luna::Angle angle1{ 6.28318548f };
 	EXPECT_EQ(angle.Radians(), 6.28318548f);
 	EXPECT_EQ(angle.Degrees(), 360.0f);
@@ -21,8 +21,8 @@ TEST(TestAngle, RadianToDegree)
 
 TEST(TestAngle, AngleEquality)
 {
-	luna::Angle angle = luna::AngleFromRadians(6.28318548f);
-	luna::Angle angleD = luna::AngleFromDegrees(360);
+	luna::Angle angle = luna::Angle::AngleFromRadians(6.28318548f);
+	luna::Angle angleD = luna::Angle::AngleFromDegrees(360);
 	luna::Angle angle1{ 6.28318548f };
 	EXPECT_EQ(angle, angle1);
 	EXPECT_EQ(angle, angleD);
@@ -30,10 +30,10 @@ TEST(TestAngle, AngleEquality)
 
 TEST(TestAngle, AFewMoreTests)
 {
-	luna::Angle fullCircle = luna::AngleFromRadians(6.28318548f);
-	luna::Angle halfcircle = luna::AngleFromDegrees(180.0f);
-	luna::Angle thirty = luna::AngleFromDegrees(30.0f);
-	luna::Angle twoSeventy = luna::AngleFromDegrees(270.0f);
+	luna::Angle fullCircle = luna::Angle::AngleFromRadians(6.28318548f);
+	luna::Angle halfcircle = luna::Angle::AngleFromDegrees(180.0f);
+	luna::Angle thirty = luna::Angle::AngleFromDegrees(30.0f);
+	luna::Angle twoSeventy = luna::Angle::AngleFromDegrees(270.0f);
 	
 	EXPECT_EQ(fullCircle.Radians(), luna::M_PI *2);
 	EXPECT_EQ(fullCircle.Degrees(), 360.0f);

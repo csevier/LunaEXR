@@ -1,10 +1,10 @@
-#include "pch.h"
 #include "../luna_math/matrix4d.hpp"
 #include "../luna_math/vector4d.hpp"
 #include "../luna_math/vmath.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <gtest/gtest.h>
 
 
 TEST(TestMatrix4d, Ctor)

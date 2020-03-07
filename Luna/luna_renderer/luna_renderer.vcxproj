@@ -131,12 +131,19 @@
     <None Include="vert.glsl" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Cube.hpp" />
+    <ClInclude Include="Drawable.hpp" />
     <ClInclude Include="Game.hpp" />
+    <ClInclude Include="Mesh.hpp" />
+    <ClInclude Include="GameObject.hpp" />
+    <ClInclude Include="Scene.hpp" />
     <ClInclude Include="Shader.hpp" />
     <ClInclude Include="stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Cube.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mesh.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,7 +1,7 @@
-#include "pch.h"
 #include "../luna_math/math.hpp"
 #include "../luna_math/vector2d.hpp"
 #include "../luna_math/angle.hpp"
+#include <gtest/gtest.h>
 
 
 TEST(TestVector2d, Ctor)

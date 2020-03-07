@@ -1,6 +1,7 @@
-#include "pch.h"
 #include "../luna_math/math.hpp"
 #include "../luna_math/angle.hpp"
+#include "../luna_math/geometry.hpp"
+#include <gtest/gtest.h>
 
 TEST(TestTrig, DegreeToRadian)
 {
@@ -20,13 +21,13 @@ TEST(TestTrig, ArcLengthRadians)
 	EXPECT_EQ(arcLength, 2 * luna::M_PI);
 	float arcLength2 = luna::ArcLengthRadians(7 * luna::M_PI / 4, 20);
 	EXPECT_EQ(arcLength2, 109.955750f);
-	float arcLength3 = luna::ArcLengthRadians(3, luna::AngleFromDegrees(180));
+	float arcLength3 = luna::ArcLengthRadians(3, luna::Angle::AngleFromDegrees(180));
 	EXPECT_EQ(arcLength3, 3 * luna::M_PI);
 }
 
 TEST(TestTrig, ArcLengthDegrees)
 {
-	float arcLength = luna::ArcLengthDegrees(3, luna::AngleFromDegrees(75));
+	float arcLength = luna::ArcLengthDegrees(3, luna::Angle::AngleFromDegrees(75));
 	EXPECT_EQ(arcLength, 3.92699075f);
 }
 

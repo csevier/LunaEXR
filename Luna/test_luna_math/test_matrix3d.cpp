@@ -1,7 +1,7 @@
-#include "pch.h"
 #include "../luna_math/matrix3d.hpp"
 #include "../luna_math/vector3d.hpp"
 #include <iostream> 
+#include <gtest/gtest.h>
 
 TEST(TestMatrix3d, Ctor)
 {
@@ -176,7 +176,7 @@ TEST(TestMatrix3d,  MatrixByBasisVector)
 
 TEST(TestMatrix3d, Rotate3dX)
 {
-	luna::Matrix3d rotateDeg = luna::Matrix3d::RotateX(luna::AngleFromDegrees(90));
+	luna::Matrix3d rotateDeg = luna::Matrix3d::RotateX(luna::Angle::AngleFromDegrees(90));
 	luna::Vector3d x{ 0, 0, 1 };
 	luna::Vector3d xprime = rotateDeg * x;
 
@@ -189,7 +189,7 @@ TEST(TestMatrix3d, Rotate3dX)
 
 TEST(TestMatrix3d, Rotate3dXAnother)
 {
-	luna::Matrix3d rotateDeg = luna::Matrix3d::RotateX(luna::AngleFromDegrees(360));
+	luna::Matrix3d rotateDeg = luna::Matrix3d::RotateX(luna::Angle::AngleFromDegrees(360));
 	luna::Vector3d x{ 0, 0, 1 };
 	luna::Vector3d xprime = rotateDeg * x;
 	EXPECT_EQ(xprime.x(), x.x());
@@ -200,7 +200,7 @@ TEST(TestMatrix3d, Rotate3dXAnother)
 
 TEST(TestMatrix3d, Rotate3dY)
 {
-	luna::Matrix3d rotateDeg = luna::Matrix3d::RotateY(luna::AngleFromDegrees(90));
+	luna::Matrix3d rotateDeg = luna::Matrix3d::RotateY(luna::Angle::AngleFromDegrees(90));
 	luna::Vector3d x{ 0, 0, 1 };
 	luna::Vector3d xprime = rotateDeg * x;
 
@@ -213,7 +213,7 @@ TEST(TestMatrix3d, Rotate3dY)
 
 TEST(TestMatrix3d, Rotate3dYAnother)
 {
-	luna::Matrix3d rotateDeg = luna::Matrix3d::RotateY(luna::AngleFromDegrees(360));
+	luna::Matrix3d rotateDeg = luna::Matrix3d::RotateY(luna::Angle::AngleFromDegrees(360));
 	luna::Vector3d x{ 0, 0, 1  };
 	luna::Vector3d xprime = rotateDeg * x;
 	EXPECT_EQ(std::floor(xprime.x()), 0);
@@ -224,7 +224,7 @@ TEST(TestMatrix3d, Rotate3dYAnother)
 
 TEST(TestMatrix3d, Rotate3dZ)
 {
-	luna::Matrix3d rotateDeg = luna::Matrix3d::RotateZ(luna::AngleFromDegrees(90));
+	luna::Matrix3d rotateDeg = luna::Matrix3d::RotateZ(luna::Angle::AngleFromDegrees(90));
 	luna::Vector3d x{ 1, 0, 0 };
 	luna::Vector3d xprime = rotateDeg * x;
 
@@ -237,7 +237,7 @@ TEST(TestMatrix3d, Rotate3dZ)
 
 TEST(TestMatrix3d, Rotate3dZAnother)
 {
-	luna::Matrix3d rotateDeg = luna::Matrix3d::RotateZ(luna::AngleFromDegrees(360));
+	luna::Matrix3d rotateDeg = luna::Matrix3d::RotateZ(luna::Angle::AngleFromDegrees(360));
 	luna::Vector3d x{ 1, 0, 0  };
 	luna::Vector3d xprime = rotateDeg * x;
 	EXPECT_EQ(xprime.x(), 1);

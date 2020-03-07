@@ -1,8 +1,7 @@
-#include "pch.h"
-
 #include "../luna_math/angle.hpp"
 #include "../luna_math/vector4d.hpp"
 #include "../luna_math/math.hpp"
+#include <gtest/gtest.h>
 
 TEST(TestVector4d, SameDirection)
 {
