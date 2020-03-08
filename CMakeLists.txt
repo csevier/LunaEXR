@@ -71,5 +71,11 @@ target_include_directories(Luna
                            3rd_party/googletest/googletest-1.10.0/include/gtest)
 
 # Copy the resources folder to the binary directory.
+#TODO: temporary hack to put resources in the right place
+if(MSVC)
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/resources
+	DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/bin/Debug/)
+else()
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/resources
           DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/bin/)
+endif()
