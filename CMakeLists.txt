@@ -27,8 +27,8 @@ add_subdirectory(3rd_party/googletest-1.10.0)
 # Set the runtime and binary output directories.
 # This is done after adding subdirectories so any .dll's
 # end up in the same directory as the executable.
-set( CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin )
-set( CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib )
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/lib)
 
 # TODO: create each Luna subdirectory with their own CMakeLists.txt
 # Add each project subdirectory.
@@ -72,4 +72,4 @@ target_include_directories(Luna
 
 # Copy the resources folder to the binary directory.
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/resources
-          DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+          DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/bin/)
