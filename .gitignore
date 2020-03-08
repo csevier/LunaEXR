@@ -3,6 +3,12 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# Ignore CMake build directory.
+build/
+
+# Ignore compile_commands.json
+compile_commands.json
+
 # User-specific files
 *.rsuser
 *.suo
