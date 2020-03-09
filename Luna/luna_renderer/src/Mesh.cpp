@@ -13,7 +13,7 @@ namespace luna
     void Mesh::Draw(Shader shader)
     {
         shader.Use();
-        shader.SetModel(model);
+        shader.SetModel(mModel);
         glBindVertexArray(VAO);
         glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices));
     }
@@ -35,6 +35,6 @@ namespace luna
     }
 
     void Mesh::SetModel(Matrix4d model) {
-        model = model;
+        mModel = model;
     }
 }

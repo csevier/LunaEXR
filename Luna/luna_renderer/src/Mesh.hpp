@@ -39,7 +39,7 @@ namespace luna
             unsigned int VAO, VBO, EBO;
             void setupMesh();
             std::vector<Vertex> vertices;
-            Matrix4d model;
+            Matrix4d mModel;
     };
 
 	

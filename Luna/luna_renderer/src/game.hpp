@@ -85,7 +85,7 @@ private:
 		view = view * luna::Matrix4d::LookAt(cameraPos, center, cameraUp);
 		shader.SetView(view);
 		shader.SetProjection(projection);
-		cube.Update(mDeltaTime);
+		cube.Update(currentTime);
 		cube.Draw(shader);
 		
 	}
