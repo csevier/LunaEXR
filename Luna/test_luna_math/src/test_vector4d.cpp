@@ -1,6 +1,6 @@
-#include "../luna_math/angle.hpp"
-#include "../luna_math/vector4d.hpp"
-#include "../luna_math/math.hpp"
+#include "../../../luna_math/src/math.hpp"
+#include "../../../luna_math/src/vector4d.hpp"
+#include "../../../luna_math/src/angle.hpp"
 #include <gtest/gtest.h>
 
 TEST(TestVector4d, SameDirection)

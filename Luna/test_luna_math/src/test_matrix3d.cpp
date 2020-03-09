@@ -1,5 +1,5 @@
-#include "../luna_math/matrix3d.hpp"
-#include "../luna_math/vector3d.hpp"
+#include "../../../luna_math/src/matrix3d.hpp"
+#include "../../../luna_math/src/vector3d.hpp"
 #include <iostream> 
 #include <gtest/gtest.h>
 

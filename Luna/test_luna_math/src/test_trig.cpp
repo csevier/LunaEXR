@@ -1,6 +1,7 @@
-#include "../luna_math/math.hpp"
-#include "../luna_math/angle.hpp"
-#include "../luna_math/geometry.hpp"
+#include "../../../luna_math/src/geometry.hpp"
+#include "../../../luna_math/src/math.hpp"
+#include "../../../luna_math/src/angle.hpp"
+
 #include <gtest/gtest.h>
 
 TEST(TestTrig, DegreeToRadian)
@@ -17,12 +18,12 @@ TEST(TestTrig, RadianToDegree)
 
 TEST(TestTrig, ArcLengthRadians)
 {
-	float arcLength = luna::ArcLengthRadians(2, luna::Angle{ luna::M_PI });
-	EXPECT_EQ(arcLength, 2 * luna::M_PI);
-	float arcLength2 = luna::ArcLengthRadians(7 * luna::M_PI / 4, 20);
+	float arcLength = luna::ArcLengthRadians(2, luna::Angle{ luna::cPI });
+	EXPECT_EQ(arcLength, 2 * luna::cPI);
+	float arcLength2 = luna::ArcLengthRadians(7 * luna::cPI / 4, 20);
 	EXPECT_EQ(arcLength2, 109.955750f);
 	float arcLength3 = luna::ArcLengthRadians(3, luna::Angle::AngleFromDegrees(180));
-	EXPECT_EQ(arcLength3, 3 * luna::M_PI);
+	EXPECT_EQ(arcLength3, 3 * luna::cPI);
 }
 
 TEST(TestTrig, ArcLengthDegrees)

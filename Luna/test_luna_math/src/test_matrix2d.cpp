@@ -1,5 +1,5 @@
-#include "../luna_math/matrix2d.hpp"
-#include "../luna_math/vector2d.hpp"
+#include "../../../luna_math/src/vector2d.hpp"
+#include "../../../luna_math/src/matrix2d.hpp"
 #include <gtest/gtest.h>
 
 TEST(TestMatrix2d, Ctor)

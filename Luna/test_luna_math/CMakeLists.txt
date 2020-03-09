@@ -3,15 +3,16 @@ project(test_luna_math)
 file(GLOB SOURCES "src/*.cpp"
                   "src/*.hpp"
                   )
-				  
 
 include_directories(include src)
-find_package(GTest REQUIRED)
+##find_package(GTest REQUIRED)
 add_executable(test_luna_math ${SOURCES})
-if(GTest_FOUND)
-   message("found gtest")
-endif()
-target_link_libraries(test_luna_math GTest::GTest GTest::Main)
+# if(GTest_FOUND)
+   # message("found gtest")
+# endif()
+add_subdirectory( gtest )
+include_directories("gtest/googletest/include")
+target_link_libraries(test_luna_math gtest luna_math)
 
 
 

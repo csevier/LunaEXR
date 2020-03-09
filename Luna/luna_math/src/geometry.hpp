@@ -7,12 +7,12 @@ namespace luna
 {
 	float CircleCircumference(float radius)
 	{
-		return 2 * M_PI * radius;
+		return 2 * cPI * radius;
 	}
 
 	float AreaOfCircle(float radius)
 	{
-		return M_PI * std::pow(radius, 2);
+		return cPI * std::pow(radius, 2);
 	}
 
 	float AreaOfRectangle(float length, float width)
@@ -43,7 +43,7 @@ namespace luna
 
 	float ArcLengthDegrees(float radius, Angle angle)
 	{
-		return (angle.Degrees() / 360) * 2 * M_PI * radius;
+		return (angle.Degrees() / 360) * 2 * cPI * radius;
 	}
 }
 #endif

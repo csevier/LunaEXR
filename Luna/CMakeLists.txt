@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.10)
-
+project(Luna)
 # Export compiler commands to compile_commands.json.
 # This is pretty much only for Zack; he needs it
 # for syntactical completion in Vim (yeah, yeah, I know).
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 # GLFW configuration.
 #set(GLFW_BUILD_DOCS OFF)     # Don't build documentation.
 #set(GLFW_BUILD_TESTS OFF)    # Don't build tests.

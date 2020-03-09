@@ -1,5 +1,5 @@
 #include "Mesh.hpp"
-#include "../luna_math/vector3d.hpp"
+#include "../../../luna_math/src/vector3d.hpp"
 namespace luna
 {
     

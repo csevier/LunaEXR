@@ -1,6 +1,7 @@
-#include "../luna_math/math.hpp"
-#include "../luna_math/vector2d.hpp"
-#include "../luna_math/angle.hpp"
+#include "../../../luna_math/src/math.hpp"
+#include "../../../luna_math/src/vector2d.hpp"
+#include "../../../luna_math/src/angle.hpp"
+
 #include <gtest/gtest.h>
 
 

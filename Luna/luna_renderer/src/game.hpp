@@ -3,7 +3,7 @@
 #include <GL\glew.h>
 #include <GLFW\glfw3.h>
 #include "shader.hpp"
-#include "../luna_math/matrix4d.hpp";
+#include "../../../luna_math/src/matrix4d.hpp"
 #include "Mesh.hpp"
 #include "Scene.hpp"
 #include "Cube.hpp"

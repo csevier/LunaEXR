@@ -6,7 +6,7 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
-#include "../luna_math/matrix4d.hpp";
+#include "../../../luna_math/src/matrix4d.hpp"
 
 class Shader
 {

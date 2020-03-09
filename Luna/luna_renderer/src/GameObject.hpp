@@ -2,7 +2,7 @@
 #define GAMEOBJECT_HPP
 
 #include "shader.hpp"
-#include "../luna_math/vector3d.hpp"
+#include "../../../luna_math/src/vector3d.hpp"
 #include "Drawable.hpp"
 
 namespace luna 

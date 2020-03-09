@@ -1,5 +1,5 @@
-#include "../luna_math/math.hpp"
-#include "../luna_math/angle.hpp"
+#include "../../../luna_math/src/math.hpp"
+#include "../../../luna_math/src/angle.hpp"
 #include <gtest/gtest.h>
 
 TEST(TestAngle, DegreeToRadian)
@@ -35,10 +35,10 @@ TEST(TestAngle, AFewMoreTests)
 	luna::Angle thirty = luna::Angle::AngleFromDegrees(30.0f);
 	luna::Angle twoSeventy = luna::Angle::AngleFromDegrees(270.0f);
 	
-	EXPECT_EQ(fullCircle.Radians(), luna::M_PI *2);
+	EXPECT_EQ(fullCircle.Radians(), luna::cPI *2);
 	EXPECT_EQ(fullCircle.Degrees(), 360.0f);
 
-	EXPECT_EQ(halfcircle.Radians(), luna::M_PI);
+	EXPECT_EQ(halfcircle.Radians(), luna::cPI);
 	EXPECT_EQ(halfcircle.Degrees(), 180.0f);
 
 	EXPECT_EQ(thirty.Radians(), 0.523598790f);

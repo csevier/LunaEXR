@@ -35,12 +35,12 @@ namespace luna
 
 	float Angle::DegreeToRadian(float angleInDegrees)
 	{
-		return  angleInDegrees * M_PI / 180;
+		return  angleInDegrees * cPI / 180;
 	}
 
 	float Angle::RadianToDegree(float angleInRadians)
 	{
-		return  angleInRadians * 180 / M_PI;
+		return  angleInRadians * 180 / cPI;
 	}
 
 	

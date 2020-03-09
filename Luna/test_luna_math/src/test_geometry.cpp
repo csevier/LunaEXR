@@ -1,5 +1,5 @@
-#include "../luna_math/math.hpp"
-#include "../luna_math/geometry.hpp"
+#include "../../../luna_math/src/geometry.hpp"
+#include "../../../luna_math/src/math.hpp"
 #include <gtest/gtest.h>
 
 TEST(TestGeometry, AreaOfCircle)
