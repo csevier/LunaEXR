@@ -1,5 +1,4 @@
 # Luna
-To compile, extract oglDependencies to c:\
-
-Open VS -> Build (it will fail)
-move glew32.dll to that build file
+Run Cmake
+compile 
+move glew32.dll to <build_path>/luna_renderer/Debug (on windows.)
