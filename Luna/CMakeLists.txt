@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 project(Luna)
+
 # Export compiler commands to compile_commands.json.
 # This is pretty much only for Zack; he needs it
 # for syntactical completion in Vim (yeah, yeah, I know).

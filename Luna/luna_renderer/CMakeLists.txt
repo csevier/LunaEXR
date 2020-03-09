@@ -30,4 +30,4 @@ add_subdirectory( glew/build/cmake )
 
 add_executable(luna_renderer ${SOURCES})
 target_link_libraries(luna_renderer glfw ${GLFW_LIBRARIES} glew luna_math)
-include_directories(src)
+include_directories(src luna_math)

@@ -25,7 +25,7 @@ public:
 
 	void Run()
 	{
-		Shader shader{ "vert.glsl","frag.glsl" };
+		Shader shader{ "./Debug/vert.glsl","./Debug/frag.glsl" };
 		while (!glfwWindowShouldClose(mWindow))
 		{
 			double currentTime = glfwGetTime();
