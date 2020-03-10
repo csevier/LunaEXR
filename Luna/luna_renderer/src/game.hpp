@@ -21,6 +21,7 @@ public:
 		mScreenWidth{ screenWidth }, mScreenHeight{ screenHeight }, mAspectRatio{mScreenWidth/mScreenHeight}
 	{
 		InitializeGLFW();
+        mTimeStarted = glfwGetTime();
 	}
 
 	void Run()
@@ -30,11 +31,14 @@ public:
 		{
 			double currentTime = glfwGetTime();
 			processInput(mWindow, currentTime);
+
 			glfwGetCursorPos(mWindow, &xpos, &ypos);
 			Display(mWindow, currentTime, shader);
 			glfwSwapBuffers(mWindow);
 			glfwPollEvents();
-
+            mFPS = mFrameCount /(currentTime - mTimeStarted);
+            std::cout << " Average FPS: " << mFPS <<std::endl;
+            mFrameCount +=1;
 		}
 		glfwDestroyWindow(mWindow);
 		glfwTerminate();
@@ -68,7 +72,7 @@ private:
 		}
 		// this is vsync, meaning it will wait for your monitors
 		// refresh rate
-		glfwSwapInterval(1);
+        glfwSwapInterval(1);
 		Init(mWindow);
 	}
 
@@ -147,9 +151,12 @@ private:
 	float mAspectRatio;
 	const static int mNumVAOs = 1;
 	GLuint mVao[mNumVAOs];
-	double mLastFrameTime = 0;
+    double mLastFrameTime = 0;
 	double mDeltaTime;
 	bool firstMouse = true;
+    int mFrameCount =0;
+    double mFPS = 0;
+    double mTimeStarted;
 	double xpos;
 	double ypos;
 	float yaw = -90.0f;	// yaw is initialized to -90.0 degrees since a yaw of 0.0 results in a direction vector pointing to the right so we initially rotate a bit to the left.
