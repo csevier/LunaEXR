@@ -191,7 +191,7 @@ namespace luna
 
 	const Matrix4d Matrix4d::Perspective(Angle fovy, float aspect, float near, float far)
 	{
-		float g = 1.0f / std::tanf(0.5f * fovy.Degrees());
+        float g = 1.0f / std::tan(0.5f * fovy.Degrees());
 		float k = far / (far - near);
 		float A = g / aspect;
 

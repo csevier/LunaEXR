@@ -1,5 +1,5 @@
 #include "geometry.hpp"
-
+#include <math.h>
 namespace luna
 {
 	float CircleCircumference(float radius)
@@ -20,17 +20,17 @@ namespace luna
 
 	float Sec(Angle angle)
 	{
-		return 1 / std::cosf(angle.Radians());
+        return 1 / std::cos(angle.Radians());
 	}
 
 	float Csc(Angle angle)
 	{
-		return 1 / std::sinf(angle.Radians());
+        return 1 / std::sin(angle.Radians());
 	}
 
 	float Cot(Angle angle)
 	{
-		return 1 / std::tanf(angle.Radians());
+        return 1 / std::tan(angle.Radians());
 	}
 
 	float ArcLengthRadians(float radius, Angle angle)

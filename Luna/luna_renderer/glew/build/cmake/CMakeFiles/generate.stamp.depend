@@ -1,7 +1,0 @@
-# CMake generation dependency list for this directory.
-C:/Program Files/CMake/share/cmake-3.17/Modules/FindOpenGL.cmake
-C:/Program Files/CMake/share/cmake-3.17/Modules/FindPackageHandleStandardArgs.cmake
-C:/Program Files/CMake/share/cmake-3.17/Modules/FindPackageMessage.cmake
-C:/Program Files/CMake/share/cmake-3.17/Modules/GNUInstallDirs.cmake
-C:/Source/luna/Luna/luna_renderer/glew/build/cmake/CMakeLists.txt
-C:/Source/luna/Luna/luna_renderer/glew/glew.pc.in
