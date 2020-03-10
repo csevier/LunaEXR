@@ -7,8 +7,10 @@ file(GLOB SOURCES "src/*.cpp"
 include_directories(include src)
 add_executable(test_luna_math ${SOURCES})
 add_subdirectory( gtest )
-include_directories("gtest/googletest/include" luna_math)
-target_link_libraries(test_luna_math gtest luna_math)
+include_directories("gtest/googletest/include")
+target_include_directories(luna_renderer PUBLIC ${CMAKE_CURRENT_LIST_DIR})
+include_directories(${luna_math_SOURCE_DIR}/src)
+target_link_libraries(test_luna_math luna_math gtest)
 
 
 

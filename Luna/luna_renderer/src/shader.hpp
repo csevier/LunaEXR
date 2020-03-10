@@ -5,7 +5,7 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
-#include "../../../luna_math/src/matrix4d.hpp"
+#include "matrix4d.hpp"
 #include <GL/glew.h>
 
 class Shader

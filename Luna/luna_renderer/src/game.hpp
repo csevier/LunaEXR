@@ -1,9 +1,9 @@
 #ifndef GAME_H
 #define GAME_H
-#include <GL\glew.h>
-#include <GLFW\glfw3.h>
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
 #include "shader.hpp"
-#include "../../../luna_math/src/matrix4d.hpp"
+#include "matrix4d.hpp"
 #include "Mesh.hpp"
 #include "Scene.hpp"
 #include "Cube.hpp"
@@ -78,7 +78,7 @@ private:
 		glClear(GL_DEPTH_BUFFER_BIT);
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		glEnable(GL_DEPTH_TEST);
+        glEnable(GL_DEPTH_TEST);
 		luna::Cube cube{ luna::Vector3d(0.0f,  0.0f,  0.0f) };
 		luna::Matrix4d view{};
 		luna::Vector3d center = cameraPos + cameraFront;

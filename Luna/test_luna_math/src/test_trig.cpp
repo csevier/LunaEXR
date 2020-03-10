@@ -1,6 +1,6 @@
-#include "../../../luna_math/src/geometry.hpp"
-#include "../../../luna_math/src/math.hpp"
-#include "../../../luna_math/src/angle.hpp"
+#include "geometry.hpp"
+#include "math.hpp"
+#include "angle.hpp"
 
 #include <gtest/gtest.h>
 

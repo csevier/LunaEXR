@@ -2,7 +2,7 @@
 #define CUBE_HPP
 
 #include "GameObject.hpp"
-#include "../../../luna_math/src/vector3d.hpp"
+#include "vector3d.hpp"
 #include "Mesh.hpp"
 #include "Drawable.hpp"
 

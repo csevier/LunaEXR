@@ -2,12 +2,12 @@
 #define MESH_HPP
 #include <vector>
 #include <string>
-#include "../../../luna_math/src/vector2d.hpp"
-#include "../../../luna_math/src/vector3d.hpp"
+#include "vector2d.hpp"
+#include "vector3d.hpp"
 #include "shader.hpp"
 #include "GameObject.hpp"
 #include "Drawable.hpp"
-#include "../../../luna_math/src/matrix4d.hpp"
+#include "matrix4d.hpp"
 
 
 namespace luna 

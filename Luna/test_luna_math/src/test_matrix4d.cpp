@@ -1,6 +1,6 @@
-#include "../../../luna_math/src/vmath.h"
-#include "../../../luna_math/src/matrix4d.hpp"
-#include "../../../luna_math/src/vector4d.hpp"
+#include "vmath.h"
+#include "matrix4d.hpp"
+#include "vector4d.hpp"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
