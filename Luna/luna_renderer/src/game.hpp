@@ -17,7 +17,7 @@ class Game
 	}
 
 public:
-	Game(float screenWidth = 1920.0f, float screenHeight = 1080.0f):
+    Game(float screenWidth = 800.0f, float screenHeight = 600.0f):
 		mScreenWidth{ screenWidth }, mScreenHeight{ screenHeight }, mAspectRatio{mScreenWidth/mScreenHeight}
 	{
 		InitializeGLFW();
@@ -25,7 +25,7 @@ public:
 
 	void Run()
 	{
-		Shader shader{ "./Debug/vert.glsl","./Debug/frag.glsl" };
+        Shader shader{ "vert.glsl","frag.glsl" };
 		while (!glfwWindowShouldClose(mWindow))
 		{
 			double currentTime = glfwGetTime();

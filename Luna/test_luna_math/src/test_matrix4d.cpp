@@ -289,16 +289,6 @@ TEST(TestMatrix4d, TestLookAtStart)
 	EXPECT_EQ(glmLookat[3][1], lunaLookat(3, 1));
 	EXPECT_EQ(glmLookat[3][2], lunaLookat(3, 2));
 	EXPECT_EQ(glmLookat[3][3], lunaLookat(3, 3));
-
-	float* ptr = glm::value_ptr(glmLookat);
-	const float* lptr = lunaLookat.Data();
-	for (int i = 0; i < 16; i++) {
-		lptr++;
-		ptr++;
-		EXPECT_EQ(*lptr, *ptr);
-		std::cout << "luna: " << *lptr << std::endl;
-		std::cout << "glm: " << *ptr << std::endl << std::endl;
-	}
 }
 
 TEST(TestMatrix4d, TestLookAtAfterMove)
@@ -331,14 +321,4 @@ TEST(TestMatrix4d, TestLookAtAfterMove)
 	EXPECT_EQ(glmLookat[3][1], lunaLookat(3, 1));
 	EXPECT_EQ(glmLookat[3][2], lunaLookat(3, 2));
 	EXPECT_EQ(glmLookat[3][3], lunaLookat(3, 3));
-
-	float* ptr = glm::value_ptr(glmLookat);
-	const float* lptr = lunaLookat.Data();
-	for (int i = 0; i < 16; i++) {
-		lptr++;
-		ptr++;
-		EXPECT_EQ(*lptr, *ptr);
-		std::cout << "luna: " << *lptr << std::endl;
-		std::cout << "glm: " << *ptr << std::endl << std::endl;
-	}
 }
