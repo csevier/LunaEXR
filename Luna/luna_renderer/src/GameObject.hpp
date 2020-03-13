@@ -1,7 +1,7 @@
 #ifndef GAMEOBJECT_HPP
 #define GAMEOBJECT_HPP
 
-#include "shader.hpp"
+#include "Shader.hpp"
 #include "vector3d.hpp"
 #include "Drawable.hpp"
 
@@ -9,22 +9,14 @@ namespace luna
 {
 	class GameObject: public Drawable
 	{
-	public:
-		GameObject(Vector3d transform) : mTransform{transform} 
-		{
-		}
+        public:
+            GameObject(Vector3d transform);
+            Vector3d GetTransform() const;
+            virtual void Update(float deltaTime) = 0;
+            void Draw(Shader shader) override;
 
-		Vector3d GetTransform() const
-		{
-			return mTransform;
-		}
-		virtual void Update(float deltaTime) = 0;
-		void Draw(Shader shader) override {
-
-		}
-		
-	private:
-		Vector3d mTransform;
+        private:
+            Vector3d mTransform;
 	};
 }
 #endif

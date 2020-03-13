@@ -1,4 +1,5 @@
-#include "game.hpp"
+#include "Game.hpp"
+using namespace luna;
 
 int main() 
 {

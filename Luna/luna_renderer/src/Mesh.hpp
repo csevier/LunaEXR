@@ -4,7 +4,7 @@
 #include <string>
 #include "vector2d.hpp"
 #include "vector3d.hpp"
-#include "shader.hpp"
+#include "Shader.hpp"
 #include "GameObject.hpp"
 #include "Drawable.hpp"
 #include "matrix4d.hpp"

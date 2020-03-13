@@ -1,6 +1,6 @@
 #ifndef DRAWABLE_HPP
 #define DRAWABLE_HPP
-#include "shader.hpp"
+#include "Shader.hpp"
 
 namespace luna
 {
