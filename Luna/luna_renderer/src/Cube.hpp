@@ -5,6 +5,7 @@
 #include "vector3d.hpp"
 #include "Mesh.hpp"
 #include "Drawable.hpp"
+#include "TimeManger.hpp"
 
 namespace luna 
 {
@@ -12,7 +13,7 @@ namespace luna
 	{
 	public:
 		Cube(Vector3d transform);
-		void Update(float deltaTime) override;
+        void Update(const TimeManager& tm) override;
 		void Draw(Shader shader) override;
 	private:
 		Mesh mMesh;

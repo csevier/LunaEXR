@@ -4,6 +4,7 @@
 #include "Shader.hpp"
 #include "vector3d.hpp"
 #include "Drawable.hpp"
+#include "TimeManger.hpp"
 
 namespace luna 
 {
@@ -12,7 +13,7 @@ namespace luna
         public:
             GameObject(Vector3d transform);
             Vector3d GetTransform() const;
-            virtual void Update(float deltaTime) = 0;
+            virtual void Update(const TimeManager& tm) = 0;
             void Draw(Shader shader) override;
 
         private:

@@ -12,7 +12,6 @@ namespace luna
         mScreenWidth{ screenWidth }, mScreenHeight{ screenHeight }, mAspectRatio{mScreenWidth/mScreenHeight}
     {
         InitializeGLFW();
-        mTimeStarted = glfwGetTime();
     }
 
     void Game::Run()
@@ -20,18 +19,16 @@ namespace luna
         Shader shader{ "vert.glsl","frag.glsl" };
         while (!glfwWindowShouldClose(mWindow))
         {
-            //clear screen
-            std::cout << std::string( 100, '\n' );
-            double currentTime = glfwGetTime();
-            processInput(mWindow, currentTime);
 
+            mTimeManager.UpdateTime();
+            processInput(mWindow);
             glfwGetCursorPos(mWindow, &xpos, &ypos);
-            Display(mWindow, currentTime, shader);
+            Display(mWindow, shader);
             glfwSwapBuffers(mWindow);
             glfwPollEvents();
-            mFPS = mFrameCount /(currentTime - mTimeStarted);
-            std::cout << " Average FPS: " << mFPS <<std::endl;
-            mFrameCount +=1;
+            //clear screen
+            std::cout << std::string( 100, '\n' );
+            std::cout << " Average FPS: " << mTimeManager.GetFPS() <<std::endl;
         }
         glfwDestroyWindow(mWindow);
         glfwTerminate();
@@ -67,7 +64,7 @@ namespace luna
         Init(mWindow);
     }
 
-    void Game::Display(GLFWwindow* window, double currentTime, Shader shader)
+    void Game::Display(GLFWwindow* window, Shader shader)
     {
         HandleMouse();
         glClear(GL_DEPTH_BUFFER_BIT);
@@ -80,16 +77,14 @@ namespace luna
         view = view * luna::Matrix4d::LookAt(cameraPos, center, cameraUp);
         shader.SetView(view);
         shader.SetProjection(projection);
-        cube.Update(currentTime);
+        cube.Update(mTimeManager);
         cube.Draw(shader);
 
     }
 
-    void Game::processInput(GLFWwindow* window, double currentTime)
+    void Game::processInput(GLFWwindow* window)
     {
-        mDeltaTime = currentTime - mLastFrameTime;
-        mLastFrameTime = currentTime;
-        const float cameraSpeed = 25.0f * mDeltaTime; // adjust accordingly
+        const float cameraSpeed = 25.0f * mTimeManager.GetDeltaTime(); // adjust accordingly
         if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
             cameraPos -= cameraFront * cameraSpeed;
         if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)

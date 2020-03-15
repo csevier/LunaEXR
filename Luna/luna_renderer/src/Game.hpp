@@ -7,6 +7,7 @@
 #include "Mesh.hpp"
 #include "Scene.hpp"
 #include "Cube.hpp"
+#include "TimeManger.hpp"
 
 namespace luna
 {
@@ -21,11 +22,11 @@ namespace luna
         private:
             void Init(GLFWwindow* window);
             void InitializeGLFW();
-            void Display(GLFWwindow* window, double currentTime, Shader shader);
-            void processInput(GLFWwindow* window, double currentTime);
+            void Display(GLFWwindow* window, Shader shader);
+            void processInput(GLFWwindow* window);
             void HandleMouse();
 
-            // Need TimeManger
+            TimeManager mTimeManager;
             // Need Input Handler
             // Need Camera;
             GLFWwindow* mWindow;
@@ -34,12 +35,7 @@ namespace luna
             float mAspectRatio;
             const static int mNumVAOs = 1;
             GLuint mVao[mNumVAOs];
-            double mLastFrameTime = 0;
-            double mDeltaTime;
             bool firstMouse = true;
-            int mFrameCount =0;
-            double mFPS = 0;
-            double mTimeStarted;
             double xpos;
             double ypos;
             float yaw = -90.0f;	// yaw is initialized to -90.0 degrees since a yaw of 0.0 results in a direction vector pointing to the right so we initially rotate a bit to the left.
