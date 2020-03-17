@@ -8,6 +8,7 @@
 #include "Scene.hpp"
 #include "Cube.hpp"
 #include "TimeManger.hpp"
+#include "FirstPersonCamera.hpp"
 
 namespace luna
 {
@@ -20,33 +21,20 @@ namespace luna
             void Run();
 
         private:
-            void Init(GLFWwindow* window);
-            void InitializeGLFW();
+            void Initialize();
             void Display(GLFWwindow* window, Shader shader);
             void processInput(GLFWwindow* window);
             void HandleMouse();
 
             TimeManager mTimeManager;
             // Need Input Handler
-            // Need Camera;
+            FirstPersonCamera mCamera;
             GLFWwindow* mWindow;
             float mScreenWidth;
             float mScreenHeight;
             float mAspectRatio;
-            const static int mNumVAOs = 1;
-            GLuint mVao[mNumVAOs];
-            bool firstMouse = true;
-            double xpos;
-            double ypos;
-            float yaw = -90.0f;	// yaw is initialized to -90.0 degrees since a yaw of 0.0 results in a direction vector pointing to the right so we initially rotate a bit to the left.
-            float pitch = 0.0f;
-            float lastX = 800.0f / 2.0;
-            float lastY = 600.0 / 2.0;
             float fov = 45.0f;
-            luna::Matrix4d projection{};
-            luna::Vector3d cameraPos = luna::Vector3d(0.0f, 0.0f, -3.0f);
-            luna::Vector3d cameraFront = luna::Vector3d(0.0f, 0.0f, -1.0f);
-            luna::Vector3d cameraUp = luna::Vector3d(0.0f, 1.0f, 0.0f);
+            luna::Matrix4d projection{};   
     };
 }
 
