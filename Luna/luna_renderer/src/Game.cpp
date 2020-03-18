@@ -6,11 +6,13 @@ namespace luna
     void Game::framebuffer_size_callback(GLFWwindow* window, int width, int height)
     {
         glViewport(0, 0, width, height);
+
     }
 
     Game::Game(float screenWidth, float screenHeight):
         mScreenWidth{ screenWidth }, mScreenHeight{ screenHeight }, mAspectRatio{mScreenWidth/mScreenHeight}
     {
+        mCamera = std::make_unique<BoardGameCamera>();
         Initialize();
     }
 
@@ -20,7 +22,7 @@ namespace luna
         while (!glfwWindowShouldClose(mWindow))
         {
             mTimeManager.UpdateTime();
-            mCamera.UpdatePosition(mTimeManager.GetDeltaTime(), mWindow);
+            mCamera->UpdatePosition(mTimeManager.GetDeltaTime());
             Display(mWindow, shader);
             glfwSwapBuffers(mWindow);
             glfwPollEvents();
@@ -42,14 +44,14 @@ namespace luna
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
         mWindow = glfwCreateWindow(mScreenWidth, mScreenHeight, "Luna", nullptr, nullptr);
+        mCamera->SetWindow(mWindow);
         glfwMakeContextCurrent(mWindow);
         glfwSetFramebufferSizeCallback(mWindow, framebuffer_size_callback);
-        glfwSetInputMode(mWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-        projection = projection * luna::Matrix4d::Perspective(luna::Angle::AngleFromDegrees(fov), mAspectRatio, 0.1f, 100.0f);
         if (glewInit() != GLEW_OK)
         {
             exit(EXIT_FAILURE);
         }
+         projection = projection * luna::Matrix4d::Perspective(luna::Angle::AngleFromDegrees(fov), mAspectRatio, 0.1f, 100.0f);
         // this is vsync, meaning it will wait for your monitors
         // refresh rate
         glfwSwapInterval(1);
@@ -63,7 +65,7 @@ namespace luna
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         luna::Cube cube{ luna::Vector3d(0.0f,  0.0f,  0.0f) };
-        shader.SetView(mCamera.GetView());
+        shader.SetView(mCamera->GetView());
         shader.SetProjection(projection);
         cube.Update(mTimeManager);
         cube.Draw(shader);

@@ -9,6 +9,8 @@
 #include "Cube.hpp"
 #include "TimeManger.hpp"
 #include "FirstPersonCamera.hpp"
+#include "BoardGameCamera.hpp"
+#include <memory>
 
 namespace luna
 {
@@ -28,7 +30,7 @@ namespace luna
 
             TimeManager mTimeManager;
             // Need Input Handler
-            FirstPersonCamera mCamera;
+            std::unique_ptr<Camera> mCamera;
             GLFWwindow* mWindow;
             float mScreenWidth;
             float mScreenHeight;

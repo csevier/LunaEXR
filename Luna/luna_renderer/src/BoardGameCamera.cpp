@@ -1,7 +1,7 @@
-#include "FirstPersonCamera.hpp"
+#include "BoardGameCamera.hpp"
 namespace luna
 {
-    void FirstPersonCamera::UpdatePosition(double deltaTime)
+    void BoardGameCamera::UpdatePosition(double deltaTime)
     {
         glfwGetCursorPos(mWindow, &xpos, &ypos);
 
@@ -19,20 +19,20 @@ namespace luna
         ProcessMousePosition();
     }
 
-    Matrix4d FirstPersonCamera::GetView() const
+    Matrix4d BoardGameCamera::GetView() const
     {
         luna::Matrix4d view{};
         luna::Vector3d center = cameraPos + cameraFront;
         return view * luna::Matrix4d::LookAt(cameraPos, center, cameraUp);
     }
 
-    void FirstPersonCamera::SetWindow(GLFWwindow *mWindow)
+    void BoardGameCamera::SetWindow(GLFWwindow *mWindow)
     {
         Camera::SetWindow(mWindow);
-        DisableCursor();
+        EnableCursor();
     }
 
-    void FirstPersonCamera::ProcessMousePosition()
+    void BoardGameCamera::ProcessMousePosition()
     {
         if (firstMouse)
         {
@@ -41,30 +41,7 @@ namespace luna
             firstMouse = false;
         }
 
-        float xoffset = xpos - lastX;
-        float yoffset = lastY - ypos;
         lastX = xpos;
         lastY = ypos;
-
-        float sensitivity = 0.05;
-        xoffset *= sensitivity;
-        yoffset *= sensitivity;
-
-        yaw -= xoffset;
-        pitch -= yoffset;
-
-        if (pitch > 89.0f)
-            pitch = 89.0f;
-        if (pitch < -89.0f)
-            pitch = -89.0f;
-
-        luna::Angle aPitch = luna::Angle::AngleFromDegrees(pitch);
-        luna::Angle aYaw = luna::Angle::AngleFromDegrees(yaw);
-
-        float x = cos(aYaw.Radians()) * cos(aPitch.Radians());
-        float y = sin(aPitch.Radians());
-        float z = sin(aYaw.Radians()) * cos(aPitch.Radians());
-        const luna::Vector3d direction{ x, y, z };
-        cameraFront = direction.Normalize();
     }
 }
