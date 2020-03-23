@@ -4,8 +4,8 @@ namespace luna
 {
 	Matrix2d::Matrix2d()
 	{
-		mContents[0][0] = 1; mContents[0][1] = 0;
-		mContents[1][0] = 0; mContents[1][1] = 1;
+        mContents[0][0] = 1; mContents[0][1] = 0;
+        mContents[1][0] = 0; mContents[1][1] = 1;
 	}
 
 	Matrix2d::Matrix2d(float a00, float a01,

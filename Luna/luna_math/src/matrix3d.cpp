@@ -9,20 +9,20 @@ namespace luna
 		mContents[2][0] = 0; mContents[2][1] = 0; mContents[2][2] = 1;
 	}
 
-	Matrix3d::Matrix3d(float a00, float a01, float a02,
-		float a10, float a11, float a12,
-		float a20, float a21, float a22)
+    Matrix3d::Matrix3d(float c0r0, float c0r1, float c0r2,
+                       float c1r0, float c1r1, float c1r2,
+                       float c2r0, float c2r1, float c2r2)
 	{
-		mContents[0][0] = a00; mContents[0][1] = a01; mContents[0][2] = a02;
-		mContents[1][0] = a10; mContents[1][1] = a11; mContents[1][2] = a12;
-		mContents[2][0] = a20; mContents[2][1] = a21; mContents[2][2] = a22;
+        mContents[0][0] = c0r0; mContents[0][1] = c1r0; mContents[0][2] = c2r0;
+        mContents[1][0] = c0r1; mContents[1][1] = c1r1; mContents[1][2] = c2r1;
+        mContents[2][0] = c0r2; mContents[2][1] = c1r2; mContents[2][2] = c2r2;
 	}
 
-	Matrix3d::Matrix3d(float a00)
+    Matrix3d::Matrix3d(float diagonal)
 	{
-		mContents[0][0] = a00; mContents[0][1] = 0;   mContents[0][2] = 0;
-		mContents[1][0] = 0;   mContents[1][1] = a00; mContents[1][2] = 0;
-		mContents[2][0] = 0;   mContents[2][1] = 0;   mContents[2][2] = a00;
+        mContents[0][0] = diagonal; mContents[0][1] = 0;        mContents[0][2] = 0;
+        mContents[1][0] = 0;        mContents[1][1] = diagonal; mContents[1][2] = 0;
+        mContents[2][0] = 0;        mContents[2][1] = 0;        mContents[2][2] = diagonal;
 	}
 
 	bool Matrix3d::operator==(const Matrix3d& other) const
@@ -41,14 +41,24 @@ namespace luna
 
 	float Matrix3d::operator()(int row, int column) const
 	{
-		return mContents[row][column];
+        return mContents[column][row];
 	}
 
 	Matrix3d Matrix3d::Transpose() const
 	{
-		return Matrix3d{ mContents[0][0], mContents[1][0], mContents[2][0],
-						 mContents[0][1], mContents[1][1], mContents[2][1],
-						 mContents[0][2], mContents[1][2], mContents[2][2] };
+        float c0r0 = (*this)(0,0);
+        float c0r1 = (*this)(1,0);
+        float c0r2 = (*this)(2,0);
+        float c1r0 = (*this)(0,1);
+        float c1r1 = (*this)(1,1);
+        float c1r2 = (*this)(2,1);
+        float c2r0 = (*this)(0,2);
+        float c2r1 = (*this)(1,2);
+        float c2r2 = (*this)(2,2);
+
+        return Matrix3d{ c0r0, c0r1, c0r2,
+                         c1r0, c1r1, c1r2,
+                         c2r0, c2r1, c2r2};
 	}
 
 	bool Matrix3d::IsDiagonal() const
