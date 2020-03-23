@@ -231,10 +231,10 @@ namespace luna
 		float k = far / (far - near);
 		float A = g / aspect;
 
-		return Matrix4d{ A, 0, 0, 0,
-						 0, g, 0, 0,
-						 0, 0, k, 1.0f,
-						 0, 0,  -near * k, 0 };
+        return Matrix4d{ A, 0, 0,    0,
+                         0, g, 0,    0,
+                         0, 0, k,    -near * k,
+                         0, 0, 1.0f, 0 };
 	}
 
 	const Matrix4d Matrix4d::Ortho(float left, float right, float bottom, float top, float near, float far)
@@ -254,10 +254,10 @@ namespace luna
 		float eyeS = -s.DotProduct(eye);
 		float eyeU = -u.DotProduct(eye);
 		float eyeF = f.DotProduct(eye);
-		const Matrix4d mat{ s.x(),    u.x(),    -f.x(), 0,
-						   s.y(),    u.y(),    -f.y(), 0,
-						   s.z(),    u.z(),    -f.z(), 0,
-						  eyeS,eyeU,eyeF,1 };
+        const Matrix4d mat{ s.x(),   s.y(),     s.z(),  eyeS,
+                            u.x(),   u.y(),     u.z(),  eyeU,
+                            -f.x(),  -f.y(),   -f.z(),  eyeF,
+                            0,        0,        0,       1  };
 		return mat;
 
 	}
