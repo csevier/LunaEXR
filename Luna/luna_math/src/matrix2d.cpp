@@ -8,17 +8,17 @@ namespace luna
         mContents[1][0] = 0; mContents[1][1] = 1;
 	}
 
-	Matrix2d::Matrix2d(float a00, float a01,
-		float a10, float a11)
+    Matrix2d::Matrix2d(float r0c0, float r0c1,
+                       float r1c0, float r1c1)
 	{
-		mContents[0][0] = a00; mContents[0][1] = a01;
-		mContents[1][0] = a10; mContents[1][1] = a11;
+        mContents[0][0] = r0c0; mContents[0][1] = r1c0;
+        mContents[1][0] = r0c1; mContents[1][1] = r1c1;
 	}
 
-	Matrix2d::Matrix2d(float a00)
+    Matrix2d::Matrix2d(float diagonal)
 	{
-		mContents[0][0] = a00; mContents[0][1] = 0;
-		mContents[1][0] = 0;   mContents[1][1] = a00;
+        mContents[0][0] = diagonal; mContents[0][1] = 0;
+        mContents[1][0] = 0;        mContents[1][1] = diagonal;
 	}
 
 	bool Matrix2d::operator==(const Matrix2d& other) const
@@ -37,13 +37,18 @@ namespace luna
 
 	float Matrix2d::operator()(int row, int column) const
 	{
-		return mContents[row][column];
+        return mContents[column][row];
 	}
 
 	Matrix2d Matrix2d::Transpose() const
 	{
-		return Matrix2d{ mContents[0][0], mContents[1][0],
-						 mContents[0][1], mContents[1][1] };
+        float r0c0 = (*this)(0,0);
+        float r1c0 = (*this)(1,0);
+        float r0c1 = (*this)(0,1);
+        float r1c1 = (*this)(1,1);
+
+        return Matrix2d{ r0c0, r1c0,
+                         r0c1, r1c1 };
 	}
 
 	bool Matrix2d::IsDiagonal() const
@@ -71,8 +76,13 @@ namespace luna
 
 	Matrix2d Matrix2d::operator*(int scaler) const
 	{
-		return Matrix2d{ mContents[0][0] * scaler, mContents[0][1] * scaler,
-						 mContents[1][0] * scaler, mContents[1][1] * scaler };
+        float r0c0 = (*this)(0,0) * scaler;
+        float r1c0 = (*this)(1,0) * scaler;
+        float r0c1 = (*this)(0,1) * scaler;
+        float r1c1 = (*this)(1,1) * scaler;
+
+        return Matrix2d{ r0c0, r0c1,
+                         r1c0, r1c1 };
 	}
 	/*
 	Matrix * Matrix
@@ -82,13 +92,13 @@ namespace luna
 	*/
 	Matrix2d Matrix2d::operator*(const Matrix2d& other) const
 	{
-		float m00 = (*this)(0, 0) * other(0, 0) + (*this)(0, 1) * other(1, 0); // a00 * b00 + a01 * b10
-		float m01 = (*this)(0, 0) * other(0, 1) + (*this)(0, 1) * other(1, 1); // a00 * b01 + a01 * b11
-		float m10 = (*this)(1, 0) * other(0, 0) + (*this)(1, 1) * other(1, 0); // a10 * b00 + a11 * b10
-		float m11 = (*this)(1, 0) * other(0, 1) + (*this)(1, 1) * other(1, 1); // a10 * b01 + a11 * b11
+        float r0c0 = (*this)(0, 0) * other(0, 0) + (*this)(0, 1) * other(1, 0); // a00 * b00 + a01 * b10
+        float r0c1 = (*this)(0, 0) * other(0, 1) + (*this)(0, 1) * other(1, 1); // a00 * b01 + a01 * b11
+        float r1c0 = (*this)(1, 0) * other(0, 0) + (*this)(1, 1) * other(1, 0); // a10 * b00 + a11 * b10
+        float r1c1 = (*this)(1, 0) * other(0, 1) + (*this)(1, 1) * other(1, 1); // a10 * b01 + a11 * b11
 
-		return Matrix2d{ m00, m01,
-						 m10, m11 };
+        return Matrix2d{ r0c0, r0c1,
+                         r1c0, r1c1 };
 	}
 	/*
 	Vector * Matrix is each vector component times column component added.

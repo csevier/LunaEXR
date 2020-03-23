@@ -7,18 +7,18 @@ namespace luna
 	// Row Major Layout.
 	/* Layout
 		  Column 0  Column 1 
-	row 0 [0][0]    [0][1]  
-	row 1 [1][0]    [1][1] 
+    row 0 [0][0]    [1][0]
+    row 1 [0][1]    [1][1]
 
 	*/
 	class Matrix2d
 	{
 	public:
 		Matrix2d();
-		Matrix2d(float a00, float a01, 
-			     float a10, float a11);
+        Matrix2d(float r0c0, float r0c1,
+                 float r1c0, float r1c1);
 		// Makes diagonal
-		Matrix2d(float a00);
+        Matrix2d(float diagonal);
 
 		bool operator==(const Matrix2d& other) const;
 		Matrix2d operator*(int scaler) const;

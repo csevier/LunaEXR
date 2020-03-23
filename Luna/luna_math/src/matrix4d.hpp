@@ -5,22 +5,22 @@
 
 namespace luna
 {
-	// Row Major Layout.
+    // Column Major Memory Layout.
 	/* Layout
-		  Column 0 Column 1 Column 2
-	row 0 [0][0]    [0][1]   [0][2]  [0][3]
-	row 1 [1][0]    [1][1]   [1][2]  [1][3]
-	row 2 [2][0]    [2][1]   [2][2]  [2][3]
-	row 3 [3][0]    [3][1]   [3][2]  [3][3]
+          Column 0 Column 1 Column 2 Column 3
+    row 0 [0][0]    [1][0]   [2][0]  [3][0]
+    row 1 [0][1]    [1][1]   [2][1]  [3][1]
+    row 2 [0][2]    [1][2]   [2][2]  [3][2]
+    row 3 [0][3]    [1][3]   [2][3]  [3][3]
 	*/
 	class Matrix4d
 	{
 	public:
 		Matrix4d();
-		Matrix4d(float a00, float a01, float a02, float a03, 
-			float a10, float a11, float a12, float a13,
-			float a20, float a21, float a22, float a23,
-			float a30, float a31, float a32, float a33);
+        Matrix4d(float r0c0, float r0c1, float r0c2, float r0c3,
+                 float r1c0, float r1c1, float r1c2, float r1c3,
+                 float r2c0, float r2c1, float r2c2, float r2c3,
+                 float r3c0, float r3c1, float r3c2, float r3c3);
 
 		bool operator==(const Matrix4d& other) const;
 		Matrix4d operator*(int scaler) const;

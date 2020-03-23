@@ -73,7 +73,7 @@ namespace luna
     void Shader::SetModel(luna::Matrix4d mat)
     {
         GLuint model = glGetUniformLocation(mProgramId, "model");
-        glUniformMatrix4fv(model, 1, GL_TRUE, mat.Data());
+        glUniformMatrix4fv(model, 1, GL_FALSE, mat.Data());
     }
 
     void Shader::SetView(luna::Matrix4d mat)

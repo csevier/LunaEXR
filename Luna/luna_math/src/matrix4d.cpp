@@ -10,15 +10,15 @@ namespace luna
 		mContents[3][0] = 0; mContents[3][1] = 0; mContents[3][2] = 0; mContents[3][3] = 1;
 	}
 
-	Matrix4d::Matrix4d(float a00, float a01, float a02, float a03,
-		float a10, float a11, float a12, float a13,
-		float a20, float a21, float a22, float a23,
-		float a30, float a31, float a32, float a33)
+    Matrix4d::Matrix4d(float r0c0, float r0c1, float r0c2, float r0c3,
+                       float r1c0, float r1c1, float r1c2, float r1c3,
+                       float r2c0, float r2c1, float r2c2, float r2c3,
+                       float r3c0, float r3c1, float r3c2, float r3c3)
 	{
-		mContents[0][0] = a00; mContents[0][1] = a01; mContents[0][2] = a02; mContents[0][3] = a03;
-		mContents[1][0] = a10; mContents[1][1] = a11; mContents[1][2] = a12; mContents[1][3] = a13;
-		mContents[2][0] = a20; mContents[2][1] = a21; mContents[2][2] = a22; mContents[2][3] = a23;
-		mContents[3][0] = a30; mContents[3][1] = a31; mContents[3][2] = a32; mContents[3][3] = a33;
+        mContents[0][0] = r0c0; mContents[0][1] = r1c0; mContents[0][2] = r2c0; mContents[0][3] = r3c0;
+        mContents[1][0] = r0c1; mContents[1][1] = r1c1; mContents[1][2] = r2c1; mContents[1][3] = r3c1;
+        mContents[2][0] = r0c2; mContents[2][1] = r1c2; mContents[2][2] = r2c2; mContents[2][3] = r3c2;
+        mContents[3][0] = r0c3; mContents[3][1] = r1c3; mContents[3][2] = r2c3; mContents[3][3] = r3c3;
 	}
 
 	bool Matrix4d::operator==(const Matrix4d& other) const
@@ -37,15 +37,32 @@ namespace luna
 
 	float Matrix4d::operator()(int row, int column) const
 	{
-		return mContents[row][column];
+        return mContents[column][row];
 	}
 
 	Matrix4d Matrix4d::Transpose() const
 	{
-		return Matrix4d{ mContents[0][0], mContents[1][0], mContents[2][0], mContents[3][0],
-						 mContents[0][1], mContents[1][1], mContents[2][1], mContents[3][1],
-						 mContents[0][2], mContents[1][2], mContents[2][2], mContents[3][2],
-						 mContents[0][3], mContents[1][3], mContents[2][3], mContents[3][3] };
+        float r0c0 = (*this)(0,0);
+        float r1c0 = (*this)(1,0);
+        float r2c0 = (*this)(2,0);
+        float r3c0 = (*this)(3,0);
+        float r0c1 = (*this)(0,1);
+        float r1c1 = (*this)(1,1);
+        float r2c1 = (*this)(2,1);
+        float r3c1 = (*this)(3,1);
+        float r0c2 = (*this)(0,2);
+        float r1c2 = (*this)(1,2);
+        float r2c2 = (*this)(2,2);
+        float r3c2 = (*this)(3,2);
+        float r0c3 = (*this)(0,3);
+        float r1c3 = (*this)(1,3);
+        float r2c3 = (*this)(2,3);
+        float r3c3 = (*this)(3,3);
+
+        return Matrix4d{ r0c0, r1c0, r2c0, r3c0,
+                         r0c1, r1c1, r2c1, r3c1,
+                         r0c2, r1c2, r2c2, r3c2,
+                         r0c3, r1c3, r2c3, r3c3 };
 	}
 
 	bool Matrix4d::IsDiagonal() const
@@ -73,11 +90,29 @@ namespace luna
 
 	Matrix4d Matrix4d::operator*(int scaler) const
 	{
-		return Matrix4d{ mContents[0][0] * scaler, mContents[0][1] * scaler, mContents[0][2] * scaler, mContents[0][3] * scaler,
-						 mContents[1][0] * scaler, mContents[1][1] * scaler, mContents[1][2] * scaler, mContents[1][3] * scaler,
-						 mContents[2][0] * scaler, mContents[2][1] * scaler, mContents[2][2] * scaler, mContents[2][3] * scaler,
-						 mContents[3][0] * scaler, mContents[3][1] * scaler, mContents[3][2] * scaler, mContents[3][3] * scaler };
+        float r0c0 = (*this)(0,0) * scaler;
+        float r1c0 = (*this)(1,0) * scaler;
+        float r2c0 = (*this)(2,0) * scaler;
+        float r3c0 = (*this)(3,0) * scaler;
+        float r0c1 = (*this)(0,1) * scaler;
+        float r1c1 = (*this)(1,1) * scaler;
+        float r2c1 = (*this)(2,1) * scaler;
+        float r3c1 = (*this)(3,1) * scaler;
+        float r0c2 = (*this)(0,2) * scaler;
+        float r1c2 = (*this)(1,2) * scaler;
+        float r2c2 = (*this)(2,2) * scaler;
+        float r3c2 = (*this)(3,2) * scaler;
+        float r0c3 = (*this)(0,3) * scaler;
+        float r1c3 = (*this)(1,3) * scaler;
+        float r2c3 = (*this)(2,3) * scaler;
+        float r3c3 = (*this)(3,3) * scaler;
+
+        return Matrix4d{r0c0, r0c1, r0c2, r0c3,
+                        r1c0, r1c1, r1c2, r1c3,
+                        r2c0, r2c1, r2c2, r2c3,
+                        r3c0, r3c1, r3c2, r3c3};
 	}
+
 	/*
 	Matrix * Matrix
 
@@ -88,30 +123,31 @@ namespace luna
 	*/
 	Matrix4d Matrix4d::operator*(const Matrix4d& other) const
 	{
-		float m00 = (*this)(0, 0) * other(0, 0) + (*this)(0, 1) * other(1, 0) + (*this)(0, 2) * other(2, 0) + (*this)(0, 3) * other(3, 0);
-		float m01 = (*this)(0, 0) * other(0, 1) + (*this)(0, 1) * other(1, 1) + (*this)(0, 2) * other(2, 1) + (*this)(0, 3) * other(3, 1);
-		float m02 = (*this)(0, 0) * other(0, 2) + (*this)(0, 1) * other(1, 2) + (*this)(0, 2) * other(2, 2) + (*this)(0, 3) * other(3, 2);
-		float m03 = (*this)(0, 0) * other(0, 3) + (*this)(0, 1) * other(1, 3) + (*this)(0, 2) * other(2, 3) + (*this)(0, 3) * other(3, 3);
 
-		float m10 = (*this)(1, 0) * other(0, 0) + (*this)(1, 1) * other(1, 0) + (*this)(1, 2) * other(2, 0) + (*this)(1, 3) * other(3, 0);
-		float m11 = (*this)(1, 0) * other(0, 1) + (*this)(1, 1) * other(1, 1) + (*this)(1, 2) * other(2, 1) + (*this)(1, 3) * other(3, 1);
-		float m12 = (*this)(1, 0) * other(0, 2) + (*this)(1, 1) * other(1, 2) + (*this)(1, 2) * other(2, 2) + (*this)(1, 3) * other(3, 2);
-		float m13 = (*this)(1, 0) * other(0, 3) + (*this)(1, 1) * other(1, 3) + (*this)(1, 2) * other(2, 3) + (*this)(1, 3) * other(3, 3);
+        float r0c0 = (*this)(0, 0) * other(0, 0) + (*this)(0, 1) * other(1, 0) + (*this)(0, 2) * other(2, 0) + (*this)(0, 3) * other(3, 0);
+        float r0c1 = (*this)(0, 0) * other(0, 1) + (*this)(0, 1) * other(1, 1) + (*this)(0, 2) * other(2, 1) + (*this)(0, 3) * other(3, 1);
+        float r0c2 = (*this)(0, 0) * other(0, 2) + (*this)(0, 1) * other(1, 2) + (*this)(0, 2) * other(2, 2) + (*this)(0, 3) * other(3, 2);
+        float r0c3 = (*this)(0, 0) * other(0, 3) + (*this)(0, 1) * other(1, 3) + (*this)(0, 2) * other(2, 3) + (*this)(0, 3) * other(3, 3);
 
-		float m20 = (*this)(2, 0) * other(0, 0) + (*this)(2, 1) * other(1, 0) + (*this)(2, 2) * other(2, 0) + (*this)(2, 3) * other(3, 0);
-		float m21 = (*this)(2, 0) * other(0, 1) + (*this)(2, 1) * other(1, 1) + (*this)(2, 2) * other(2, 1) + (*this)(2, 3) * other(3, 1);
-		float m22 = (*this)(2, 0) * other(0, 2) + (*this)(2, 1) * other(1, 2) + (*this)(2, 2) * other(2, 2) + (*this)(2, 3) * other(3, 2);
-		float m23 = (*this)(2, 0) * other(0, 3) + (*this)(2, 1) * other(1, 3) + (*this)(2, 2) * other(2, 3) + (*this)(2, 3) * other(3, 3);
+        float r1c0 = (*this)(1, 0) * other(0, 0) + (*this)(1, 1) * other(1, 0) + (*this)(1, 2) * other(2, 0) + (*this)(1, 3) * other(3, 0);
+        float r1c1 = (*this)(1, 0) * other(0, 1) + (*this)(1, 1) * other(1, 1) + (*this)(1, 2) * other(2, 1) + (*this)(1, 3) * other(3, 1);
+        float r1c2 = (*this)(1, 0) * other(0, 2) + (*this)(1, 1) * other(1, 2) + (*this)(1, 2) * other(2, 2) + (*this)(1, 3) * other(3, 2);
+        float r1c3 = (*this)(1, 0) * other(0, 3) + (*this)(1, 1) * other(1, 3) + (*this)(1, 2) * other(2, 3) + (*this)(1, 3) * other(3, 3);
 
-		float m30 = (*this)(3, 0) * other(0, 0) + (*this)(3, 1) * other(1, 0) + (*this)(3, 2) * other(2, 0) + (*this)(3, 3) * other(3, 0);
-		float m31 = (*this)(3, 0) * other(0, 1) + (*this)(3, 1) * other(1, 1) + (*this)(3, 2) * other(2, 1) + (*this)(3, 3) * other(3, 1);
-		float m32 = (*this)(3, 0) * other(0, 2) + (*this)(3, 1) * other(1, 2) + (*this)(3, 2) * other(2, 2) + (*this)(3, 3) * other(3, 2);
-		float m33 = (*this)(3, 0) * other(0, 3) + (*this)(3, 1) * other(1, 3) + (*this)(3, 2) * other(2, 3) + (*this)(3, 3) * other(3, 3);
+        float r2c0 = (*this)(2, 0) * other(0, 0) + (*this)(2, 1) * other(1, 0) + (*this)(2, 2) * other(2, 0) + (*this)(2, 3) * other(3, 0);
+        float r2c1 = (*this)(2, 0) * other(0, 1) + (*this)(2, 1) * other(1, 1) + (*this)(2, 2) * other(2, 1) + (*this)(2, 3) * other(3, 1);
+        float r2c2 = (*this)(2, 0) * other(0, 2) + (*this)(2, 1) * other(1, 2) + (*this)(2, 2) * other(2, 2) + (*this)(2, 3) * other(3, 2);
+        float r2c3 = (*this)(2, 0) * other(0, 3) + (*this)(2, 1) * other(1, 3) + (*this)(2, 2) * other(2, 3) + (*this)(2, 3) * other(3, 3);
 
-		return Matrix4d{ m00, m01, m02, m03,
-						 m10, m11, m12, m13,
-						 m20, m21, m22, m23,
-						 m30, m31, m32, m33 };
+        float r3c0 = (*this)(3, 0) * other(0, 0) + (*this)(3, 1) * other(1, 0) + (*this)(3, 2) * other(2, 0) + (*this)(3, 3) * other(3, 0);
+        float r3c1 = (*this)(3, 0) * other(0, 1) + (*this)(3, 1) * other(1, 1) + (*this)(3, 2) * other(2, 1) + (*this)(3, 3) * other(3, 1);
+        float r3c2 = (*this)(3, 0) * other(0, 2) + (*this)(3, 1) * other(1, 2) + (*this)(3, 2) * other(2, 2) + (*this)(3, 3) * other(3, 2);
+        float r3c3 = (*this)(3, 0) * other(0, 3) + (*this)(3, 1) * other(1, 3) + (*this)(3, 2) * other(2, 3) + (*this)(3, 3) * other(3, 3);
+
+        return Matrix4d{ r0c0, r0c1, r0c2, r0c3,
+                         r1c0, r1c1, r1c2, r1c3,
+                         r2c0, r2c1, r2c2, r2c3,
+                         r3c0, r3c1, r3c2, r3c3 };
 	}
 
 	/*
