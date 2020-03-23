@@ -8,19 +8,19 @@ namespace luna
     // Column Major Memory Layout!
 	/* Layout
 		  Column 0 Column 1 Column 2
-	row 0 [0][0]    [0][1]   [0][2]
-	row 1 [1][0]    [1][1]   [1][2]
-	row 2 [2][0]    [2][1]   [2][2]
+    row 0 [0][0]    [1][0]   [2][0]
+    row 1 [0][1]    [1][1]   [2][0]
+    row 2 [0][2]    [1][2]   [2][0]
 	*/
 	class Matrix3d
 	{
 	public:
 		Matrix3d();
-		Matrix3d(float a00, float a01, float a02,
-			float a10, float a11, float a12,
-			float a20, float a21, float a22);
+        Matrix3d(float r0c0, float r0c1, float r0c2,
+                 float r1c0, float r1c1, float r1c2,
+                 float r2c0, float r2c1, float r2c2);
 		// Makes diagonal
-		Matrix3d(float a00);
+        Matrix3d(float diagonal);
 		bool operator==(const Matrix3d& other) const;
 		Matrix3d operator*(int scaler) const;
 		Matrix3d operator*(const Matrix3d& other) const;
