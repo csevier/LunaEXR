@@ -84,7 +84,7 @@ namespace luna
            Vertex{Vector3d(-0.5f,  0.5f, -0.5f),
                   Vector2d(0.0f,0.0f)}},
 
-            "/home/csevier/Source/Luna/Luna/luna_renderer/textures/luna.jpg"}
+            "../../Luna/luna_renderer/textures/wood.jpg"}
 	{
 	}
 

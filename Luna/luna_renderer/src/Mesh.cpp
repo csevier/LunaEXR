@@ -21,7 +21,7 @@ namespace luna
         shader.Use();
         shader.SetModel(mModel);
         glBindVertexArray(VAO);
-        glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices));
+        glDrawArrays(GL_TRIANGLES, 0, vertices.size());
     }
 
     void Mesh::SetupMesh()
