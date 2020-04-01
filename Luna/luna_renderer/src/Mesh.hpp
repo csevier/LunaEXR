@@ -14,12 +14,15 @@ namespace luna
 	
     struct Vertex 
     {
-        Vertex(Vector3d pos, Vector2d texCoordinate) {
+        Vertex(Vector3d pos, Vector2d texCoordinate, Vector3d normalVector) {
             position = pos;
             textureCoordinate = texCoordinate;
+            surfaceNormal = normalVector;
         }
+
         Vector3d position;
         Vector2d textureCoordinate;
+        Vector3d surfaceNormal;
     };
 
     class Mesh

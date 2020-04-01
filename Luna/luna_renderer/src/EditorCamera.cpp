@@ -21,7 +21,7 @@ namespace luna
         if(!CursorMode)
         {
             // This should prolly not be here.
-            const float cameraSpeed = 15.0f * deltaTime;
+            const float cameraSpeed = 5.0f * deltaTime;
             if (glfwGetKey(mWindow, GLFW_KEY_W) == GLFW_PRESS)
                 cameraPos -= cameraFront * cameraSpeed;
             if (glfwGetKey(mWindow, GLFW_KEY_S) == GLFW_PRESS)

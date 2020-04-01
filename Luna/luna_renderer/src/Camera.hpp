@@ -14,10 +14,14 @@ namespace luna
         virtual void SetWindow(GLFWwindow* mWindow);
         void EnableCursor();
         void DisableCursor();
+        const Vector3d& GetPosition() const;
 
     protected:
         virtual void ProcessMousePosition() =0;
         GLFWwindow* mWindow;
+        luna::Vector3d cameraPos = luna::Vector3d(0.0f, 0.0f, -3.0f);
+        luna::Vector3d cameraFront = luna::Vector3d(0.0f, 0.0f, -1.0f);
+        luna::Vector3d cameraUp = luna::Vector3d(0.0f, 1.0f, 0.0f);
     };
 }
 

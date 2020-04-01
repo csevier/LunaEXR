@@ -68,6 +68,7 @@ namespace luna
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         shader.SetView(mCamera->GetView());
+        shader.SetUniform("viewPos", mCamera->GetPosition());
         shader.SetProjection(projection);
         mSceneGraph.UpdateScene(mTimeManager);
         mSceneGraph.DrawScene(shader);

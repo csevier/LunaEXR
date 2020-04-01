@@ -22,4 +22,9 @@ namespace  luna
             glfwSetInputMode(mWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
         }
     }
+
+    const Vector3d& Camera::GetPosition() const
+    {
+        return cameraPos;
+    }
 }

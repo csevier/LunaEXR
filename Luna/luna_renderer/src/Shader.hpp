@@ -17,6 +17,8 @@ namespace luna
             void Use() const;
             GLuint GetProgramId() const;
             void SetUniform(const std::string& uniformName, float value);
+            void SetUniform(const std::string& uniformName, const luna::Vector3d& vector);
+            void SetUniform(const std::string& uniformName, bool value);
             void SetModel(luna::Matrix4d mat);
             void SetView(luna::Matrix4d mat);
             void SetProjection(luna::Matrix4d mat);

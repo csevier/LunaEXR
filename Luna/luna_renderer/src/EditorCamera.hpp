@@ -23,9 +23,6 @@ namespace luna
         float pitch = 0.0f;
         float lastX = 800.0f / 2.0;
         float lastY = 600.0 / 2.0;
-        luna::Vector3d cameraPos = luna::Vector3d(0.0f, 0.0f, -3.0f);
-        luna::Vector3d cameraFront = luna::Vector3d(0.0f, 0.0f, -1.0f);
-        luna::Vector3d cameraUp = luna::Vector3d(0.0f, 1.0f, 0.0f);
         bool CursorMode = false;
     };
 }
