@@ -15,31 +15,28 @@ namespace luna
 	
     struct Vertex 
     {
-        Vertex(Vector3d vec) {
-            position = vec;
+        Vertex(Vector3d pos, Vector2d texCoordinate) {
+            position = pos;
+            textureCoordinate = texCoordinate;
         }
         Vector3d position;
-       // Vector2d texCoords;
-    };
-
-    struct Texture 
-    {
-        unsigned int id;
-        std::string type;
+        Vector2d textureCoordinate;
     };
 
     class Mesh : public Drawable
     {
         public:
-            Mesh(std::vector<Vertex> vertices);
+            Mesh(std::vector<Vertex> vertices, std::string texturePath);
             void Draw(Shader shader);
             void SetModel(Matrix4d model);
 
         private:
-            unsigned int VAO, VBO, EBO;
-            void setupMesh();
+            unsigned int VAO, VBO, EBO, texture;
+            void SetupMesh();
+            void SetupTexture();
             std::vector<Vertex> vertices;
             Matrix4d mModel;
+            std::string mTexturePath;
     };
 
 	

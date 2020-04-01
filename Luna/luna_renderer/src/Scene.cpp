@@ -10,7 +10,15 @@ namespace luna
         }
     }
 
-    void Scene::AddObject(Drawable* object)
+    void Scene::UpdateScene(const TimeManager &tm)
+    {
+        for (GameObject* object : mObjects)
+        {
+            object->Update(tm);
+        }
+    }
+
+    void Scene::AddObject(GameObject* object)
     {
         mObjects.push_back(object);
     }

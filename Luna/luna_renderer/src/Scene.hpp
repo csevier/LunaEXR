@@ -13,9 +13,10 @@ namespace luna
         public:
             Scene() = default;
             void DrawScene(Shader shader) noexcept;
-            void AddObject(Drawable* object);
+            void UpdateScene(const TimeManager& tm);
+            void AddObject(GameObject* object);
         private:
-            std::vector<Drawable*> mObjects;
+            std::vector<GameObject*> mObjects;
 	};
 }
 #endif

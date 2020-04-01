@@ -36,7 +36,8 @@ namespace luna
             float mScreenHeight;
             float mAspectRatio;
             float fov = 45.0f;
-            luna::Matrix4d projection{};   
+            luna::Matrix4d projection{};
+            Scene mSceneGraph;
     };
 }
 
