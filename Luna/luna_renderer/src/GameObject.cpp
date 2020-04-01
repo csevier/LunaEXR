@@ -2,9 +2,13 @@
 
 namespace luna
 {
-    GameObject::GameObject(Vector3d transform) : mTransform{transform} {}
+    GameObject::GameObject(const Vector3d& position)
+    {
+        mTransform.Position = position;
+        mTransform.Scale = {1,1,1};
+    }
 
-    Vector3d GameObject::GetTransform() const
+    Transform& GameObject::GetTransform()
     {
         return mTransform;
     }

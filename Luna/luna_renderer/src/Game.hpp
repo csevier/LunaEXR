@@ -6,10 +6,9 @@
 #include "matrix4d.hpp"
 #include "Mesh.hpp"
 #include "Scene.hpp"
-#include "Cube.hpp"
 #include "TimeManger.hpp"
-#include "FirstPersonCamera.hpp"
-#include "BoardGameCamera.hpp"
+#include "EditorCamera.hpp"
+#include "FlyoverCamera.hpp"
 #include <memory>
 
 namespace luna
@@ -21,6 +20,7 @@ namespace luna
         public:
             Game(float screenWidth = 800.0f, float screenHeight = 600.0f);
             void Run();
+            void AddScene(const Scene& scene);
 
         private:
             void Initialize();

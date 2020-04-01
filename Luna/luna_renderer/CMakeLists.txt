@@ -3,7 +3,8 @@ project(luna_renderer)
 
 file(GLOB SOURCES "src/*.cpp"
                   "src/*.hpp"
-                   "src/*.glsl"
+                   "textures/*.jpg"
+                   "shaders/*.glsl"
                   )
 add_executable(luna_renderer ${SOURCES})
 

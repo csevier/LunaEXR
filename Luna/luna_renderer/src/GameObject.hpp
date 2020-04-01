@@ -8,16 +8,23 @@
 
 namespace luna 
 {
+    struct Transform
+    {
+        Vector3d Position;
+        Vector3d Rotation;
+        Vector3d Scale;
+    };
+
 	class GameObject: public Drawable
 	{
         public:
-            GameObject(Vector3d transform);
-            Vector3d GetTransform() const;
+            GameObject(const Vector3d& transform);
+            Transform& GetTransform();
             virtual void Update(const TimeManager& tm) = 0;
             void Draw(Shader shader) override;
 
         private:
-            Vector3d mTransform;
+            Transform mTransform;
 	};
 }
 #endif

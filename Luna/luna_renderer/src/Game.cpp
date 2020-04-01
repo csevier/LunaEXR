@@ -12,16 +12,13 @@ namespace luna
     Game::Game(float screenWidth, float screenHeight):
         mScreenWidth{ screenWidth }, mScreenHeight{ screenHeight }, mAspectRatio{mScreenWidth/mScreenHeight}
     {
-        mCamera = std::make_unique<FirstPersonCamera>();
+        mCamera = std::make_unique<EditorCamera>();
         Initialize();
     }
 
     void Game::Run()
     {
-        Shader shader{ "vert.glsl","frag.glsl" };
-        // Read in scene;
-        luna::Cube cube{ luna::Vector3d(0.0f,  0.0f,  0.0f) };
-        mSceneGraph.AddObject(&cube);
+        Shader shader{ "../../Luna/luna_renderer/shaders/vert.glsl","../../Luna/luna_renderer/shaders/frag.glsl" };
         while (!glfwWindowShouldClose(mWindow))
         {
             mTimeManager.UpdateTime();
@@ -36,6 +33,11 @@ namespace luna
         glfwDestroyWindow(mWindow);
         glfwTerminate();
         exit(EXIT_SUCCESS);
+    }
+
+    void Game::AddScene(const Scene& scene)
+    {
+        mSceneGraph = scene;
     }
 
     void Game::Initialize()

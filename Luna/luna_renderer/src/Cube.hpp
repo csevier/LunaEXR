@@ -12,7 +12,7 @@ namespace luna
 	class Cube : public GameObject
 	{
 	public:
-		Cube(Vector3d transform);
+        Cube(const Vector3d& transform);
         void Update(const TimeManager& tm) override;
 		void Draw(Shader shader) override;
 	private:

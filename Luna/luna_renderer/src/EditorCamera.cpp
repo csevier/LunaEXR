@@ -1,38 +1,54 @@
-#include "FirstPersonCamera.hpp"
+#include "EditorCamera.hpp"
+
 namespace luna
 {
-    void FirstPersonCamera::UpdatePosition(double deltaTime)
+    void EditorCamera::UpdatePosition(double deltaTime)
     {
         glfwGetCursorPos(mWindow, &xpos, &ypos);
 
-        // This should prolly not be here.
-        const float cameraSpeed = 25.0f * deltaTime;
-        if (glfwGetKey(mWindow, GLFW_KEY_W) == GLFW_PRESS)
-            cameraPos -= cameraFront * cameraSpeed;
-        if (glfwGetKey(mWindow, GLFW_KEY_S) == GLFW_PRESS)
-            cameraPos += cameraFront * cameraSpeed;
-        if (glfwGetKey(mWindow, GLFW_KEY_A) == GLFW_PRESS)
-            cameraPos = cameraPos - cameraFront.CrossProduct(cameraUp).Normalize() * cameraSpeed;
-        if (glfwGetKey(mWindow, GLFW_KEY_D) == GLFW_PRESS)
-            cameraPos = cameraPos + cameraFront.CrossProduct(cameraUp).Normalize() * cameraSpeed;
+        if(glfwGetMouseButton(mWindow, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS)
+        {
+            CursorMode = false;
+            DisableCursor();
 
-        ProcessMousePosition();
+        }
+        else
+        {
+           CursorMode = true;
+           EnableCursor();
+        }
+
+        if(!CursorMode)
+        {
+            // This should prolly not be here.
+            const float cameraSpeed = 15.0f * deltaTime;
+            if (glfwGetKey(mWindow, GLFW_KEY_W) == GLFW_PRESS)
+                cameraPos -= cameraFront * cameraSpeed;
+            if (glfwGetKey(mWindow, GLFW_KEY_S) == GLFW_PRESS)
+                cameraPos += cameraFront * cameraSpeed;
+            if (glfwGetKey(mWindow, GLFW_KEY_A) == GLFW_PRESS)
+                cameraPos = cameraPos - cameraFront.CrossProduct(cameraUp).Normalize() * cameraSpeed;
+            if (glfwGetKey(mWindow, GLFW_KEY_D) == GLFW_PRESS)
+                cameraPos = cameraPos + cameraFront.CrossProduct(cameraUp).Normalize() * cameraSpeed;
+
+            ProcessMousePosition();
+        }
     }
 
-    Matrix4d FirstPersonCamera::GetView() const
+    Matrix4d EditorCamera::GetView() const
     {
         luna::Matrix4d view{};
         luna::Vector3d center = cameraPos + cameraFront;
         return view * luna::Matrix4d::LookAt(cameraPos, center, cameraUp);
     }
 
-    void FirstPersonCamera::SetWindow(GLFWwindow *mWindow)
+    void EditorCamera::SetWindow(GLFWwindow *mWindow)
     {
         Camera::SetWindow(mWindow);
         DisableCursor();
     }
 
-    void FirstPersonCamera::ProcessMousePosition()
+    void EditorCamera::ProcessMousePosition()
     {
         if (firstMouse)
         {

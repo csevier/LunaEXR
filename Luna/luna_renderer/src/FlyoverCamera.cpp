@@ -1,7 +1,8 @@
-#include "BoardGameCamera.hpp"
+#include "FlyoverCamera.hpp"
+
 namespace luna
 {
-    void BoardGameCamera::UpdatePosition(double deltaTime)
+    void FlyoverCamera::UpdatePosition(double deltaTime)
     {
         glfwGetCursorPos(mWindow, &xpos, &ypos);
 
@@ -19,20 +20,20 @@ namespace luna
         ProcessMousePosition();
     }
 
-    Matrix4d BoardGameCamera::GetView() const
+    Matrix4d FlyoverCamera::GetView() const
     {
         luna::Matrix4d view{};
         luna::Vector3d center = cameraPos + cameraFront;
         return view * luna::Matrix4d::LookAt(cameraPos, center, cameraUp);
     }
 
-    void BoardGameCamera::SetWindow(GLFWwindow *mWindow)
+    void FlyoverCamera::SetWindow(GLFWwindow *mWindow)
     {
         Camera::SetWindow(mWindow);
         EnableCursor();
     }
 
-    void BoardGameCamera::ProcessMousePosition()
+    void FlyoverCamera::ProcessMousePosition()
     {
         if (firstMouse)
         {
