@@ -6,6 +6,7 @@ namespace luna
     {
         mTransform.Position = position;
         mTransform.Scale = {1,1,1};
+        mTransform.Rotation = {0, 0, 0};
     }
 
     Transform& GameObject::GetTransform()

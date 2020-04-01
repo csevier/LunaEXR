@@ -92,7 +92,10 @@ namespace luna
 	{
         float ct = (float)tm.GetCurrentTime();
 		Matrix4d model{};
-        model = model * luna::Matrix4d::Translate(GetTransform().Position + luna::Vector3d{0.0f,0.0f,25.0f});
+        model = model * luna::Matrix4d::Translate(GetTransform().Position);
+        model = model * luna::Matrix4d::RotateX(luna::Angle::AngleFromDegrees(GetTransform().Rotation.x()));
+        model = model * luna::Matrix4d::RotateY(luna::Angle::AngleFromDegrees(GetTransform().Rotation.y()));
+        model = model * luna::Matrix4d::RotateZ(luna::Angle::AngleFromDegrees(GetTransform().Rotation.z()));
         model = model * luna::Matrix4d::Scale(GetTransform().Scale);
 		mMesh.SetModel(model);
 	}
