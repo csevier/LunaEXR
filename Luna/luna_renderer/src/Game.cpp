@@ -6,7 +6,6 @@ namespace luna
     void Game::framebuffer_size_callback(GLFWwindow* window, int width, int height)
     {
         glViewport(0, 0, width, height);
-
     }
 
     Game::Game(float screenWidth, float screenHeight):

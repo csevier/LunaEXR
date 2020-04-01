@@ -6,7 +6,6 @@
 #include "vector3d.hpp"
 #include "Shader.hpp"
 #include "GameObject.hpp"
-#include "Drawable.hpp"
 #include "matrix4d.hpp"
 
 
@@ -23,19 +22,18 @@ namespace luna
         Vector2d textureCoordinate;
     };
 
-    class Mesh : public Drawable
+    class Mesh
     {
         public:
             Mesh(std::vector<Vertex> vertices, std::string texturePath);
-            void Draw(Shader shader);
-            void SetModel(Matrix4d model);
+            void Use();
+            const std::vector<Vertex>& GetVertices() const;
 
         private:
             unsigned int VAO, VBO, EBO, texture;
             void SetupMesh();
             void SetupTexture();
             std::vector<Vertex> vertices;
-            Matrix4d mModel;
             std::string mTexturePath;
     };
 

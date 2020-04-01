@@ -18,4 +18,19 @@ namespace luna
     {
         // no draw on base.
     }
+
+    void GameObject::AddChild(GameObject *child)
+    {
+        children.push_back(child);
+    }
+
+    const Matrix4d& GameObject::GetModelMatrix() const
+    {
+        return mModel;
+    }
+
+    void GameObject::SetModelMatrix(const Matrix4d &matrix)
+    {
+        mModel = matrix;
+    }
 }

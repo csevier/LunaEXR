@@ -6,8 +6,6 @@
 
 namespace luna
 {
-    
-
     Mesh::Mesh( std::vector<Vertex> vertices, std::string texturePath )
 	{
 		this->vertices = vertices;
@@ -16,12 +14,14 @@ namespace luna
         SetupTexture();
 	}
 
-    void Mesh::Draw(Shader shader)
+    void Mesh::Use()
     {
-        shader.Use();
-        shader.SetModel(mModel);
         glBindVertexArray(VAO);
-        glDrawArrays(GL_TRIANGLES, 0, vertices.size());
+    }
+
+    const std::vector<Vertex>& Mesh::GetVertices() const
+    {
+        return vertices;
     }
 
     void Mesh::SetupMesh()
@@ -69,9 +69,5 @@ namespace luna
             std::cout << "Failed to load texture" << std::endl;
         }
         stbi_image_free(data);
-    }
-
-    void Mesh::SetModel(Matrix4d model) {
-        mModel = model;
     }
 }

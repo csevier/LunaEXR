@@ -5,6 +5,7 @@
 #include "vector3d.hpp"
 #include "Drawable.hpp"
 #include "TimeManger.hpp"
+#include <vector>
 
 namespace luna 
 {
@@ -22,9 +23,17 @@ namespace luna
             Transform& GetTransform();
             virtual void Update(const TimeManager& tm) = 0;
             void Draw(Shader shader) override;
+            void AddChild(GameObject* child);
+            const Matrix4d& GetModelMatrix() const;
+            void SetModelMatrix(const Matrix4d& matrix);
 
         private:
             Transform mTransform;
+            Matrix4d mModel;
+
+        protected:
+
+            std::vector<GameObject*> children;
 	};
 }
 #endif
