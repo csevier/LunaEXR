@@ -133,14 +133,6 @@ namespace luna
         model = model * luna::Matrix4d::RotateY(luna::Angle::AngleFromDegrees(GetTransform().Rotation.y()));
         model = model * luna::Matrix4d::RotateZ(luna::Angle::AngleFromDegrees(GetTransform().Rotation.z()));
         model = model * luna::Matrix4d::Scale(GetTransform().Scale);
-//        for(GameObject* child : children)
-//        {
-//            //child->SetModelMatrix(model * child->GetModelMatrix());
-//            child->Update(tm);
-//           // const Matrix4d& childMat = child->GetModelMatrix();
-//            //model = model * childMat;
-
-        //}
         SetModelMatrix(model);
 	}
 
@@ -158,13 +150,17 @@ namespace luna
         }
         shader.SetUniform("objectColor", objectColor);
         shader.SetUniform("lightColor",  lightColor);
+        shader.SetUniform("material.ambient", {1.0f, 0.5f, 0.31f});
+        shader.SetUniform("material.diffuse", 0);
+        shader.SetUniform("material.specular", {0.5f, 0.5f, 0.5f});
+        shader.SetUniform("material.shininess", 32.0f);
+
+        shader.SetUniform("light.ambient",  {0.2f, 0.2f, 0.2f});
+        shader.SetUniform("light.diffuse",  {0.5f, 0.5f, 0.5f}); // darken diffuse light a bit
+        shader.SetUniform("light.specular", {1.0f, 1.0f, 1.0f});
         shader.SetModel(GetModelMatrix());
         mMesh.Use();
         glDrawArrays(GL_TRIANGLES, 0, mMesh.GetVertices().size());
-//        for(GameObject* child : children)
-//        {
-//            child->Draw(shader);
-//        }
 	}
 
     void Cube::SetColor(const Vector3d &color)

@@ -80,6 +80,11 @@ namespace luna
         glUniform1i(glGetUniformLocation(mProgramId,  uniformName.c_str()), value);
     }
 
+    void Shader::SetUniform(const std::string& uniformName, int value)
+    {
+        glUniform1i(glGetUniformLocation(mProgramId,  uniformName.c_str()), value);
+    }
+
     void Shader::SetModel(luna::Matrix4d mat)
     {
         GLuint model = glGetUniformLocation(mProgramId, "model");

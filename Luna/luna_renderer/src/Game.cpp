@@ -25,9 +25,6 @@ namespace luna
             Display(mWindow, shader);
             glfwSwapBuffers(mWindow);
             glfwPollEvents();
-            //clear screen
-            std::cout << std::string( 100, '\n' );
-            std::cout << " Average FPS: " << mTimeManager.GetFPS() <<std::endl;
         }
         glfwDestroyWindow(mWindow);
         glfwTerminate();
