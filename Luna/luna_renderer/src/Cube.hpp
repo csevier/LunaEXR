@@ -14,7 +14,7 @@ namespace luna
         public:
             Cube(const Vector3d& transform);
             void Update(const TimeManager& tm) override;
-            void Draw(Shader shader) override;
+            void Draw() override;
             void SetColor(const Vector3d& color);
             void SetLight(const Vector3d& light);
             void UseAsLamp(bool isLightSource);

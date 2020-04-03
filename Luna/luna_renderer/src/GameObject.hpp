@@ -22,7 +22,7 @@ namespace luna
             GameObject(const Vector3d& transform);
             Transform& GetTransform();
             virtual void Update(const TimeManager& tm) = 0;
-            void Draw(Shader shader) override;
+            void Draw() override;
             void AddChild(GameObject* child);
             const Matrix4d& GetModelMatrix() const;
             void SetModelMatrix(const Matrix4d& matrix);

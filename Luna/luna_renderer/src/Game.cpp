@@ -1,4 +1,5 @@
 #include "Game.hpp"
+#include "ShaderManager.hpp"
 #include <string>
 
 namespace luna
@@ -17,12 +18,11 @@ namespace luna
 
     void Game::Run()
     {
-        Shader shader{ "../../Luna/luna_renderer/shaders/vert.glsl","../../Luna/luna_renderer/shaders/frag.glsl" };
         while (!glfwWindowShouldClose(mWindow))
         {
             mTimeManager.UpdateTime();
             mCamera->UpdatePosition(mTimeManager.GetDeltaTime());
-            Display(mWindow, shader);
+            Display();
             glfwSwapBuffers(mWindow);
             glfwPollEvents();
         }
@@ -52,22 +52,23 @@ namespace luna
         {
             exit(EXIT_FAILURE);
         }
-         projection = projection * luna::Matrix4d::Perspective(luna::Angle::AngleFromDegrees(fov), mAspectRatio, 0.1f, 100.0f);
+        Shader shader{ "../../Luna/luna_renderer/shaders/vert.glsl","../../Luna/luna_renderer/shaders/frag.glsl" };
+        projection = projection * luna::Matrix4d::Perspective(luna::Angle::AngleFromDegrees(fov), mAspectRatio, 0.1f, 100.0f);
+        ShaderManager::AddShader("cube", shader);
         // this is vsync, meaning it will wait for your monitors
         // refresh rate
         glfwSwapInterval(1);
         glEnable(GL_DEPTH_TEST);
     }
 
-    void Game::Display(GLFWwindow* window, Shader shader)
+    void Game::Display()
     {
         glClear(GL_DEPTH_BUFFER_BIT);
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        shader.SetView(mCamera->GetView());
-        shader.SetUniform("viewPos", mCamera->GetPosition());
-        shader.SetProjection(projection);
+        ShaderManager::SetView(*mCamera);
+        ShaderManager::SetProjection(projection);
         mSceneGraph.UpdateScene(mTimeManager);
-        mSceneGraph.DrawScene(shader);
+        mSceneGraph.DrawScene();
     }
 }

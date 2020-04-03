@@ -14,7 +14,7 @@ namespace luna
         return mTransform;
     }
 
-    void GameObject::Draw(Shader shader)
+    void GameObject::Draw()
     {
         // no draw on base.
     }

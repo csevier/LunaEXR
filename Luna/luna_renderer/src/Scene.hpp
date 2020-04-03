@@ -12,7 +12,7 @@ namespace luna
 	{
         public:
             Scene() = default;
-            void DrawScene(Shader shader) noexcept;
+            void DrawScene() noexcept;
             void UpdateScene(const TimeManager& tm);
             void AddObject(GameObject* object);
         private:

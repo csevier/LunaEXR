@@ -2,11 +2,11 @@
 
 namespace luna
 {
-    void Scene::DrawScene(Shader shader) noexcept
+    void Scene::DrawScene() noexcept
     {
         for (Drawable* object : mObjects)
         {
-            object->Draw(shader);
+            object->Draw();
         }
     }
 

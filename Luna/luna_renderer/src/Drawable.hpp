@@ -6,7 +6,7 @@ namespace luna
 {
 	class Drawable {
 	public:
-		virtual void Draw(Shader shader) = 0;
+        virtual void Draw() = 0;
 	};
 }
 #endif // !DRAWABLE_HPP

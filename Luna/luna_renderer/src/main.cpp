@@ -17,6 +17,7 @@ int main()
     luna::Cube lamp{ luna::Vector3d(1.0f,  01.5f,  1.5f) };
     lamp.GetTransform().Scale = {0.5f, 0.5f, 0.5f};
     lamp.UseAsLamp(true);
+    //cube2.UseAsLamp(true);
     Scene cubeDemo{};
     //cube.AddChild(&cube1);
     cubeDemo.AddObject(&cube1);

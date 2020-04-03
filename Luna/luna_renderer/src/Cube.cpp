@@ -1,3 +1,4 @@
+#include "ShaderManager.hpp"
 #include "Cube.hpp"
 #include <math.h>
 
@@ -126,7 +127,6 @@ namespace luna
 
     void Cube::Update(const TimeManager& tm)
 	{
-        //Matrix4d& mine = GetModelMatrix();
         Matrix4d model{};
         model = model * luna::Matrix4d::Translate(GetTransform().Position);
         model = model * luna::Matrix4d::RotateX(luna::Angle::AngleFromDegrees(GetTransform().Rotation.x() +35 *tm.GetCurrentTime()));
@@ -136,29 +136,34 @@ namespace luna
         SetModelMatrix(model);
 	}
 
-    void Cube::Draw(Shader shader)
+    void Cube::Draw()
     {
-        shader.Use();
+        Shader* shader = ShaderManager::GetShader("cube");
+        if(!shader)
+        {
+            return;
+        }
+        shader->Use();
         if(isLightSource)
         {
-            shader.SetUniform("isLightSource", true);
-            shader.SetUniform("lightPos", GetTransform().Position);
+            shader->SetUniform("isLightSource", true);
+            shader->SetUniform("lightPos", GetTransform().Position);
         }
         else
         {
-            shader.SetUniform("isLightSource", false);
+            shader->SetUniform("isLightSource", false);
         }
-        shader.SetUniform("objectColor", objectColor);
-        shader.SetUniform("lightColor",  lightColor);
-        shader.SetUniform("material.ambient", {1.0f, 0.5f, 0.31f});
-        shader.SetUniform("material.diffuse", 0);
-        shader.SetUniform("material.specular", {0.5f, 0.5f, 0.5f});
-        shader.SetUniform("material.shininess", 32.0f);
+        shader->SetUniform("objectColor", objectColor);
+        shader->SetUniform("lightColor",  lightColor);
+        shader->SetUniform("material.ambient", {1.0f, 0.5f, 0.31f});
+        shader->SetUniform("material.diffuse", 0);
+        shader->SetUniform("material.specular", {0.5f, 0.5f, 0.5f});
+        shader->SetUniform("material.shininess", 32.0f);
 
-        shader.SetUniform("light.ambient",  {0.2f, 0.2f, 0.2f});
-        shader.SetUniform("light.diffuse",  {0.5f, 0.5f, 0.5f}); // darken diffuse light a bit
-        shader.SetUniform("light.specular", {1.0f, 1.0f, 1.0f});
-        shader.SetModel(GetModelMatrix());
+        shader->SetUniform("light.ambient",  {0.2f, 0.2f, 0.2f});
+        shader->SetUniform("light.diffuse",  {0.5f, 0.5f, 0.5f}); // darken diffuse light a bit
+        shader->SetUniform("light.specular", {1.0f, 1.0f, 1.0f});
+        shader->SetModel(GetModelMatrix());
         mMesh.Use();
         glDrawArrays(GL_TRIANGLES, 0, mMesh.GetVertices().size());
 	}

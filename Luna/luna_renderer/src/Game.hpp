@@ -24,7 +24,7 @@ namespace luna
 
         private:
             void Initialize();
-            void Display(GLFWwindow* window, Shader shader);
+            void Display();
             void processInput(GLFWwindow* window);
             void HandleMouse();
 
