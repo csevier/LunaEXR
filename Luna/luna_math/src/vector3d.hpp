@@ -1,7 +1,8 @@
-#ifndef VECTOR3D_H
-#define VECTOR3D_H
+#ifndef Vector3d_H
+#define Vector3d_H
 #include "angle.hpp"
 #include <cmath>
+#include <iostream>
 
 namespace luna
 {
@@ -10,9 +11,19 @@ namespace luna
 	public:
 		Vector3d() = default;
 		Vector3d(float x, float y, float z);
+        Vector3d(const Vector3d& other);
+
+        // coordinate
 		float x() const;
 		float y() const;
 		float z() const;
+
+        // color
+        float r() const;
+        float g() const;
+        float b() const;
+
+        // operators
 		Vector3d operator *(float scalar) const;
 		Vector3d operator /(float scalar) const;
 		Vector3d operator +(const Vector3d& other) const;
@@ -24,6 +35,8 @@ namespace luna
 		bool operator ==(const Vector3d& other);
 		float& operator [](int i);
 		const float& operator [](int i) const;
+
+        // methods
 		float Magnitude() const;
 		Vector3d Normalize() const;
 		float DotProduct(const Vector3d& other) const;
@@ -39,6 +52,9 @@ namespace luna
 		float mY;
 		float mZ;
 	};
+
+    std::istream& operator>>(std::istream& is, Vector3d& vec);
+    std::ostream& operator<<(std::ostream& os, const Vector3d& vec);
 }
 #endif
 

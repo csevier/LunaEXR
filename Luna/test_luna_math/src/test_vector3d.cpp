@@ -12,6 +12,36 @@ TEST(TestVector3d, Ctor)
 	EXPECT_EQ(v.z(), 3);
 }
 
+
+TEST(TestVector3d, rgb)
+{
+    luna::Vector3d v{ 1,2,3 };
+    EXPECT_EQ(v.r(), 1);
+    EXPECT_EQ(v.g(), 2);
+    EXPECT_EQ(v.b(), 3);
+}
+
+// at the moment, i dont have a good way of doing this interactively, its manually tested and correct.
+//TEST(TestVector3d, istream)
+//{
+//    luna::Vector3d v{ 1,2,3 };
+
+//    std::cin >> v;
+//    EXPECT_EQ(v.x(), 1);
+//    EXPECT_EQ(v.y(), 2);
+//    EXPECT_EQ(v.z(), 3);
+//}
+
+
+TEST(TestVector3d, ostream)
+{
+    luna::Vector3d v{ 1,2,3 };
+    EXPECT_EQ(v.x(), 1);
+    EXPECT_EQ(v.y(), 2);
+    EXPECT_EQ(v.z(), 3);
+    std::cout << v;
+}
+
 TEST(TestVector3d, ScaleVector)
 {
 	luna::Vector3d v{ 1,2,3 };

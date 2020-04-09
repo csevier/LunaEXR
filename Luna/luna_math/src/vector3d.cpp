@@ -6,6 +6,10 @@ namespace luna
 	{
 	}
 
+    Vector3d::Vector3d(const Vector3d& other) : mX{ other.x() }, mY{ other.y()}, mZ{ other.z() }
+    {
+    }
+
 	float Vector3d::x() const
 	{
 		return mX;
@@ -20,6 +24,21 @@ namespace luna
 	{
 		return mZ;
 	}
+
+    float Vector3d::r() const
+    {
+        return mX;
+    }
+
+    float Vector3d::g() const
+    {
+        return mY;
+    }
+
+    float Vector3d::b() const
+    {
+        return mZ;
+    }
 
 	Vector3d Vector3d::operator *(float scalar) const
 	{
@@ -134,4 +153,17 @@ namespace luna
 	{
 		return DotProduct(other) > 0;
 	}
+
+    // binary operators
+    std::istream& operator>>(std::istream& is, Vector3d& vec)
+    {
+        is >> vec[0] >> vec[1] >> vec[2];
+        return is;
+    }
+
+    std::ostream& operator<<(std::ostream& os,  const Vector3d& vec)
+    {
+        os <<  vec.x() << vec.y() << vec.z();
+        return os;
+    }
 }

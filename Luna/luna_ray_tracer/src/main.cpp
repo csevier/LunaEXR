@@ -3,7 +3,7 @@
 
 int main()
 {
-    int width_x = 200;
+    int width_x =200;
     int height_y = 100;
 
     std::ofstream render{"render.ppm"};
@@ -20,6 +20,7 @@ int main()
             int ig = int(255.99*g);
             int ib = int(255.99*b);
             render << ir << " " << ig << " " << ib << "\n";
+            render.flush();
         }
     }
 
