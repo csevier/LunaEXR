@@ -1,7 +1,6 @@
 #ifndef RAY_HPP
 #define RAY_HPP
 #include "vector3d.hpp"
-#include "Point3d.hpp"
 
 namespace luna
 {
@@ -12,8 +11,8 @@ namespace luna
             Ray(const Vector3d& origin, const Vector3d& dir);
             ~Ray() = default;
 
-            Vector3d& Origin();
-            Vector3d& Direction();
+            const Vector3d& Origin() const;
+            const Vector3d& Direction() const;
             Vector3d PointAtParameter(float param) const;
 
         private:

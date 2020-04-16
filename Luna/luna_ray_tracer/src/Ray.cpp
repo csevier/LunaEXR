@@ -8,12 +8,12 @@ namespace luna
 
     }
 
-    Vector3d& Ray::Origin()
+    const Vector3d& Ray::Origin() const
     {
         return mOrigin;
     }
 
-    Vector3d& Ray::Direction()
+    const Vector3d& Ray::Direction() const
     {
         return mDirection;
     }
