@@ -1,5 +1,5 @@
 # Luna
-This project used cmake. On linux this is easy as hell, simply run the dependency script:
+This project used cmake. On linux, simply run the dependency script:
 
 ./ubuntu_linux_deps.sh
 
